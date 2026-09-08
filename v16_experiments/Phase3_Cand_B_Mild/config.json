@@ -1,0 +1,8 @@
+{
+    "exp_name": "Phase3_Cand_B_Mild",
+    "checkpoint": "checkpoints/v16_1_Cand_B_Mild/models/best_audio_model.pth",
+    "csv": "data/val_v14.csv",
+    "mode": "normal",
+    "noise_level": 0.5,
+    "batch_size": 16
+}

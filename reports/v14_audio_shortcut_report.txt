@@ -1,0 +1,7 @@
+--- AUDIO-ONLY INFERENCE METRICS ---
+Method: Video tensor explicitly zeroed out.
+Accuracy: 0.8550
+ROC-AUC: 0.9275
+Confusion Matrix:
+[[ 74  26]
+ [ 32 268]]

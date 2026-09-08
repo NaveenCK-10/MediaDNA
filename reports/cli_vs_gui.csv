@@ -1,0 +1,5 @@
+Video,Type,GUI_Fake_Prob,CLI_Fake_Prob,Absolute_Difference,Consistent
+00268.mp4,Real,0.84521484375,1.0,0.15478515625,False
+00191.mp4,Real,0.495361328125,1.0,0.504638671875,False
+00405_fake.mp4,Fake,0.9375,1.0,0.0625,False
+00191_fake.mp4,Fake,0.98388671875,1.0,0.01611328125,False

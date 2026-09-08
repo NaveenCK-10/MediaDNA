@@ -31,7 +31,7 @@ val_audio_conf = {'num_mel_bins': 128, 'target_length': target_length, 'freqm': 
                   'mode':'eval', 'mean': dataset_mean, 'std': dataset_std, 'noise': False, 'im_res': 224}
 val_loader = torch.utils.data.DataLoader(
     dataloader.VideoAudioEvalDataset(csv_file=data_eval, audio_conf=val_audio_conf),
-    batch_size=32, shuffle=False, num_workers=32, pin_memory=True)
+    batch_size=32, shuffle=False, num_workers=0, pin_memory=True)
 
 data = []
 with open(data_eval, 'r') as file:
@@ -42,6 +42,7 @@ with open(data_eval, 'r') as file:
 
 preds = {}
 audio_model.to(device)
+audio_model.eval()
 with torch.no_grad():
     for i, (a_input, v_input, labels, video_names) in tqdm(enumerate(val_loader), total=len(val_loader), desc="Processing data"):
         a_input = a_input.to(device)

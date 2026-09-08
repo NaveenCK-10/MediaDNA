@@ -14,6 +14,7 @@ parser.add_argument('--target_length', default=1024, type=int, help='audio targe
 parser.add_argument("--dataset_mean", default=-5.081, type=float, help="the dataset audio spec mean, used for input normalization")
 parser.add_argument("--dataset_std", default=4.4849, type=float, help="the dataset audio spec std, used for input normalization")
 parser.add_argument("--noise", default=False, type=bool, help="add noise to the input")
+parser.add_argument("--noise_level", default=0.0, type=float, help="gaussian noise std dev")
 
 parser.add_argument('--batch-size', default=32, type=int, help='batch size')
 parser.add_argument('--num_workers', default=4, type=int, help='number of workers')
@@ -46,9 +47,9 @@ args = parser.parse_args()
 
 im_res = 224
 audio_conf = {'num_mel_bins': 128, 'target_length': args.target_length, 'freqm': args.freqm, 'timem': args.timem, 'mode':'train', 
-            'mean':args.dataset_mean, 'std':args.dataset_std, 'noise':args.noise, 'label_smooth': 0, 'im_res': im_res}
+            'mean':args.dataset_mean, 'std':args.dataset_std, 'noise':args.noise, 'noise_level': args.noise_level, 'label_smooth': 0, 'im_res': im_res}
 val_audio_conf = {'num_mel_bins': 128, 'target_length': args.target_length, 'freqm': 0, 'timem': 0, 'mixup': 0,'mode':'eval', 
-            'mean': args.dataset_mean, 'std': args.dataset_std, 'noise': False, 'im_res': im_res}
+            'mean': args.dataset_mean, 'std': args.dataset_std, 'noise': False, 'noise_level': args.noise_level, 'im_res': im_res}
 
 print('current mae loss {:.3f}, and contrastive loss {:.3f}'.format(args.mae_loss_weight, args.contrast_loss_weight))
 

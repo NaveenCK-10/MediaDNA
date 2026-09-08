@@ -1,0 +1,8 @@
+{
+    "exp_name": "exp_002_audio_noise_test",
+    "checkpoint": "checkpoints/v14_fullscale/models/best_audio_model.pth",
+    "csv": "data/val_v14.csv",
+    "mode": "normal",
+    "noise_level": 0.5,
+    "batch_size": 16
+}

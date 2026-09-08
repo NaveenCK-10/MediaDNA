@@ -1,0 +1,5 @@
+{
+    "blur_cv_threshold": 0.25264956946809874,
+    "frame_mae_std_threshold": 5.237161540985106,
+    "description": "Calculated as max(minimum_baseline, 95th percentile of real training videos) to limit false positive anomalies."
+}
