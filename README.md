@@ -136,21 +136,43 @@ This highlights a critical lesson in AI forensics. While the model ranks excepti
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## ⚖️ The Three-State Decision Model
+## ⚖️ Three-State Decision Model
 
-Traditional binary detection forces models to guess on boundary cases, destroying forensic credibility. MediaDNA uses calibrated probabilities to bracket an explicit uncertain region:
+MediaDNA separates the **model signal** from the **final decision**. Instead of forcing every case into a binary label, the calibrated output is interpreted through an explicit operating policy that can return **Authentic**, **Uncertain**, or **Synthetic**.
 
-┌──────────────┐
-│  **AUTHENTIC** │ — Evidence supports authenticity under the selected operating policy.
-└──────────────┘
-┌──────────────┐
-│  **UNCERTAIN** │ — Evidence is insufficient for a confident binary conclusion.
-└──────────────┘
-┌──────────────┐
-│  **SYNTHETIC** │ — Evidence crosses the selected synthetic decision boundary.
-└──────────────┘
+```text
+                    ┌────────────────────┐
+                    │    MODEL OUTPUT    │
+                    │    Raw AV signal   │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                    ┌────────────────────┐
+                    │    CALIBRATION     │
+                    │ Calibrated estimate│
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                 ┌─────────────────────────┐
+                 │     DECISION POLICY     │
+                 │ Selected operating      │
+                 │ boundaries              │
+                 └────────────┬────────────┘
+                              │
+                 ┌────────────┼────────────┐
+                 ▼            ▼            ▼
+             AUTHENTIC     UNCERTAIN    SYNTHETIC
+```
 
-*Disclaimer: These labels reflect the model's calibrated decision policy; they do not represent absolute, infallible ground truth.*
+| State | Interpretation |
+| :--- | :--- |
+| 🟢 **AUTHENTIC** | The calibrated output falls within the authenticity region defined by the selected operating policy. |
+| 🟡 **UNCERTAIN** | The output falls within the policy's abstention region, so the available model evidence does not support a confident binary decision. |
+| 🔴 **SYNTHETIC** | The calibrated output crosses the synthetic decision boundary defined by the selected operating policy. |
+
+> **Important:** These are **decision-policy outputs**, not absolute statements of ground truth. The thresholds depend on the calibration procedure and evaluation protocol and should be interpreted alongside the underlying forensic evidence.
+
+**Decision flow:** `Raw Model Signal → Calibration → Decision Policy → Authentic / Uncertain / Synthetic`
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
