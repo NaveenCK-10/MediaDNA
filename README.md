@@ -1,5 +1,21 @@
 <div align="center">
-  
+
+```text
+███████╗ ██████╗ ██████╗ ██╗ █████╗
+██╔════╝██╔═══██╗██╔══██╗██║██╔══██╗
+█████╗  ██║   ██║██████╔╝██║███████║
+██╔══╝  ██║   ██║██╔═══╝ ██║██╔══██║
+██║     ╚██████╔╝██║     ██║██║  ██║
+╚═╝      ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝
+
+MEDIA AUTHENTICITY // FORENSIC ANALYSIS
+
+[ SYSTEM ONLINE ]
+[ MULTIMODAL ANALYSIS ]
+[ AUDIO/VISUAL FUSION ]
+[ UNCERTAINTY AWARE ]
+```
+
 # 🧬 MediaDNA
 
 ### Deepfake Provenance & Multimodal Media Authenticity Analysis

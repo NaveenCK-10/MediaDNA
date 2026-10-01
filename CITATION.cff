@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use MediaDNA for forensic or deepfake analysis research, please cite it as below."
+title: "MediaDNA: Deepfake Provenance & Multimodal Media Authenticity Analysis"
+authors:
+  - name: "MediaDNA Contributors"
+date-released: 2026-10-01
+url: "https://github.com/NaveenCK-10/MediaDNA"
+references:
+  - type: article
+    title: "AVFF: Audio-Visual Feature Fusion for Video Deepfake Detection"
+    authors:
+      - family-names: "Oorloff"
+        given-names: "Treven A."
+      - family-names: "Masi"
+        given-names: "Iacopo"
+      - family-names: "Hosseini"
+        given-names: "Ramin"
+    journal: "CVPR"
+    year: 2024
