@@ -1,0 +1,37 @@
+{
+    "ROC_AUC": 0.5390018066847335,
+    "PR_AUC": 0.9775079407362435,
+    "accuracy": 0.9779151943462897,
+    "balanced_accuracy": 0.5,
+    "precision": 0.9779151943462897,
+    "recall": 1.0,
+    "specificity": 0,
+    "F1": 0.9888343010272443,
+    "MCC": 0.0,
+    "category_results": {
+        "RVRA": {
+            "N": 50,
+            "accuracy": 0.0,
+            "mean_probability": 0.5530481338500977,
+            "median_probability": 0.5530485510826111
+        },
+        "RVFA": {
+            "N": 50,
+            "accuracy": 1.0,
+            "mean_probability": 0.553045928478241,
+            "median_probability": 0.5530461668968201
+        },
+        "FVRA": {
+            "N": 1057,
+            "accuracy": 1.0,
+            "mean_probability": 0.553048312664032,
+            "median_probability": 0.5530487298965454
+        },
+        "FVFA": {
+            "N": 1107,
+            "accuracy": 1.0,
+            "mean_probability": 0.5530485510826111,
+            "median_probability": 0.5530487298965454
+        }
+    }
+}

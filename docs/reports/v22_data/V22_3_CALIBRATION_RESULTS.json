@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-09-28T18:14:31.032031",
+  "method": "Platt scaling (logistic regression)",
+  "calibration_split": "v22_2_calibration.csv",
+  "cal_samples": 2195,
+  "platt_coefficients": {
+    "coef": 0.07089405189462498,
+    "intercept": 3.703215587989624
+  },
+  "platt_sha256": "a568bc85f2ea19094df3440e8446fb7e853142177ca6a5194208476b7eb4a91c",
+  "decision_thresholds": {
+    "AUTHENTIC": "< 0.3",
+    "UNCERTAIN": ">= 0.3 and < 0.7",
+    "SYNTHETIC": ">= 0.7"
+  },
+  "cal_metrics": {
+    "raw_brier": 0.04677521601891712,
+    "raw_ece": 0.15680163392716495,
+    "calibrated_brier": 0.022260014216103356,
+    "calibrated_ece": 5.572975561585203e-05
+  },
+  "dev_metrics": {
+    "brier": 0.018335843919090242,
+    "ece": 0.004053951721321392,
+    "decision_counts": {
+      "AUTHENTIC": 0,
+      "UNCERTAIN": 0,
+      "SYNTHETIC": 1982
+    }
+  }
+}

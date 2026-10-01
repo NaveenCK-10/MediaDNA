@@ -1,0 +1,6 @@
+Perturbation,Severity,Accuracy,Delta_from_Baseline
+None,0,0.525,0.0
+Gaussian Blur,Low,0.51,-0.015
+Gaussian Blur,High,0.45,-0.075
+H.264 Compression,CRF 30,0.48,-0.045
+A/V Desync,+250ms,0.5,-0.025

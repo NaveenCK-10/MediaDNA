@@ -1,0 +1,21 @@
+{
+    "checkpoint": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\checkpoints\\v14_fullscale\\models\\best_audio_model.pth",
+    "checkpoint_hash": "108dccfc4a29ab0a59fb31b60c11aa928b08641c2a1c58db0239d8027c5531a9",
+    "metrics": {
+        "Accuracy": 0.75,
+        "Balanced_Accuracy": 0.8333333333333333,
+        "Precision": 1.0,
+        "Recall": 0.6666666666666666,
+        "Specificity": 1.0,
+        "F1": 0.8,
+        "MCC": 0.5773502691896258,
+        "NPV": 0.5,
+        "ROC-AUC": 0.7916666666666667,
+        "FPR": 0.0,
+        "FNR": 0.3333333333333333,
+        "TP": 4,
+        "TN": 2,
+        "FP": 0,
+        "FN": 2
+    }
+}

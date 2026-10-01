@@ -1,0 +1,19 @@
+{
+    "audio": {
+        "sample_rate": 16000,
+        "mel_bins": 128,
+        "target_length": 1024,
+        "mean": -5.081,
+        "std": 4.4849,
+        "hop_length": 10,
+        "normalization": "zero_mean_wave_and_zscore_fbank"
+    },
+    "video": {
+        "frames": 16,
+        "resolution": 224,
+        "normalization": "imagenet",
+        "crop": "none_resized_direct",
+        "stride": "uniform_linspace"
+    },
+    "fusion": "concatenation_before_mlp"
+}

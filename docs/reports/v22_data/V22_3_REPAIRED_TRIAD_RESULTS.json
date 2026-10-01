@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-09-28T18:21:32.397132",
+  "metrics_by_condition": {
+    "A_original_multimodal": {
+      "ROC_AUC": 0.9021770551038844,
+      "PR_AUC": 0.9976114954900343,
+      "accuracy": 0.9699646643109541,
+      "balanced_accuracy": 0.5741282746160795,
+      "precision": 0.9811659192825112,
+      "recall": 0.988256549232159,
+      "F1": 0.9846984698469847,
+      "MCC": 0.17914133560360587,
+      "specificity": 0.16,
+      "n_samples": 2264
+    },
+    "B_repaired_fusion": {
+      "ROC_AUC": 0.6182113821138211,
+      "PR_AUC": 0.9863744600718709,
+      "accuracy": 0.9779151943462897,
+      "balanced_accuracy": 0.5,
+      "precision": 0.9779151943462897,
+      "recall": 1.0,
+      "F1": 0.9888343010272443,
+      "MCC": 0.0,
+      "specificity": 0.0,
+      "n_samples": 2264
+    },
+    "C_visual_only": {
+      "ROC_AUC": 0.5334507678410118,
+      "PR_AUC": 0.9815484021471921,
+      "accuracy": 0.9779151943462897,
+      "balanced_accuracy": 0.5,
+      "precision": 0.9779151943462897,
+      "recall": 1.0,
+      "F1": 0.9888343010272443,
+      "MCC": 0.0,
+      "specificity": 0.0,
+      "n_samples": 2264
+    },
+    "D_audio_only": {
+      "ROC_AUC": 0.7408310749774165,
+      "PR_AUC": 0.9916173431298462,
+      "accuracy": 0.9779151943462897,
+      "balanced_accuracy": 0.5,
+      "precision": 0.9779151943462897,
+      "recall": 1.0,
+      "F1": 0.9888343010272443,
+      "MCC": 0.0,
+      "specificity": 0.0,
+      "n_samples": 2264
+    },
+    "E_fusion_silenced": {
+      "ROC_AUC": 0.5334507678410118,
+      "PR_AUC": 0.9815484021471921,
+      "accuracy": 0.9779151943462897,
+      "balanced_accuracy": 0.5,
+      "precision": 0.9779151943462897,
+      "recall": 1.0,
+      "F1": 0.9888343010272443,
+      "MCC": 0.0,
+      "specificity": 0.0,
+      "n_samples": 2264
+    },
+    "F_fusion_replaced": {
+      "ROC_AUC": 0.5386720867208672,
+      "PR_AUC": 0.9814806519272916,
+      "accuracy": 0.9779151943462897,
+      "balanced_accuracy": 0.5,
+      "precision": 0.9779151943462897,
+      "recall": 1.0,
+      "F1": 0.9888343010272443,
+      "MCC": 0.0,
+      "specificity": 0.0,
+      "n_samples": 2264
+    }
+  },
+  "replacement_analysis": {
+    "mean_replace_vs_silence_delta": -0.0010374729709153462,
+    "std_replace_vs_silence_delta": 0.0014001804476305516,
+    "max_abs_delta": 0.009931832551956177,
+    "n_different_above_001": 0,
+    "genuinely_different": false
+  }
+}

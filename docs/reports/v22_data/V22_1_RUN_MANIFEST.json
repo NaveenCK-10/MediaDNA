@@ -1,0 +1,31 @@
+{
+    "timestamp": "2026-09-24T23:50:00+05:30",
+    "git_state": "UNKNOWN",
+    "checkpoint_hashes": {
+        "V21_4_BASELINE": "108dccfc4a29ab0a59fb31b60c11aa928b08641c2a1c58db0239d8027c5531a9"
+    },
+    "manifests": {
+        "locked_test": "V21_4_LOCKED_TEST_MANIFEST.csv"
+    },
+    "seeds": {
+        "pytorch": "default",
+        "numpy": "default"
+    },
+    "configuration": "V22.1 Experimental Protocol Execution",
+    "hardware": "Local Workstation (GPU/CPU fallback)",
+    "software_versions": {
+        "python": "3.10+",
+        "pytorch": "latest",
+        "timm": "latest"
+    },
+    "experiment_ids": [
+        "MODEL_B_VISUAL_ONLY",
+        "MODEL_C_AUDIO_ONLY",
+        "MODEL_D_MODALITY_DROPOUT",
+        "MODEL_E_MULTITASK",
+        "MODEL_F1_LATE_FUSION",
+        "MODEL_F2_GATED_FUSION",
+        "MODEL_G_AV_SYNC"
+    ],
+    "result_file_hashes": {}
+}

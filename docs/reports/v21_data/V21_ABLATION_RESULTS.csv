@@ -1,0 +1,4 @@
+Modality,Accuracy,F1,ROC-AUC,Comments
+Fused AV (Baseline),0.525,0.52,0.55,Standard pipeline
+Visual-Only,0.48,0.45,0.5,High reliance on audio signals
+Audio-Only,0.51,0.49,0.52,Dominant predictor in current arch

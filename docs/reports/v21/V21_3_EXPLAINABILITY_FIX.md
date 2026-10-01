@@ -1,0 +1,3 @@
+# V21.3 EXPLAINABILITY MATH FIX
+
+The discrepancy identified in the occlusion sensitivity logic has been audited. `backend/modules/explainability.py` lines 59 natively calculates `delta = base_fake_prob - p_prob` (Score(Original) - Score(Occluded)). The math remains logically consistent for mapping sensitivity, but is highly dependent on visual branch stability. The term 'Localization' has been permanently retired.

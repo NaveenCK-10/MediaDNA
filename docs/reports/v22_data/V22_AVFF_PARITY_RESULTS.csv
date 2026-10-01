@@ -1,0 +1,7 @@
+sample_id,path,ground_truth,video_category,parity_full_score,parity_v_only_score
+SAMP_0000,C:\Users\navee\Desktop\Projects\MediaDna\OpenAVFF\FakeAVCeleb_v1.2\FakeAVCeleb_v1.2\RealVideo-RealAudio\African\men\id00076\00109.mp4,0,RealVideo,0.495849609375,0.53173828125
+SAMP_0001,C:\Users\navee\Desktop\Projects\MediaDna\OpenAVFF\FakeAVCeleb_v1.2\FakeAVCeleb_v1.2\RealVideo-RealAudio\African\men\id00166\00010.mp4,0,RealVideo,0.5234375,0.533203125
+SAMP_0002,C:\Users\navee\Desktop\Projects\MediaDna\OpenAVFF\FakeAVCeleb_v1.2\FakeAVCeleb_v1.2\RealVideo-FakeAudio\African\men\id00076\00109_fake.mp4,1,RealVideo,1.0,0.53173828125
+SAMP_0003,C:\Users\navee\Desktop\Projects\MediaDna\OpenAVFF\FakeAVCeleb_v1.2\FakeAVCeleb_v1.2\RealVideo-FakeAudio\African\men\id00166\00010_fake.mp4,1,RealVideo,1.0,0.53369140625
+SAMP_0004,C:\Users\navee\Desktop\Projects\MediaDna\OpenAVFF\FakeAVCeleb_v1.2\FakeAVCeleb_v1.2\FakeVideo-RealAudio\African\men\id00076\00109_1.mp4,1,FakeVideo,0.51611328125,0.564453125
+SAMP_0005,C:\Users\navee\Desktop\Projects\MediaDna\OpenAVFF\FakeAVCeleb_v1.2\FakeAVCeleb_v1.2\FakeVideo-RealAudio\African\men\id00076\00109_10.mp4,1,FakeVideo,0.497802734375,0.52978515625

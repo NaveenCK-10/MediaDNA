@@ -1,0 +1,8 @@
+{
+    "status": "RESEARCH_DESIGN_INITIALIZED",
+    "baseline": {
+        "checkpoint": "checkpoints/v14_fullscale/models/best_audio_model.pth",
+        "metrics_reference": "V21_4_BASELINE_RESULTS.json"
+    },
+    "experimental_models_status": "PENDING_EXECUTION"
+}

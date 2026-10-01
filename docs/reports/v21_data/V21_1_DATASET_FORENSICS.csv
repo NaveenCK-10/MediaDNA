@@ -1,0 +1,2 @@
+sample_id,path,label,video_manipulation,audio_manipulation,identity,source_video,generator,duration,hash
+1,FakeAVCeleb_v1.2/FakeVideo-FakeAudio/...,1,wav2lip,wav2lip,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN

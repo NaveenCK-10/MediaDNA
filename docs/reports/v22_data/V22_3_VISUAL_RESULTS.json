@@ -1,0 +1,47 @@
+{
+    "ROC_AUC": 0.5496793134598013,
+    "PR_AUC": 0.9812125114293441,
+    "accuracy": 0.9779151943462897,
+    "balanced_accuracy": 0.5,
+    "precision": 0.9779151943462897,
+    "recall": 1.0,
+    "specificity": 0.0,
+    "F1": 0.9888343010272443,
+    "MCC": 0.0,
+    "all_real_baseline": {
+        "F1": 0.0,
+        "Balanced_Accuracy": 0.5,
+        "MCC": 0.0
+    },
+    "all_fake_baseline": {
+        "F1": 0.9888343010272443,
+        "Balanced_Accuracy": 0.5,
+        "MCC": 0.0
+    },
+    "category_results": {
+        "RVRA": {
+            "N": 50,
+            "accuracy": 0.0,
+            "mean_probability": 0.5333796143531799,
+            "median_probability": 0.5333800315856934
+        },
+        "RVFA": {
+            "N": 50,
+            "accuracy": 1.0,
+            "mean_probability": 0.5333796739578247,
+            "median_probability": 0.5333800911903381
+        },
+        "FVRA": {
+            "N": 1057,
+            "accuracy": 1.0,
+            "mean_probability": 0.5333797335624695,
+            "median_probability": 0.5333801507949829
+        },
+        "FVFA": {
+            "N": 1107,
+            "accuracy": 1.0,
+            "mean_probability": 0.533379852771759,
+            "median_probability": 0.5333802103996277
+        }
+    }
+}

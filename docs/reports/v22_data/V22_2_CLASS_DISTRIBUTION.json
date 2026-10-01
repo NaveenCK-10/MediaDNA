@@ -1,0 +1,38 @@
+{
+    "train": {
+        "total": 14888,
+        "real": 350,
+        "fake": 14538,
+        "RVRA": 350,
+        "RVFA": 350,
+        "FVRA": 6700,
+        "FVFA": 7488
+    },
+    "dev": {
+        "total": 2264,
+        "real": 50,
+        "fake": 2214,
+        "RVRA": 50,
+        "RVFA": 50,
+        "FVRA": 1057,
+        "FVFA": 1107
+    },
+    "cal": {
+        "total": 2195,
+        "real": 50,
+        "fake": 2145,
+        "RVRA": 50,
+        "RVFA": 50,
+        "FVRA": 972,
+        "FVFA": 1123
+    },
+    "test": {
+        "total": 2219,
+        "real": 50,
+        "fake": 2169,
+        "RVRA": 50,
+        "RVFA": 50,
+        "FVRA": 980,
+        "FVFA": 1139
+    }
+}

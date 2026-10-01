@@ -1,0 +1,26 @@
+{
+  "audit_timestamp": "2026-09-24T00:00:00+05:30",
+  "dataset_root": "FakeAVCeleb_v1.2/FakeAVCeleb_v1.2",
+  "exists": true,
+  "total_files": 24126,
+  "total_bytes": 6621466154,
+  "by_extension": {
+    ".mp4": {"count": 21560, "bytes": 6617323527},
+    ".ini": {"count": 2064, "bytes": 507744},
+    ".txt": {"count": 501, "bytes": 55609},
+    ".csv": {"count": 1, "bytes": 3579274}
+  },
+  "by_top_level": {
+    "FakeVideo-FakeAudio": 11366,
+    "FakeVideo-RealAudio": 10225,
+    "RealVideo-RealAudio": 1516,
+    "RealVideo-FakeAudio": 1016
+  },
+  "metadata": {"path": "meta_data.csv", "line_count_including_header": 21567},
+  "locked_v21_4_manifest": {
+    "path": "V21_4_LOCKED_TEST_MANIFEST.csv",
+    "samples": 6,
+    "sha256": "4246fbe881ebdb4bf979da00fb05039044b33bcdb1f1d782e84fdd1c08a3f5e1"
+  },
+  "conclusion": "The local dataset is not partial. The six visible samples are selected by the V21.4 locked manifest, which V22.1 also incorrectly uses as its training loader input."
+}

@@ -1,0 +1,12 @@
+{
+  "method": "simple_weighted_average",
+  "selected_config": "equal_average",
+  "weights": {
+    "visual": 0.5,
+    "audio": 0.5
+  },
+  "dev_threshold": 0.7899999999999996,
+  "dev_optimal_MCC": 0.04612912252091188,
+  "no_parameters_fitted": true,
+  "timestamp": "2026-09-28T18:06:35.254995"
+}

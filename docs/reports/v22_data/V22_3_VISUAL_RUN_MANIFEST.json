@@ -1,0 +1,18 @@
+[
+    {
+        "epoch": 1,
+        "train_loss": 0.6672765034437179,
+        "dev_AUC": 0.5496793134598013,
+        "dev_balanced_accuracy": 0.5,
+        "dev_MCC": 0.0,
+        "dev_F1": 0.9888343010272443
+    },
+    {
+        "epoch": 2,
+        "train_loss": 0.568339721262455,
+        "dev_AUC": 0.5647425474254743,
+        "dev_balanced_accuracy": 0.5,
+        "dev_MCC": 0.0,
+        "dev_F1": 0.9888343010272443
+    }
+]

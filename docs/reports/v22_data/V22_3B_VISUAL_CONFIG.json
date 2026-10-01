@@ -1,0 +1,10 @@
+{
+    "model": "Independent Visual Specialist",
+    "audio_input": false,
+    "epochs": 1,
+    "batch_size": 16,
+    "learning_rate": 1e-05,
+    "train_set": "v22_2_train.csv",
+    "dev_set": "v22_2_dev.csv",
+    "selection_criterion": "MCC"
+}

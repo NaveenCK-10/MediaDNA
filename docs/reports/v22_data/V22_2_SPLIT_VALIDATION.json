@@ -1,0 +1,245 @@
+{
+    "status": "PASS",
+    "checks": [
+        {
+            "type": "path overlap",
+            "splits": [
+                "train",
+                "dev"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "identity overlap",
+            "splits": [
+                "train",
+                "dev"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "speaker overlap",
+            "splits": [
+                "train",
+                "dev"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "source overlap",
+            "splits": [
+                "train",
+                "dev"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "derivative overlap",
+            "splits": [
+                "train",
+                "dev"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "path overlap",
+            "splits": [
+                "train",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "identity overlap",
+            "splits": [
+                "train",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "speaker overlap",
+            "splits": [
+                "train",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "source overlap",
+            "splits": [
+                "train",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "derivative overlap",
+            "splits": [
+                "train",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "path overlap",
+            "splits": [
+                "train",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "identity overlap",
+            "splits": [
+                "train",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "speaker overlap",
+            "splits": [
+                "train",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "source overlap",
+            "splits": [
+                "train",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "derivative overlap",
+            "splits": [
+                "train",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "path overlap",
+            "splits": [
+                "dev",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "identity overlap",
+            "splits": [
+                "dev",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "speaker overlap",
+            "splits": [
+                "dev",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "source overlap",
+            "splits": [
+                "dev",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "derivative overlap",
+            "splits": [
+                "dev",
+                "cal"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "path overlap",
+            "splits": [
+                "dev",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "identity overlap",
+            "splits": [
+                "dev",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "speaker overlap",
+            "splits": [
+                "dev",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "source overlap",
+            "splits": [
+                "dev",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "derivative overlap",
+            "splits": [
+                "dev",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "path overlap",
+            "splits": [
+                "cal",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "identity overlap",
+            "splits": [
+                "cal",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "speaker overlap",
+            "splits": [
+                "cal",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "source overlap",
+            "splits": [
+                "cal",
+                "test"
+            ],
+            "status": "PASS"
+        },
+        {
+            "type": "derivative overlap",
+            "splits": [
+                "cal",
+                "test"
+            ],
+            "status": "PASS"
+        }
+    ]
+}

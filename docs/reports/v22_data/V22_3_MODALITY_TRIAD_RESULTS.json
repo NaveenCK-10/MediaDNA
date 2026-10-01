@@ -1,0 +1,32 @@
+{
+    "overall": {
+        "mean_silence_delta": -0.3633756364560801,
+        "mean_replace_delta": -0.3633756364560801
+    },
+    "categories": {
+        "RVRA": {
+            "N": 50,
+            "mean_baseline": 0.5221635955572128,
+            "mean_silence_delta": -0.03091477930545807,
+            "mean_replace_delta": -0.03091477930545807
+        },
+        "RVFA": {
+            "N": 50,
+            "mean_baseline": 0.9599022960662842,
+            "mean_silence_delta": -0.46865347981452943,
+            "mean_replace_delta": -0.46865347981452943
+        },
+        "FVRA": {
+            "N": 1057,
+            "mean_baseline": 0.7241760790348053,
+            "mean_silence_delta": -0.23292726278305054,
+            "mean_replace_delta": -0.23292726278305054
+        },
+        "FVFA": {
+            "N": 1107,
+            "mean_baseline": 0.9894420513184952,
+            "mean_silence_delta": -0.4981932350667404,
+            "mean_replace_delta": -0.4981932350667404
+        }
+    }
+}

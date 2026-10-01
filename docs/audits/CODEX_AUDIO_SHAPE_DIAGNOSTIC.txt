@@ -1,0 +1,47 @@
+CODEX AUDIO TENSOR SHAPE DIAGNOSTIC
+torch=2.6.0+cu118; torchaudio=2.6.0+cu118; device=cpu
+synthetic waveform: (163840) samples (10.240 seconds)
+A native MelSpectrogram output: (128, 1025) = (frequency_mels, time_frames)
+B current V22.2 preprocessing: (1, 1024, 128) = (batch, time_frames, frequency_mels)
+C untransposed/legacy-shaped path: (1, 128, 1024) = (batch, frequency_mels, time_frames)
+D AudioEncoder's actual unsqueeze+permute result for B: (1, 1, 128, 1024) = (batch, channel, frequency_mels, time_frames)
+patch conv: kernel=(16, 16), stride=(16, 16), in_channels=1
+
+[A native Mel as B,F,T] input to AudioEncoder: (1, 128, 1025)
+[A native Mel as B,F,T] AudioEncoder forward: PASS
+[A native Mel as B,F,T] patch_conv input:  (1, 1, 1025, 128)
+[A native Mel as B,F,T] patch_conv output: (1, 768, 64, 8)
+[A native Mel as B,F,T] patch_embed input:  (1, 1, 1025, 128)
+[A native Mel as B,F,T] patch_embed output: (1, 512, 768)
+[A native Mel as B,F,T] transformer_0 input:  (1, 512, 768)
+[A native Mel as B,F,T] transformer_0 output: (1, 512, 768)
+[A native Mel as B,F,T] AudioEncoder output: (1, 512, 768)
+
+[B current V22.2 B,T,F] input to AudioEncoder: (1, 1024, 128)
+[B current V22.2 B,T,F] AudioEncoder forward: PASS
+[B current V22.2 B,T,F] patch_conv input:  (1, 1, 128, 1024)
+[B current V22.2 B,T,F] patch_conv output: (1, 768, 8, 64)
+[B current V22.2 B,T,F] patch_embed input:  (1, 1, 128, 1024)
+[B current V22.2 B,T,F] patch_embed output: (1, 512, 768)
+[B current V22.2 B,T,F] transformer_0 input:  (1, 512, 768)
+[B current V22.2 B,T,F] transformer_0 output: (1, 512, 768)
+[B current V22.2 B,T,F] AudioEncoder output: (1, 512, 768)
+
+[C untransposed B,F,T] input to AudioEncoder: (1, 128, 1024)
+[C untransposed B,F,T] AudioEncoder forward: PASS
+[C untransposed B,F,T] patch_conv input:  (1, 1, 1024, 128)
+[C untransposed B,F,T] patch_conv output: (1, 768, 64, 8)
+[C untransposed B,F,T] patch_embed input:  (1, 1, 1024, 128)
+[C untransposed B,F,T] patch_embed output: (1, 512, 768)
+[C untransposed B,F,T] transformer_0 input:  (1, 512, 768)
+[C untransposed B,F,T] transformer_0 output: (1, 512, 768)
+[C untransposed B,F,T] AudioEncoder output: (1, 512, 768)
+
+[semantic] native Mel axes are (frequency, time); tensor indexing is mel[freq_bin, time_frame].
+[semantic] persistent 440 Hz tone has greatest time-mean energy at mel bin 24.
+[semantic] 3.2 kHz one-second burst has greatest contrast at mel bin 87; its peak time frame is 633 (expected near 600--700).
+[semantic] if the untransposed tensor is supplied, AudioEncoder treats its dim 0 as time; index 87 then selects a frequency bin, not a time frame. That row's maximum occurs at native time frame 24.
+
+[full model] model(audio, video) source-contract check:
+[full model] audio input: (1, 1024, 128); video input: (1, 3, 16, 224, 224)
+[full model] fusion/classifier output: (1, 2)

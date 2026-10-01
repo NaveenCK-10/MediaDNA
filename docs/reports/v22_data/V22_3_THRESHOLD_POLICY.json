@@ -1,0 +1,7 @@
+{
+  "optimal_threshold": 0.9772823787500811,
+  "uncertainty_lower": 0.827282378750081,
+  "uncertainty_upper": 1.0,
+  "mcc_at_threshold": 0.08380574117650276,
+  "source_data": "DEV Split"
+}

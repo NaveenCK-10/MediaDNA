@@ -1,0 +1,1154 @@
+[
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/men/id01521\\00109.mp4",
+        "label": 0,
+        "prob": 0.5224992036819458,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/men/id01610\\00090.mp4",
+        "label": 0,
+        "prob": 0.5288009643554688,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/men/id01933\\00028.mp4",
+        "label": 0,
+        "prob": 0.5294399857521057,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/men/id01995\\00071.mp4",
+        "label": 0,
+        "prob": 0.5365329384803772,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/men/id02316\\00094.mp4",
+        "label": 0,
+        "prob": 0.5215995907783508,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/women/id00220\\00027.mp4",
+        "label": 0,
+        "prob": 0.5371847152709961,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/women/id00592\\00017.mp4",
+        "label": 0,
+        "prob": 0.5147990584373474,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/women/id01532\\00065.mp4",
+        "label": 0,
+        "prob": 0.5449801683425903,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/African/women/id02617\\00028.mp4",
+        "label": 0,
+        "prob": 0.5274960994720459,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id00169\\00021.mp4",
+        "label": 0,
+        "prob": 0.5463509559631348,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id00345\\00243.mp4",
+        "label": 0,
+        "prob": 0.5495641231536865,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id00529\\00409.mp4",
+        "label": 0,
+        "prob": 0.5083986520767212,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id00777\\00160.mp4",
+        "label": 0,
+        "prob": 0.5033854246139526,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id01048\\00160.mp4",
+        "label": 0,
+        "prob": 0.5046156048774719,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id01211\\00023.mp4",
+        "label": 0,
+        "prob": 0.513290524482727,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id03678\\00078.mp4",
+        "label": 0,
+        "prob": 0.5427728891372681,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/men/id03757\\00149.mp4",
+        "label": 0,
+        "prob": 0.5126428604125977,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/women/id00385\\00439.mp4",
+        "label": 0,
+        "prob": 0.515381932258606,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/women/id00616\\00305.mp4",
+        "label": 0,
+        "prob": 0.5042504668235779,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/women/id00618\\00195.mp4",
+        "label": 0,
+        "prob": 0.5337445139884949,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (American)/women/id02466\\00136.mp4",
+        "label": 0,
+        "prob": 0.5083430409431458,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/men/id00126\\00173.mp4",
+        "label": 0,
+        "prob": 0.5247778296470642,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/men/id01215\\00001.mp4",
+        "label": 0,
+        "prob": 0.5326342582702637,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/men/id04726\\00245.mp4",
+        "label": 0,
+        "prob": 0.5187872052192688,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/men/id05743\\00015.mp4",
+        "label": 0,
+        "prob": 0.517008364200592,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/men/id09053\\00005.mp4",
+        "label": 0,
+        "prob": 0.5431205034255981,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id02587\\00020.mp4",
+        "label": 0,
+        "prob": 0.5124824643135071,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id04057\\00015.mp4",
+        "label": 0,
+        "prob": 0.5185511112213135,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id05620\\00005.mp4",
+        "label": 0,
+        "prob": 0.5282989740371704,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id06462\\00014.mp4",
+        "label": 0,
+        "prob": 0.5183864235877991,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id07383\\00011.mp4",
+        "label": 0,
+        "prob": 0.5155559778213501,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id08139\\00067.mp4",
+        "label": 0,
+        "prob": 0.5234155058860779,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id09125\\00098.mp4",
+        "label": 0,
+        "prob": 0.5172485113143921,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (East)/women/id09181\\00048.mp4",
+        "label": 0,
+        "prob": 0.5109472274780273,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/men/id01052\\00076.mp4",
+        "label": 0,
+        "prob": 0.5119508504867554,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/men/id01058\\00005.mp4",
+        "label": 0,
+        "prob": 0.5133886337280273,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/men/id01157\\00048.mp4",
+        "label": 0,
+        "prob": 0.5058245658874512,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/men/id03205\\00150.mp4",
+        "label": 0,
+        "prob": 0.5219647288322449,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/women/id00328\\00092.mp4",
+        "label": 0,
+        "prob": 0.5120494365692139,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/women/id00484\\00202.mp4",
+        "label": 0,
+        "prob": 0.5376954078674316,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/women/id00569\\00239.mp4",
+        "label": 0,
+        "prob": 0.5285115838050842,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Caucasian (European)/women/id00823\\00125.mp4",
+        "label": 0,
+        "prob": 0.5265134572982788,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/men/id04601\\00118.mp4",
+        "label": 0,
+        "prob": 0.5451796650886536,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/men/id07165\\00368.mp4",
+        "label": 0,
+        "prob": 0.4997316896915436,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/men/id07195\\00186.mp4",
+        "label": 0,
+        "prob": 0.5183008313179016,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/women/id04070\\00072.mp4",
+        "label": 0,
+        "prob": 0.5298027992248535,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/women/id04529\\00186.mp4",
+        "label": 0,
+        "prob": 0.5271192789077759,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/women/id04564\\00417.mp4",
+        "label": 0,
+        "prob": 0.500776469707489,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/women/id06268\\00159.mp4",
+        "label": 0,
+        "prob": 0.5092732310295105,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\RealVideo-RealAudio/Asian (South)/women/id06439\\00118.mp4",
+        "label": 0,
+        "prob": 0.4931616187095642,
+        "condition": "RVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/women/id00220\\00027.mp4",
+        "label": 1,
+        "prob": 0.5371847152709961,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/women/id00592\\00017.mp4",
+        "label": 1,
+        "prob": 0.5147990584373474,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/women/id01532\\00065.mp4",
+        "label": 1,
+        "prob": 0.5449801683425903,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/women/id02617\\00028.mp4",
+        "label": 1,
+        "prob": 0.5274960994720459,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00529\\00409_id03678_dsfCxodI9i8_faceswap.mp4",
+        "label": 1,
+        "prob": 0.5126877427101135,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id08139\\00067.mp4",
+        "label": 1,
+        "prob": 0.5234155058860779,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00328\\00092_id00484_u7YTz8eFZv0_faceswap.mp4",
+        "label": 1,
+        "prob": 0.5073153972625732,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/women/id01532\\00065_id00220_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5590950846672058,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/women/id02617\\00028_id00592_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5488627552986145,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id08139\\00067_id06462_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5307715535163879,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id01933\\00028_id02316_yrrNcmZ-xmI.mp4",
+        "label": 1,
+        "prob": 0.5313499569892883,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00169\\00021_id01048_keflA4viWt8.mp4",
+        "label": 1,
+        "prob": 0.5387520790100098,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00169\\00021_id03678_dsfCxodI9i8.mp4",
+        "label": 1,
+        "prob": 0.5437536835670471,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00345\\00243_id00169__V1xAwwG29U.mp4",
+        "label": 1,
+        "prob": 0.5549500584602356,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00345\\00243_id01211_ALJX69-RDG8.mp4",
+        "label": 1,
+        "prob": 0.5529272556304932,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00529\\00409_id03678_dsfCxodI9i8.mp4",
+        "label": 1,
+        "prob": 0.5137788653373718,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id01048\\00160_id00169__V1xAwwG29U.mp4",
+        "label": 1,
+        "prob": 0.5156652927398682,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id01211\\00023_id00345_TIsGVOYfvZ8.mp4",
+        "label": 1,
+        "prob": 0.5276721715927124,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id03678\\00078_id00169__V1xAwwG29U.mp4",
+        "label": 1,
+        "prob": 0.5477603673934937,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id03678\\00078_id00529_xtx2GeQN-DQ.mp4",
+        "label": 1,
+        "prob": 0.5457366704940796,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id03757\\00149_id00169__V1xAwwG29U.mp4",
+        "label": 1,
+        "prob": 0.5319470167160034,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/women/id00618\\00195_id02466_VOgaA7O5yWY.mp4",
+        "label": 1,
+        "prob": 0.5478009581565857,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/women/id02466\\00136_id00618__TwV2SmUIlY.mp4",
+        "label": 1,
+        "prob": 0.5123525261878967,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/men/id04726\\00245_id05743_Fjri4MXHXWY.mp4",
+        "label": 1,
+        "prob": 0.5294658541679382,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/men/id04726\\00245_id09053_6baCAGutGFg.mp4",
+        "label": 1,
+        "prob": 0.5266143679618835,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/men/id05743\\00015_id04726_i72-Hb0jayI.mp4",
+        "label": 1,
+        "prob": 0.5131603479385376,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id04057\\00015_id02587_KzwJPH5_8j0.mp4",
+        "label": 1,
+        "prob": 0.5196733474731445,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id04057\\00015_id07383_G9gjJrz6L94.mp4",
+        "label": 1,
+        "prob": 0.5204620361328125,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id05620\\00005_id07383_G9gjJrz6L94.mp4",
+        "label": 1,
+        "prob": 0.5125088691711426,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id06462\\00014_id02587_KzwJPH5_8j0.mp4",
+        "label": 1,
+        "prob": 0.5204287171363831,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id06462\\00014_id05620_DmPPLeOZkHo.mp4",
+        "label": 1,
+        "prob": 0.529784619808197,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id07383\\00011_id04057_SmHwNbR-498.mp4",
+        "label": 1,
+        "prob": 0.5269052982330322,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id07383\\00011_id06462_Nn79kE76MA4.mp4",
+        "label": 1,
+        "prob": 0.5240578651428223,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id09125\\00098_id06462_Nn79kE76MA4.mp4",
+        "label": 1,
+        "prob": 0.5235151648521423,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id09125\\00098_id09181_ypUYBHscgD8.mp4",
+        "label": 1,
+        "prob": 0.5226380825042725,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00328\\00092_id00484_u7YTz8eFZv0.mp4",
+        "label": 1,
+        "prob": 0.5114279389381409,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00484\\00202_id00328_ytKnCbJSEcU.mp4",
+        "label": 1,
+        "prob": 0.5369147062301636,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00484\\00202_id00569_gSynmpwioV4.mp4",
+        "label": 1,
+        "prob": 0.5433111786842346,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00569\\00239_id00484_u7YTz8eFZv0.mp4",
+        "label": 1,
+        "prob": 0.5347684621810913,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00169\\00021_id01048_keflA4viWt8_id00529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.570102334022522,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00169\\00021_id03678_dsfCxodI9i8_id03678_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5600021481513977,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/women/id00618\\00195_id02466_VOgaA7O5yWY_id02466_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5261955857276917,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id09125\\00098_id06462_Nn79kE76MA4_id04057_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5405706167221069,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id01521\\00109_id02316_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5409042835235596,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id01610\\00090_id01521_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5378650426864624,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id01610\\00090_id01995_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5346533060073853,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id01610\\00090_id02316_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5389419794082642,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id01995\\00071_id01521_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.535953164100647,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id01995\\00071_id02316_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5367822647094727,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/men/id02316\\00094_id01610_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5128531455993652,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/African/women/id02617\\00028_id01532_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5393033027648926,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00345\\00243_id00169_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5507805943489075,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id00529\\00409_id01211_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5112623572349548,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id01048\\00160_id00529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.520999014377594,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id01048\\00160_id00777_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5268648266792297,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id01211\\00023_id00777_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5124744176864624,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id03678\\00078_id00345_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5347824096679688,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id03678\\00078_id01048_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.52327561378479,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/men/id03678\\00078_id03757_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5305901765823364,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (American)/women/id02466\\00136_id02466_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5129236578941345,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/men/id00126\\00173_id04726_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5219403505325317,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/men/id01215\\00001_id04726_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.536608099937439,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/men/id01215\\00001_id09053_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5399489402770996,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/men/id09053\\00005_id04726_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5375723242759705,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id02587\\00020_id04057_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.514624297618866,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id02587\\00020_id05620_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5122708678245544,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id02587\\00020_id06462_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5231112837791443,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id04057\\00015_id04057_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5197684168815613,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id05620\\00005_id08139_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5287970304489136,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id05620\\00005_id09125_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5294820666313171,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id06462\\00014_id07383_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5276079773902893,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id07383\\00011_id09125_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5209509134292603,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id07383\\00011_id09181_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5065661668777466,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id08139\\00067_id06462_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5361097455024719,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id08139\\00067_id09125_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.516421914100647,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id09125\\00098_id09125_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5232046842575073,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id09125\\00098_id09181_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5185201168060303,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id09181\\00048_id04057_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5125392079353333,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (East)/women/id09181\\00048_id09181_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5124666094779968,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/men/id01058\\00005_id01052_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5610080361366272,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/men/id01058\\00005_id01058_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5159497857093811,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/men/id01157\\00048_id01052_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5215277671813965,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/men/id03205\\00150_id01052_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5418875813484192,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/men/id03205\\00150_id01058_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5162063837051392,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/men/id03205\\00150_id01157_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5191901922225952,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00328\\00092_id00328_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5076361298561096,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00328\\00092_id00569_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5165508985519409,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00569\\00239_id00328_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5235621333122253,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Caucasian (European)/women/id00823\\00125_id00823_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.522314190864563,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (South)/women/id04564\\00417_id06268_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5002861022949219,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (South)/women/id06268\\00159_id04070_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5183380842208862,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (South)/women/id06268\\00159_id04564_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5176908373832703,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (South)/women/id06268\\00159_id06439_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5146551132202148,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-RealAudio/Asian (South)/women/id06439\\00118_id04529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.504457414150238,
+        "condition": "FVRA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/men/id01521\\00109_id01995_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5271236896514893,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/men/id01933\\00028_id01995_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5296558737754822,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/men/id01995\\00071_id01995_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5542318224906921,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/women/id00220\\00027_id00220_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.54732346534729,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/women/id00220\\00027_id02617_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5421448945999146,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/women/id00592\\00017_id00592_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5532271862030029,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/women/id02617\\00028_id00592_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5488627552986145,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/African/women/id02617\\00028_id01532_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5930503606796265,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00169\\00021_id00529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5782285332679749,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00345\\00243_id00777_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5342095494270325,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00529\\00409_id00169_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5352206230163574,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00529\\00409_id00777_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5114358067512512,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00777\\00160_id00529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5541602373123169,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id00777\\00160_id01048_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5349142551422119,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id01048\\00160_id00345_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5278091430664062,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id01048\\00160_id00777_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5207106471061707,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id03678\\00078_id00345_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.540524423122406,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id03678\\00078_id00529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5641615390777588,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id03678\\00078_id00777_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5352967977523804,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id03757\\00149_id00345_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5268539190292358,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/men/id03757\\00149_id03757_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.538338840007782,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/women/id00385\\00439_id00618_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.531063437461853,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/women/id00616\\00305_id02466_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5043889880180359,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (American)/women/id00618\\00195_id00616_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5200067162513733,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/men/id05743\\00015_id00126_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.535350501537323,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/men/id05743\\00015_id05743_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5313975811004639,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/men/id09053\\00005_id00126_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5251670479774475,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id02587\\00020_id02587_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5146324634552002,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id02587\\00020_id05620_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5420129895210266,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id04057\\00015_id04057_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5426045656204224,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id05620\\00005_id05620_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5619767904281616,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id05620\\00005_id09181_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5247703194618225,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id07383\\00011_id02587_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5291668176651001,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id07383\\00011_id04057_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5369652509689331,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id07383\\00011_id09181_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.518218994140625,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id08139\\00067_id02587_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5319082736968994,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id09125\\00098_id02587_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.531328558921814,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (East)/women/id09125\\00098_id04057_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5345213413238525,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (European)/men/id01058\\00005_id01157_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5526816248893738,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (European)/men/id03205\\00150_id01052_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5166966319084167,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (European)/men/id03205\\00150_id01157_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.557615339756012,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Caucasian (European)/women/id00328\\00092_id00569_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5423983335494995,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (South)/women/id04070\\00072_id04070_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5196483731269836,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (South)/women/id04529\\00186_id04070_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5230235457420349,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (South)/women/id04529\\00186_id04529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5462955236434937,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (South)/women/id04564\\00417_id04070_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5053167939186096,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (South)/women/id06439\\00118_id04070_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.49846768379211426,
+        "condition": "FVFA"
+    },
+    {
+        "path": "C:\\Users\\navee\\Desktop\\Projects\\MediaDna\\OpenAVFF\\FakeAVCeleb_v1.2\\FakeAVCeleb_v1.2\\FakeVideo-FakeAudio/Asian (South)/women/id06439\\00118_id04529_wavtolip.mp4",
+        "label": 1,
+        "prob": 0.5062940716743469,
+        "condition": "FVFA"
+    }
+]
