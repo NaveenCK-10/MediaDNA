@@ -42,11 +42,11 @@ from backend.schemas.mediadna import (
 
 logger = logging.getLogger("mediadna.inference")
 
-FFMPEG_PATH = r"C:\Users\navee\Downloads\ffmpeg-9.0.1-essentials_build\ffmpeg-9.0.1-essentials_build\bin\ffmpeg.exe"
+FFMPEG_PATH = os.environ.get("FFMPEG_PATH", "ffmpeg")
 IM_RES = 224
 NUM_FRAMES = 16
 
-FFPROBE_PATH = r"C:\Users\navee\Downloads\ffmpeg-9.0.1-essentials_build\ffmpeg-9.0.1-essentials_build\bin\ffprobe.exe"
+FFPROBE_PATH = os.environ.get("FFPROBE_PATH", "ffprobe")
 
 # V22.4F Final Frozen Checkpoint
 AVFF_CHECKPOINT = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4F_MULTIMODAL_StageB_Ep2.pth")

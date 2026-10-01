@@ -57,12 +57,12 @@ export default function Analyze() {
         const data: JobEvent = JSON.parse(e.data);
         setJobProgress(data);
         
-        if (data.status === 'COMPLETED' && data.result) {
+        if (data.status === 'complete' && data.result) {
           setResult(data.result);
           setState('result');
           es.close();
           setActiveJobId(null);
-        } else if (data.status === 'FAILED') {
+        } else if (data.status === 'error') {
           setError(data.message || 'Analysis failed during background job.');
           setState('preview');
           es.close();
