@@ -9,7 +9,7 @@ logger = logging.getLogger("mediadna.nvidia")
 class NvidiaNarrativeGenerator:
     def __init__(self):
         # Allow override from env, but do not fail if missing
-        self.api_key = os.getenv("NVIDIA_API_KEY", "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")
+        self.api_key = os.getenv("NVIDIA_API_KEY")
         self.base_url = "https://integrate.api.nvidia.com/v1"
         self.model = os.getenv("NVIDIA_MODEL", "nvidia/nemotron-3.5-lightning-30b-a3b")
         self.timeout = int(os.getenv("NVIDIA_TIMEOUT_SECONDS", "20"))
