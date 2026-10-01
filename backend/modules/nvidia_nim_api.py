@@ -11,12 +11,16 @@ NIM_CLIENTS_DIR = os.path.join(PROJECT_ROOT, "scratch", "nim-clients")
 sys.path.insert(0, os.path.join(NIM_CLIENTS_DIR, "synthetic-video-detector", "interfaces"))
 sys.path.insert(0, os.path.join(NIM_CLIENTS_DIR, "active-speaker-detection", "interfaces"))
 
-import syntheticvideodetector_pb2
-import syntheticvideodetector_pb2_grpc
+try:
+    import syntheticvideodetector_pb2
+    import syntheticvideodetector_pb2_grpc
 
-from nvidia.ai4m.activespeakerdetection.v1 import activespeakerdetection_pb2
-from nvidia.ai4m.activespeakerdetection.v1 import activespeakerdetection_pb2_grpc
-from nvidia.ai4m.video.v1 import video_pb2
+    from nvidia.ai4m.activespeakerdetection.v1 import activespeakerdetection_pb2
+    from nvidia.ai4m.activespeakerdetection.v1 import activespeakerdetection_pb2_grpc
+    from nvidia.ai4m.video.v1 import video_pb2
+    NIM_AVAILABLE = True
+except ImportError:
+    NIM_AVAILABLE = False
 
 DATA_CHUNK_SIZE = 64 * 1024
 

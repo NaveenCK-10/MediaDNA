@@ -103,7 +103,7 @@ export default function DetailedAnalysis({ result }: DetailedAnalysisProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
               <div>
                 <DataRow label="RAW MODEL SCORE" value={result.trust?.raw_model_score?.toFixed(4) || "N/A"} highlight />
-                <DataRow label="CALIBRATED PROBABILITY" value={result.trust?.calibrated_probability !== null ? `${(result.trust.calibrated_probability! * 100).toFixed(2)}%` : "N/A"} highlight />
+                <DataRow label="DECISION SCORE" value={result.trust?.calibrated_score !== null && result.trust?.calibrated_score !== undefined ? `${(result.trust.calibrated_score * 100).toFixed(2)}%` : "N/A"} highlight />
                 <DataRow label="ABSTENTION STATE" value={result.trust?.abstention_state || "N/A"} />
               </div>
               <div>

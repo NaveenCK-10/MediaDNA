@@ -1,6 +1,6 @@
 export interface TrustSchema {
   raw_model_score: number;
-  calibrated_probability?: number | null;
+  calibrated_score?: number | null;
   model_confidence?: string | null;
   evidence_agreement?: string | null;
   evidence_agreement_status: string;
@@ -67,12 +67,12 @@ export interface ProvenanceV20 {
 export interface Classification {
   label: string;
   raw_logit: number;
-  fake_probability: number;
+  decision_score: number;
   decision_threshold: number;
 }
 
 export interface Authenticity {
-  calibrated_probability?: number | null;
+  calibrated_score?: number | null;
   uncertainty: string;
 }
 
@@ -104,7 +104,7 @@ export interface Manipulation {
 }
 
 export interface CloudForensics {
-  synthetic_video_probability?: number | null;
+  synthetic_video_score?: number | null;
   active_speaker_count?: number | null;
   whisper_transcription?: string | null;
 }
@@ -125,8 +125,8 @@ export interface ExplainabilityData {
   region_sensitivity?: Array<{
     rank: number;
     region: string;
-    original_probability: number;
-    perturbed_probability: number;
+    original_score: number;
+    perturbed_score: number;
     delta: number;
   }>;
 }

@@ -3,7 +3,7 @@ from typing import List, Optional, Dict, Any
 
 class TrustSchema(BaseModel):
     raw_model_score: float
-    calibrated_probability: Optional[float] = None
+    calibrated_score: Optional[float] = None
     model_confidence: Optional[str] = None
     evidence_agreement: Optional[str] = None
     evidence_agreement_status: str = "NOT_IMPLEMENTED"
@@ -66,11 +66,11 @@ class ProvenanceV20(BaseModel):
 class Classification(BaseModel):
     label: str
     raw_logit: float
-    fake_probability: float
+    decision_score: float
     decision_threshold: float = 0.60
 
 class Authenticity(BaseModel):
-    calibrated_probability: Optional[float] = None
+    calibrated_score: Optional[float] = None
     uncertainty: str
 
 class VisualEvidence(BaseModel):
@@ -96,7 +96,7 @@ class Manipulation(BaseModel):
     scores: Dict[str, float]
 
 class CloudForensics(BaseModel):
-    synthetic_video_probability: Optional[float] = None
+    synthetic_video_score: Optional[float] = None
     active_speaker_count: Optional[int] = None
     whisper_transcription: Optional[str] = None
 

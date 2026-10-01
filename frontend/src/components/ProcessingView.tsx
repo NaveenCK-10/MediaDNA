@@ -17,7 +17,7 @@ const FORENSIC_STAGES = [
   { id: 'AUDIO_PREPROCESSING', title: 'AUDIO PREPROCESSING', desc: 'Generating Mel-spectrogram', activeNodes: ['AUDIO'] },
   { id: 'AUDIO_ANALYSIS', title: 'AUDIO ANALYSIS', desc: 'Running Repaired Audio Specialist', activeNodes: ['AUDIO', 'TEMPORAL'] },
   { id: 'LATE_FUSION', title: 'CROSS-MODAL FUSION', desc: 'Fusing modalities', activeNodes: ['AUDIO', 'VISUAL', 'TEMPORAL'] },
-  { id: 'CALIBRATION', title: 'CALIBRATION', desc: 'Calibrating probability', activeNodes: ['AUDIO', 'VISUAL'] },
+  { id: 'CALIBRATION', title: 'CALIBRATION', desc: 'Computing decision score', activeNodes: ['AUDIO', 'VISUAL'] },
   { id: 'DECISION', title: 'FORENSIC DECISION', desc: 'Applying decision policy', activeNodes: ['METADATA'] },
   { id: 'FORENSIC_EVIDENCE', title: 'EVIDENCE AGGREGATION', desc: 'Aggregating evidence', activeNodes: ['METADATA'] },
   { id: 'REPORT_GENERATION', title: 'REPORT GENERATION', desc: 'Generating PDF report', activeNodes: [] }

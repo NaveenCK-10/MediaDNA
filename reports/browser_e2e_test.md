@@ -3,14 +3,14 @@
 - [x] 2. Navigate to /analyze, upload fake video, verify 7-step pipeline UI, wait for inference, verify ResultCard radial visualizations.
   - Fake Video Results:
     - Assessment: LIKELY FAKE
-    - Model Signal: Fake Probability 96.0%, Real Probability 4.2%
+    - Model Signal: Fake Decision Score 96.0%, Real Decision Score 4.2%
     - Visual Anomaly Signal: Blur Variance CV 0.290, Temporal MAE StdDev 2.972, Normalized Score 56.8/100
     - Media Metadata: 224x224, 25.00 fps, 4.34s, MPEG4
     - Experimental Fusion: 88.1%
 - [x] 3. Click "NEW ANALYSIS", upload real video, wait for inference, verify ResultCard.
   - Real Video Results:
     - Assessment: LIKELY REAL
-    - Model Signal: Fake Probability 48.7%, Real Probability 51.2%
+    - Model Signal: Fake Decision Score 48.7%, Real Decision Score 51.2%
     - Visual Anomaly Signal: Blur Variance CV 0.136, Temporal MAE StdDev 1.845, Normalized Score 3.8/100
     - Media Metadata: 224x224, 25.00 fps, 10.04s, H264
     - Experimental Fusion: 39.7%
@@ -42,13 +42,13 @@ We successfully performed end-to-end (E2E) verification of the MediaDNA web appl
 - **Result Visualizations:** Radar/Radial chart components and anomaly score bars are successfully rendered with correct mock outputs:
   - **Fake Video Case (`00109_10_id00476_wavtolip.mp4`):**
     - **Forensic Assessment:** `LIKELY FAKE`
-    - **Model Signal (OpenAVFF):** Fake Probability 96.0%, Real Probability 4.2%
+    - **Model Signal (OpenAVFF):** Fake Decision Score 96.0%, Real Decision Score 4.2%
     - **Visual Anomaly:** Blur Variance CV 0.290, Temporal MAE StdDev 2.972, Normalized Score 56.8/100
     - **Metadata:** 224x224, 25.00 fps, 4.34s, MPEG4
     - **Experimental Fusion:** 88.1%
   - **Real Video Case (`00109.mp4`):**
     - **Forensic Assessment:** `LIKELY REAL`
-    - **Model Signal (OpenAVFF):** Fake Probability 48.7%, Real Probability 51.2%
+    - **Model Signal (OpenAVFF):** Fake Decision Score 48.7%, Real Decision Score 51.2%
     - **Visual Anomaly:** Blur Variance CV 0.136, Temporal MAE StdDev 1.845, Normalized Score 3.8/100
     - **Metadata:** 224x224, 25.00 fps, 10.04s, H264
     - **Experimental Fusion:** 39.7%

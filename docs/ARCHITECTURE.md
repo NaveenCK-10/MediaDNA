@@ -28,7 +28,7 @@ flowchart TD
         V2A --> Concat
         
         Concat --> MLP[MLP Classification Head]
-        MLP -->|Fake Probability| CoreSignal
+        MLP -->|Decision Score| CoreSignal
     end
     
     subgraph VISUAL FORENSICS

@@ -1,0 +1,22 @@
+{
+    "Model": "V22_4F_Multimodal",
+    "Stage": "Stage B",
+    "Epoch": 2,
+    "ROC-AUC": 0.7292,
+    "PR-AUC": 0.9877,
+    "Balanced Accuracy": 0.7387,
+    "MCC": 0.1436,
+    "Precision": 0.9949,
+    "Recall": 0.6174,
+    "Specificity": 0.8600,
+    "F1 Score": 0.7620,
+    "Confusion Matrix": [
+        [43, 7],
+        [847, 1367]
+    ],
+    "Prediction Distribution": {
+        "Real": 890,
+        "Fake": 1374
+    },
+    "Mean Predicted Probability": 0.4776
+}

@@ -9,7 +9,7 @@ logger = logging.getLogger("mediadna.nvidia")
 class NvidiaNarrativeGenerator:
     def __init__(self):
         # Allow override from env, but do not fail if missing
-        self.api_key = os.getenv("NVIDIA_API_KEY")
+        self.api_key = os.getenv("NVIDIA_API_KEY", "")
         self.base_url = "https://integrate.api.nvidia.com/v1"
         self.model = os.getenv("NVIDIA_MODEL", "nvidia/nemotron-3.5-lightning-30b-a3b")
         self.timeout = int(os.getenv("NVIDIA_TIMEOUT_SECONDS", "20"))
@@ -32,7 +32,7 @@ class NvidiaNarrativeGenerator:
         system_prompt = """You are the narrative assistant for MediaDNA, a multimodal media authenticity-analysis prototype.
 
 You are NOT the detector.
-You MUST NOT invent measurements, probabilities, model outputs, metadata, provenance, timestamps, evidence, manipulated regions, or technical findings.
+You MUST NOT invent measurements, probabilities, model outputs, metadata, provenance, timestamps, evidence, model-sensitive regions, or technical findings.
 You must only explain the structured evidence supplied in the input.
 
 Treat:

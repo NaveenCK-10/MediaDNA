@@ -1,0 +1,165 @@
+{
+    "phase": "PHASE 7 \u2014 LOCKED TEST",
+    "timestamp": "2026-10-01T18:48:22+0530",
+    "checkpoint": "V22_4F_MULTIMODAL_StageB_Ep2.pth",
+    "checkpoint_sha256": "6363fa8da584e6f253348f4bc535a4ff033d9718238fb5ec5f53045638d3bdca",
+    "score_type": "raw sigmoid decision score (NOT calibrated probability)",
+    "policy_version": "V22_4F_RAW_SIGMOID_v1",
+    "thresholds": {
+        "authentic": 0.2,
+        "uncertain_low": 0.2,
+        "uncertain_high": 0.45,
+        "synthetic": 0.45
+    },
+    "total_samples": 2219,
+    "ground_truth": {
+        "real": 50,
+        "fake": 2169
+    },
+    "score_distribution": {
+        "min": 0.1879,
+        "max": 0.6855,
+        "mean": 0.4791,
+        "median": 0.6484
+    },
+    "three_state_counts": {
+        "AUTHENTIC": 739,
+        "UNCERTAIN": 108,
+        "SYNTHETIC": 1372
+    },
+    "abstention_rate": 0.0487,
+    "metrics_confident": {
+        "ROC-AUC": 0.75,
+        "PR-AUC": 0.9899,
+        "Balanced_Accuracy": 0.7686,
+        "MCC": 0.1679,
+        "Precision": 0.9956,
+        "Recall": 0.6621,
+        "Specificity": 0.875,
+        "F1": 0.7953,
+        "Confusion_Matrix": [
+            [
+                42,
+                6
+            ],
+            [
+                697,
+                1366
+            ]
+        ]
+    },
+    "metrics_full_binary": {
+        "Balanced_Accuracy": 0.7528,
+        "MCC": 0.1542,
+        "Confusion_Matrix": [
+            [
+                44,
+                6
+            ],
+            [
+                812,
+                1357
+            ]
+        ]
+    },
+    "per_class_recall": {
+        "FakeVideo-FakeAudio": {
+            "n": 1139,
+            "auth": 32,
+            "uncertain": 17,
+            "synth": 1090,
+            "recall": 0.957,
+            "mean_score": 0.6301
+        },
+        "RealVideo-FakeAudio": {
+            "n": 50,
+            "auth": 1,
+            "uncertain": 0,
+            "synth": 49,
+            "recall": 0.98,
+            "mean_score": 0.6406
+        },
+        "FakeVideo-RealAudio": {
+            "n": 980,
+            "auth": 664,
+            "uncertain": 89,
+            "synth": 227,
+            "recall": 0.2316,
+            "mean_score": 0.3068
+        },
+        "RealVideo-RealAudio": {
+            "n": 50,
+            "auth": 42,
+            "uncertain": 2,
+            "synth": 6,
+            "recall": 0.84,
+            "mean_score": 0.2549
+        }
+    },
+    "errors": {
+        "false_positives_real_to_synth": [
+            "00135.mp4",
+            "00281.mp4",
+            "00284.mp4",
+            "00015.mp4",
+            "00159.mp4",
+            "00083.mp4"
+        ],
+        "false_negatives_fake_to_auth_count": 697,
+        "false_negatives_fake_to_auth_sample": [
+            "00150_fake.mp4",
+            "00284_0.mp4",
+            "00052_0.mp4",
+            "00052_id05845_XfMHm6CEwPw_faceswap.mp4",
+            "00069_id00739_CT-6UmfLiU0_faceswap.mp4",
+            "00043_id00488_F3YxmZ9CYFw_faceswap.mp4",
+            "00028_id05435_OvX-Jv_whcU_faceswap.mp4",
+            "00005_id00417_GhIZam3v09g_faceswap.mp4",
+            "00053_0.mp4",
+            "00053_id02310_zA-8Pw0SvZg_faceswap.mp4",
+            "00083_1.mp4",
+            "00083_2.mp4",
+            "00092_0.mp4",
+            "00092_id04529_S92uo-UShxE_faceswap.mp4",
+            "00139_0.mp4",
+            "00139_2.mp4",
+            "00015_0.mp4",
+            "00023_id05845_XfMHm6CEwPw_faceswap.mp4",
+            "00118_1.mp4",
+            "00005_id07686_lwSGz24c1Bs_faceswap.mp4",
+            "00072_id07078_sLVbTD3Dtgw_faceswap.mp4",
+            "00054_id03897_bOGItcSqK1s_faceswap.mp4",
+            "00186_id01026_rM4ZERt7oM0_faceswap.mp4",
+            "00231_id05435_OvX-Jv_whcU_faceswap.mp4",
+            "00417_0.mp4",
+            "00180_0.mp4",
+            "00180_id06445_NWtdqOxEbDY_faceswap.mp4",
+            "00077_id07136_4e43eS5p3_M_faceswap.mp4",
+            "00013_id00417_GhIZam3v09g_faceswap.mp4",
+            "00052_0.mp4",
+            "00052_id00417_GhIZam3v09g_faceswap.mp4",
+            "00135_id05845_XfMHm6CEwPw_faceswap.mp4",
+            "00027_id05478_VJkjRzPt-Jw_faceswap.mp4",
+            "00161_id05845_XfMHm6CEwPw_faceswap.mp4",
+            "00013_0.mp4",
+            "00013_id01026_rM4ZERt7oM0_faceswap.mp4",
+            "00025_0.mp4",
+            "00025_id03559_pgetxl1qbzM_faceswap.mp4",
+            "00043_0.mp4",
+            "00043_id05931_bFqu86NV3hk_faceswap.mp4",
+            "00159_0.mp4",
+            "00023_id06438_vf3xBVgYqYA_faceswap.mp4",
+            "00043_id07051_d1c0Pl2aP_4_faceswap.mp4",
+            "00028_0.mp4",
+            "00028_id06438_vf3xBVgYqYA_faceswap.mp4",
+            "00110_id06437_3BZvvzBhj8s_faceswap.mp4",
+            "00118_id00417_GhIZam3v09g_faceswap.mp4",
+            "00150_0.mp4",
+            "00150_id04582_Pm9dX-TxNx0_faceswap.mp4",
+            "00221_0.mp4"
+        ]
+    },
+    "inference_duration_sec": 365.9,
+    "IMMUTABLE": true,
+    "DO_NOT_RETUNE": true
+}

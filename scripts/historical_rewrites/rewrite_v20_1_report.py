@@ -133,7 +133,7 @@ html_content = """<!DOCTYPE html>
             {% endfor %}
         </ul>
         <p>This system performs attribution/occlusion sensitivity and does not perform exact pixel-level localization.</p>
-        <p>Raw fake probability must not be treated as human confidence.</p>
+        <p>Raw decision score must not be treated as human confidence.</p>
     </div>
 
     <div class="footer-disclaimer">

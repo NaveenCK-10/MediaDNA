@@ -298,7 +298,7 @@ class OpenAVFFService:
                 calib_score = fusion_score
         else:
             calib_score = fusion_score
-        if progress_cb: progress_cb("CALIBRATION", "completed", f"Calibrated probability: {calib_score:.4f}")
+        if progress_cb: progress_cb("CALIBRATION", "completed", f"Decision score: {calib_score:.4f}")
         
         # --- DECISION ---
         if progress_cb: progress_cb("DECISION", "started", "Applying V22.4 decision policy")

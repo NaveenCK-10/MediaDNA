@@ -1,0 +1,13 @@
+{
+    "model": "V22_4F_Multimodal",
+    "checkpoint": "V22_4F_MULTIMODAL_StageB_Ep2.pth",
+    "thresholds": {
+        "low_real": 0.4,
+        "high_fake": 0.95
+    },
+    "states": {
+        "real": "prob < 0.4000",
+        "suspect": "0.4000 <= prob <= 0.9500",
+        "fake": "prob > 0.9500"
+    }
+}

@@ -48,15 +48,12 @@ NUM_FRAMES = 16
 
 FFPROBE_PATH = r"C:\Users\navee\Downloads\ffmpeg-9.0.1-essentials_build\ffmpeg-9.0.1-essentials_build\bin\ffprobe.exe"
 
-# V22.4 Recovery checkpoints
-AVFF_CHECKPOINT = os.path.join(PROJECT_ROOT, "checkpoints", "v14_fullscale", "models", "best_audio_model.pth")
-V22_4_CALIBRATOR = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4_PLATT_CALIBRATOR.pkl")
-V22_4_THRESHOLD = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4_THRESHOLD_POLICY.json")
+# V22.4F Final Frozen Checkpoint
+AVFF_CHECKPOINT = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4F_MULTIMODAL_StageB_Ep2.pth")
 
 # Fallback to V22.3 if V22.4 not available
 V22_3_VIS_CKPT = os.path.join(PROJECT_ROOT, "V22_3B_VISUAL_CHECKPOINT.pth")
 V22_3_AUD_CKPT = os.path.join(PROJECT_ROOT, "V22_3C_AUDIO_CHECKPOINT.pth")
-V22_3_CALIBRATOR = os.path.join(PROJECT_ROOT, "V22_3_PLATT_CALIBRATOR.pkl")
 
 
 class OpenAVFFService:
@@ -96,29 +93,16 @@ class OpenAVFFService:
             self.has_specialists = False
         
         # === CALIBRATOR ===
-        if os.path.exists(V22_4_CALIBRATOR):
-            logger.info("Loading V22.4 Platt Calibrator...")
-            with open(V22_4_CALIBRATOR, "rb") as f:
-                self.calibrator = pickle.load(f)
-            self.calibrator_version = "V22.4"
-        elif os.path.exists(V22_3_CALIBRATOR):
-            logger.info("Loading V22.3 Platt Calibrator (fallback)...")
-            with open(V22_3_CALIBRATOR, "rb") as f:
-                self.calibrator = pickle.load(f)
-            self.calibrator_version = "V22.3"
-        else:
-            self.calibrator = None
-            self.calibrator_version = "NONE"
+        # SCIENTIFIC FREEZE: No calibrator. Raw sigmoid decision score only.
+        self.calibrator = None
+        self.calibrator_version = "NONE"
             
         # === THRESHOLD POLICY ===
-        if os.path.exists(V22_4_THRESHOLD):
-            with open(V22_4_THRESHOLD, "r") as f:
-                self.threshold_policy = json.load(f)
-        else:
-            self.threshold_policy = {
-                "authentic_upper": 0.3,
-                "synthetic_lower": 0.7
-            }
+        # FROZEN V22.4F POLICY
+        self.threshold_policy = {
+            "authentic_upper": 0.20,
+            "synthetic_lower": 0.45
+        }
 
     def _load_modules(self):
         logger.info("Loading Forensic Modules...")
@@ -278,32 +262,24 @@ class OpenAVFFService:
         if progress_cb: progress_cb("LATE_FUSION", "completed", f"AVFF fusion: {fusion_score:.4f}")
         
         # --- CALIBRATION ---
-        if progress_cb: progress_cb("CALIBRATION", "started", f"Applying {self.calibrator_version} Platt calibration")
-        if self.calibrator is not None:
-            logit_score = float(np.log(fusion_score / (1 - fusion_score + 1e-12) + 1e-12))
-            try:
-                calib_probs = self.calibrator.predict_proba(np.array([[logit_score]]))
-                calib_score = float(calib_probs[0][1])
-            except Exception:
-                calib_score = fusion_score
-        else:
-            calib_score = fusion_score
-        if progress_cb: progress_cb("CALIBRATION", "completed", f"Calibrated probability: {calib_score:.4f}")
+        if progress_cb: progress_cb("CALIBRATION", "started", "Extracting decision score (no calibration applied)")
+        calib_score = fusion_score
+        if progress_cb: progress_cb("CALIBRATION", "completed", f"Raw Decision Score: {calib_score:.4f}")
         
         # --- DECISION ---
-        if progress_cb: progress_cb("DECISION", "started", "Applying V22.4 decision policy")
-        syn_thresh = self.threshold_policy.get("synthetic_lower", 0.7)
-        auth_thresh = self.threshold_policy.get("authentic_upper", 0.3)
+        if progress_cb: progress_cb("DECISION", "started", "Applying V22.4F decision policy")
+        syn_thresh = self.threshold_policy.get("synthetic_lower", 0.45)
+        auth_thresh = self.threshold_policy.get("authentic_upper", 0.20)
         
-        if calib_score >= syn_thresh:
+        if calib_score > syn_thresh:
             decision = "SYNTHETIC"
-            finding = "Likely manipulated"
+            finding = "Supported by available evidence"
         elif calib_score < auth_thresh:
             decision = "AUTHENTIC"
-            finding = "Likely authentic"
+            finding = "Supported by available evidence"
         else:
             decision = "UNCERTAIN"
-            finding = "Inconclusive evidence"
+            finding = "Insufficient evidence to determine authenticity"
         if progress_cb: progress_cb("DECISION", "completed", f"Decision: {decision}")
 
         # --- FORENSIC EVIDENCE ---
@@ -315,7 +291,7 @@ class OpenAVFFService:
         whisp = nim_results.get("whisper") or {}
         
         cloud_forensics = CloudForensics(
-            synthetic_video_probability=syn_vid.get("probability"),
+            synthetic_video_score=syn_vid.get("probability"),
             active_speaker_count=act_spk.get("speaking_frames"),
             whisper_transcription=whisp.get("text")
         )
@@ -336,13 +312,13 @@ class OpenAVFFService:
         
         evidence_items = [
             EvidenceItem(
-                id="ev_avff_1", type="multimodal_fusion", modality="audiovisual", timestamp=0.0, value=fusion_score, unit="probability",
+                id="ev_avff_1", type="multimodal_fusion", modality="audiovisual", timestamp=0.0, value=fusion_score, unit="score",
                 method="AVFF_Multimodal_Fusion", model="VideoCAVMAEFT", model_version="V22.4", source="inference",
                 reliability="High", calibration_status="PLATT_CALIBRATED", 
                 interpretation="Audio-visual cross-modal manipulation detection.", limitations="Trained on FakeAVCeleb dataset"
             ),
             EvidenceItem(
-                id="ev_vis_1", type="visual_artifact", modality="visual", timestamp=0.0, value=vis_score, unit="probability",
+                id="ev_vis_1", type="visual_artifact", modality="visual", timestamp=0.0, value=vis_score, unit="score",
                 method="Visual_Specialist_Diagnostic", model="OpenAVFF", model_version="V22.3", source="inference",
                 reliability="Low", calibration_status="NOT_VALIDATED", interpretation="Visual-only diagnostic score.", limitations="V22.3 specialist has low discrimination"
             )
@@ -351,7 +327,7 @@ class OpenAVFFService:
         if has_audio:
             evidence_items.append(
                 EvidenceItem(
-                    id="ev_aud_1", type="audio_artifact", modality="audio", timestamp=0.0, value=aud_score, unit="probability",
+                    id="ev_aud_1", type="audio_artifact", modality="audio", timestamp=0.0, value=aud_score, unit="score",
                     method="Audio_Specialist_Diagnostic", model="OpenAVFF", model_version="V22.3", source="inference",
                     reliability="Low", calibration_status="NOT_VALIDATED", interpretation="Audio-only diagnostic score.", limitations="V22.3 specialist has low discrimination"
                 )
@@ -363,12 +339,12 @@ class OpenAVFFService:
         )
         
         trust = TrustSchema(
-            raw_model_score=fusion_score, calibrated_probability=calib_score,
+            raw_model_score=fusion_score, calibrated_score=calib_score,
             model_confidence=str(round(abs(0.5 - calib_score) * 2.0, 2)),
             evidence_agreement=str(round(1.0 - abs(vis_score - aud_score), 2)),
             evidence_agreement_status="IMPLEMENTED",
             ood_signal=None, abstention_state=decision,
-            abstention_status="PLATT_CALIBRATED", calibration_status="VALIDATED", ood_status="NOT_IMPLEMENTED"
+            abstention_status="DECISION_THRESHOLD", calibration_status="NOT_CALIBRATED", ood_status="NOT_IMPLEMENTED"
         )
         
         profile = MediaDNAProfile(
@@ -381,8 +357,8 @@ class OpenAVFFService:
             runtime_metadata={"analysis_duration_sec": time.time() - total_start},
             trust=trust, quality=quality, evidence_items=evidence_items,
             model_finding=finding, human_determination="Pending review", provenance_v20=prov_v20, profile_version="V22.4",
-            classification=Classification(label="fake" if decision=="SYNTHETIC" else "real" if decision=="AUTHENTIC" else "unknown", raw_logit=fusion_score, fake_probability=calib_score, decision_threshold=syn_thresh),
-            authenticity=Authenticity(calibrated_probability=calib_score, uncertainty=decision),
+            classification=Classification(label="fake" if decision=="SYNTHETIC" else "real" if decision=="AUTHENTIC" else "unknown", raw_logit=fusion_score, decision_score=calib_score, decision_threshold=syn_thresh),
+            authenticity=Authenticity(calibrated_score=calib_score, uncertainty=decision),
             visual=VisualEvidence(signature="AVFF Visual Encoder + Diagnostic Specialist", anomaly_score=vis_score, evidence=""),
             audio=AudioEvidence(signature="AVFF Audio Encoder + Diagnostic Specialist", anomaly_score=aud_score, evidence=""),
             temporal=TemporalEvidence(signature="MobileNetV2 Frame L2 Shift", anomaly_score=tem_score, evidence_intervals=[]),

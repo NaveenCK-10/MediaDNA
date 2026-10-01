@@ -105,7 +105,7 @@ export default function DetailedAnalysis({ result }: DetailedAnalysisProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
               <div>
                 <DataRow label="RAW MODEL SCORE" value={result.trust?.raw_model_score?.toFixed(4) || "N/A"} highlight />
-                <DataRow label="CALIBRATED PROBABILITY" value={result.trust?.calibrated_probability !== null ? `${(result.trust.calibrated_probability! * 100).toFixed(2)}%` : "N/A"} highlight />
+                <DataRow label="DECISION SCORE" value={result.trust?.calibrated_score !== null && result.trust?.calibrated_score !== undefined ? `${(result.trust.calibrated_score * 100).toFixed(2)}%` : "N/A"} highlight />
                 <DataRow label="ABSTENTION STATE" value={result.trust?.abstention_state || "N/A"} />
               </div>
               <div>
@@ -150,7 +150,7 @@ export default function DetailedAnalysis({ result }: DetailedAnalysisProps) {
               <div>
                 <DataRow label="BROAD FAMILY" value={result.provenance_v20?.broad_manipulation_family || "N/A"} highlight />
                 <DataRow label="HEURISTIC" value={result.provenance_v20?.heuristic_provenance || "N/A"} />
-                <DataRow label="EXACT GENERATOR" value={result.provenance_v20?.exact_generator_attribution || "N/A"} />
+                <DataRow label="MODEL ATTRIBUTION" value={result.provenance_v20?.exact_generator_attribution || "N/A"} />
               </div>
               <div>
                 <DataRow label="METADATA" value={result.provenance_v20?.metadata_provenance || "N/A"} />

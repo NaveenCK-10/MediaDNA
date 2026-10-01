@@ -115,7 +115,7 @@ export default function HistoryPage() {
               const isFake = item.classification?.label === 'fake';
               const caseNum = String(history.length - idx).padStart(4, '0');
               const color = isFake ? '#ef4444' : '#10b981';
-              const prob = item.classification?.fake_probability ?? 0;
+              const prob = item.classification?.decision_score ?? 0;
 
               return (
                 <motion.div 

@@ -23,7 +23,7 @@ def test_inference_bias():
         probs = torch.sigmoid(logits)
         fake_prob = probs[0][0].item()
         
-    print(f"Fake Probability on Zero Tensor: {fake_prob:.4f}")
+    print(f"Decision Score on Zero Tensor: {fake_prob:.4f}")
     
     # Assert that it is roughly 0.5302
     assert 0.52 < fake_prob < 0.54, f"Expected Fake prob ~0.53, got {fake_prob}"

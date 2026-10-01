@@ -1,0 +1,40 @@
+{
+    "model": "V22_4F_Multimodal",
+    "checkpoint": "V22_4F_MULTIMODAL_StageB_Ep2.pth",
+    "calibration_method": "Raw Sigmoid",
+    "output_label": "sigmoid score",
+    "output_is_probability": false,
+    "scientific_note": "This score is the raw sigmoid output of the multimodal network.",
+    "thresholds": {
+        "authentic": 0.2,
+        "synthetic": 0.45
+    },
+    "states": {
+        "AUTHENTIC": "score < 0.20",
+        "SUSPECT": "0.20 <= score <= 0.45",
+        "SYNTHETIC": "score > 0.45"
+    },
+    "dev_metrics": {
+        "mcc": 0.1654,
+        "bacc": 0.7644,
+        "precision": 0.995,
+        "recall": 0.6809,
+        "specificity": 0.8478,
+        "f1": 0.8085,
+        "abstention_rate": 0.0826,
+        "confusion_matrix_confident": [
+            [
+                39,
+                7
+            ],
+            [
+                648,
+                1383
+            ]
+        ]
+    },
+    "calibration_diagnostics": {
+        "brier": 0.31005,
+        "ece": 0.50033
+    }
+}

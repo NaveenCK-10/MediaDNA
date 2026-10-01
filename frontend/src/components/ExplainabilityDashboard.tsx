@@ -46,7 +46,7 @@ export default function ExplainabilityDashboard({ result }: ExplainabilityDashbo
             </div>
             <div className="text-center">
               <div className="font-mono text-[0.65rem] text-gray-500 tracking-wider mb-2">MULTIMODAL</div>
-              <div className="font-mono text-2xl font-bold text-white">{result.classification?.fake_probability?.toFixed(2) || 'N/A'}</div>
+              <div className="font-mono text-2xl font-bold text-white">{result.classification?.decision_score?.toFixed(2) || 'N/A'}</div>
             </div>
           </div>
         </div>
@@ -87,11 +87,11 @@ export default function ExplainabilityDashboard({ result }: ExplainabilityDashbo
                 <div className="flex items-center gap-6">
                   <div className="text-right hidden sm:block">
                     <div className="font-mono text-[0.6rem] text-gray-500">ORIGINAL</div>
-                    <div className="font-mono text-xs text-white">{region.original_probability.toFixed(3)}</div>
+                    <div className="font-mono text-xs text-white">{region.original_score.toFixed(3)}</div>
                   </div>
                   <div className="text-right hidden sm:block">
                     <div className="font-mono text-[0.6rem] text-gray-500">PERTURBED</div>
-                    <div className="font-mono text-xs text-gray-400">{region.perturbed_probability.toFixed(3)}</div>
+                    <div className="font-mono text-xs text-gray-400">{region.perturbed_score.toFixed(3)}</div>
                   </div>
                   <div className="text-right w-20">
                     <div className="font-mono text-[0.6rem] text-gray-500">IMPACT Δ</div>
