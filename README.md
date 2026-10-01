@@ -20,6 +20,8 @@ MEDIA AUTHENTICITY // FORENSIC ANALYSIS
 
 ### Deepfake Provenance & Multimodal Media Authenticity Analysis
 
+> **[ ENTER THE MEDIADNA FORENSIC LAB ](https://naveenck-10.github.io/MediaDNA/)**
+
 > A multimodal forensic analysis framework for investigating the authenticity of audio-visual media using cross-modal deepfake detection, calibrated decision-making, uncertainty handling, and evidence-oriented reporting.
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg?logo=python&logoColor=white)](#)

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaDNA | Forensic Command Center</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo-mark">🧬</span>
+            <span class="logo-text">MEDIADNA</span>
+        </div>
+        <div class="nav-links">
+            <a href="#architecture">ARCHITECTURE</a>
+            <a href="#research">RESEARCH</a>
+            <a href="#evidence">EVIDENCE</a>
+            <a href="https://github.com/NaveenCK-10/MediaDNA" target="_blank" class="btn-outline">GITHUB</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="status-badge">[ SYSTEM ONLINE ]</div>
+            <h1>MEDIA AUTHENTICITY<br><span class="accent-text">FORENSIC ANALYSIS</span></h1>
+            <p class="subtitle">An evidence-oriented audiovisual forensic workflow combining multimodal analysis, calibration, uncertainty-aware decisions, provenance metadata, and structured reporting.</p>
+            
+            <div class="hero-actions">
+                <a href="#pipeline" class="btn-primary">EXPLORE PIPELINE</a>
+                <a href="#results" class="btn-secondary">VERIFIED RESULTS</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="system-hud">
+        <div class="container">
+            <div class="hud-grid">
+                <div class="hud-item active"><span class="dot"></span>MEDIA INGEST</div>
+                <div class="hud-item active"><span class="dot"></span>VISUAL ANALYSIS</div>
+                <div class="hud-item active"><span class="dot"></span>AUDIO ANALYSIS</div>
+                <div class="hud-item active"><span class="dot"></span>MULTIMODAL FUSION</div>
+                <div class="hud-item active"><span class="dot"></span>CALIBRATION</div>
+                <div class="hud-item active"><span class="dot"></span>UNCERTAINTY</div>
+                <div class="hud-item active"><span class="dot"></span>EVIDENCE</div>
+                <div class="hud-item active"><span class="dot"></span>REPORTING</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section-dark">
+        <div class="container">
+            <h2 class="section-title">CORE ARCHITECTURE</h2>
+            <div class="architecture-diagram">
+                <!-- SVG Architecture Placeholder -->
+                <div class="arch-flow">
+                    <div class="arch-box">Frontend<br><span class="tech-stack">React / Vite / TS</span></div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-box">FastAPI Backend<br><span class="tech-stack">Python / Uvicorn</span></div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-box">Media Validation &amp; Extraction<br><span class="tech-stack">FFmpeg / ffprobe</span></div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-split">
+                        <div class="arch-box">Visual Analysis<br><span class="tech-stack">16 Frames (224x224)</span></div>
+                        <div class="arch-box">Audio Analysis<br><span class="tech-stack">16kHz Mel-Spectrogram</span></div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-box highlight">AVFF Multimodal Inference<br><span class="tech-stack">VideoCAVMAEFT Cross-Attention</span></div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-box highlight-purple">Platt Calibration<br><span class="tech-stack">Logistic Regression</span></div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-box">3-State Decision Policy</div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-box">Playwright PDF Report</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="decision-engine" class="section-light">
+        <div class="container">
+            <h2 class="section-title">DECISION ENGINE</h2>
+            <p class="section-desc">Traditional deepfake detectors force hard binary decisions, destroying forensic credibility on ambiguous media. MediaDNA translates raw model logits into calibrated probabilities and applies an explicit uncertainty bracket.</p>
+            
+            <div class="decision-grid">
+                <div class="decision-card authentic">
+                    <h3>AUTHENTIC</h3>
+                    <p>Evidence supports authenticity under the selected DEV operating policy (P ≤ 0.95).</p>
+                </div>
+                <div class="decision-card uncertain">
+                    <h3>UNCERTAIN</h3>
+                    <p>Evidence is insufficient for a confident binary conclusion (0.95 &lt; P &lt; 0.96).</p>
+                </div>
+                <div class="decision-card synthetic">
+                    <h3>SYNTHETIC</h3>
+                    <p>Evidence crosses the selected synthetic decision boundary (P ≥ 0.96).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="section-dark">
+        <div class="container">
+            <h2 class="section-title">VERIFIED RESULTS</h2>
+            <p class="warning-text">⚠️ Metrics are protocol-specific and operating-point dependent.</p>
+            
+            <div class="metrics-dashboard">
+                <div class="metric-card">
+                    <h4>DEV RANKING</h4>
+                    <div class="metric-value">0.8974</div>
+                    <div class="metric-label">ROC-AUC</div>
+                </div>
+                <div class="metric-card highlight-card">
+                    <h4>LOCKED TEST RANKING</h4>
+                    <div class="metric-value">0.9094</div>
+                    <div class="metric-label">ROC-AUC</div>
+                </div>
+                <div class="metric-card">
+                    <h4>LOCKED SPECIFICITY</h4>
+                    <div class="metric-value">0.0000</div>
+                    <div class="metric-label">At historical operating point</div>
+                </div>
+            </div>
+            
+            <div class="research-note">
+                <h4>🔬 Scientific Context: The Specificity Collapse</h4>
+                <p>The locked-test evaluation produced a high ROC-AUC (0.9094), indicating excellent threshold-independent ranking discrimination. However, at the historically selected uncalibrated operating point, the model labeled every single test sample as synthetic (Specificity = 0, MCC = 0). This pathological behavior under severe class imbalance is the exact reason MediaDNA mandates proper Platt calibration and uncertainty policies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" class="section-light">
+        <div class="container">
+            <h2 class="section-title">RESEARCH FOUNDATION</h2>
+            <p>MediaDNA is an applied forensic-analysis workflow built entirely around the <strong>AVFF</strong> audiovisual detector family.</p>
+            
+            <div class="citation-box">
+                <p class="citation-title">AVFF: Audio-Visual Feature Fusion for Video Deepfake Detection</p>
+                <p class="citation-authors">Oorloff, T. A., Masi, I., &amp; Hosseini, R. (CVPR 2024)</p>
+            </div>
+            
+            <p class="section-desc mt-4">MediaDNA extends this core research architecture with real-time SSE extraction pipelines, strict calibration loops, modality ablation diagnostics, and deterministic PDF forensic reporting.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>MEDIADNA</h4>
+                    <p>Multimodal Deepfake Provenance</p>
+                </div>
+                <div>
+                    <h4>DISCLAIMER</h4>
+                    <p class="small-text">MediaDNA is a research prototype. Its outputs and PDF reports should not be treated as definitive proof of authenticity, physical provenance, or legal evidence.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
