@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, Activity, Eye, Mic, Info, Layers, GitCommit, FileText } from 'lucide-react';
+import { ChevronDown, Activity, Eye, Layers, GitCommit, FileText, CheckCircle } from 'lucide-react';
 import type { AnalysisResponse } from '../types';
 
 interface DetailedAnalysisProps {
@@ -45,34 +45,6 @@ function DataRow({ label, value, highlight = false }: { label: string, value: Re
   );
 }
 
-function EvidenceTimeline() {
-  const steps = [
-    "MEDIA INGESTED",
-    "VIDEO SIGNAL",
-    "AUDIO SIGNAL",
-    "MODEL SIGNAL",
-    "VISUAL ANALYSIS",
-    "MEDIADNA FUSION",
-    "ASSESSMENT"
-  ];
-  
-  return (
-    <div className="flex flex-col items-center py-4">
-      {steps.map((step, i) => (
-        <div key={step} className="flex flex-col items-center">
-          <div className="flex items-center gap-2 bg-black/60 border border-white/10 px-4 py-2 rounded-full shadow-lg">
-            <GitCommit className="w-3 h-3 text-[#00e5ff]" />
-            <span className="font-mono text-[0.65rem] font-bold tracking-[0.2em] text-white">{step}</span>
-          </div>
-          {i < steps.length - 1 && (
-            <div className="w-px h-6 bg-gradient-to-b from-white/20 to-transparent my-1"></div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function DetailedAnalysis({ result }: DetailedAnalysisProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -90,84 +62,100 @@ export default function DetailedAnalysis({ result }: DetailedAnalysisProps) {
         <div className="mt-6 space-y-2 animate-fade-in">
           
           <Section 
-            title="EVIDENCE TIMELINE" 
-            icon={Layers}
-            description="Conceptual evidence flow. Distinguish this from actual processing telemetry."
-          >
-            <EvidenceTimeline />
-          </Section>
-          
-          <Section 
-            title="MODEL SIGNAL" 
-            icon={Activity}
-            description="Learned multimodal representation produced by OpenAVFF."
+            title="CASE INTEGRITY" 
+            icon={CheckCircle}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
               <div>
-                <DataRow label="MODEL PREDICTION" value={result.prediction.toUpperCase()} highlight />
-                <DataRow label="MODEL PROBABILITY" value={`${(result.openavff_fake_prob * 100).toFixed(4)}%`} highlight />
-                <DataRow label="THRESHOLD" value="0.5" />
+                <DataRow label="CASE ID" value={result.case_id} highlight />
+                <DataRow label="ASSET ID" value={result.asset_id} />
+                <DataRow label="RUN ID" value={result.run_id} />
               </div>
               <div>
-                <DataRow label="RAW LOGITS" value={`[${result.raw_logits.map(l => l.toFixed(4)).join(', ')}]`} />
-                <DataRow label="INFERENCE TIME" value={`${result.inference_time.toFixed(3)}s`} />
-                <DataRow label="MODEL PIPELINE" value={`${result.model} (${result.device})`} />
+                <DataRow label="SHA-256" value={result.asset_hash} highlight />
+                <DataRow label="MODEL VERSION" value={`${result.model_name} ${result.model_version}`} />
+                <DataRow label="PROCESSING STATUS" value={result.processing_status} />
               </div>
             </div>
           </Section>
-
-          {result.visual_signals && (
-            <Section 
-              title="VISUAL SIGNAL" 
-              icon={Eye}
-              description="Derived from measured visual consistency characteristics."
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
-                <div>
-                  <DataRow label="BLUR VARIANCE (MEAN)" value={result.visual_signals.blur_variance_mean.toFixed(4)} />
-                  <DataRow label="BLUR VARIABILITY (CV)" value={result.visual_signals.blur_coefficient_of_variation.toFixed(4)} />
-                </div>
-                <div>
-                  <DataRow label="INTER-FRAME MAE" value={result.visual_signals.frame_mae_mean.toFixed(4)} />
-                  <DataRow label="TEMPORAL VOLATILITY" value={result.visual_signals.frame_mae_std.toFixed(4)} />
-                  <DataRow label="FRAMES ANALYZED" value={result.visual_signals.frames_analyzed} />
-                </div>
-              </div>
-            </Section>
-          )}
 
           <Section 
-            title="AUDIO SIGNAL" 
-            icon={Mic}
-            description="OpenAVFF incorporates acoustic representations through its learned audio pathway. Explicit acoustic heuristics are currently not exposed."
+            title="INPUT QUALITY" 
+            icon={Eye}
           >
-            <div className="flex items-center justify-center py-4 opacity-50">
-              <span className="font-mono text-xs tracking-widest">[ ACOUSTIC REPRESENTATION INTERNALIZED ]</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+              <div>
+                <DataRow label="RESOLUTION" value={result.quality?.resolution || 'N/A'} />
+                <DataRow label="DURATION" value={`${result.quality?.duration?.toFixed(2) || 0}s`} />
+                <DataRow label="FPS" value={result.quality?.frame_rate?.toFixed(2) || 'N/A'} />
+              </div>
+              <div>
+                <DataRow label="AUDIO PRESENCE" value={result.quality?.audio_presence ? 'YES' : 'NO'} />
+                <DataRow label="FINDINGS" value={result.quality?.findings?.length > 0 ? result.quality.findings.join(", ") : "NONE"} highlight />
+              </div>
             </div>
           </Section>
 
-          {result.metadata && (
-            <Section 
-              title="MEDIA METADATA" 
-              icon={Info}
-              description="Extracted structural and encoding information."
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
-                <div>
-                  <DataRow label="SOURCE" value={result.metadata.source || "Unknown"} />
-                  <DataRow label="FILE SIZE" value={result.metadata.file_size || "Unknown"} />
-                  <DataRow label="DURATION" value={result.metadata.duration || "Unknown"} />
-                  <DataRow label="RESOLUTION" value={result.metadata.resolution || "Unknown"} />
-                </div>
-                <div>
-                  <DataRow label="FRAMERATE" value={result.metadata.fps || "Unknown"} />
-                  <DataRow label="VIDEO CODEC" value={result.metadata.video_codec || "Unknown"} />
-                  <DataRow label="AUDIO CODEC" value={result.metadata.audio_codec || "Unknown"} />
-                  <DataRow label="BITRATE" value={result.metadata.bitrate || "Unknown"} />
-                </div>
+          <Section 
+            title="DETECTION SCORE & UNCERTAINTY" 
+            icon={Activity}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+              <div>
+                <DataRow label="RAW MODEL SCORE" value={result.trust?.raw_model_score?.toFixed(4) || "N/A"} highlight />
+                <DataRow label="CALIBRATED PROBABILITY" value={result.trust?.calibrated_probability !== null ? `${(result.trust.calibrated_probability! * 100).toFixed(2)}%` : "N/A"} highlight />
+                <DataRow label="ABSTENTION STATE" value={result.trust?.abstention_state || "N/A"} />
               </div>
-            </Section>
-          )}
+              <div>
+                <DataRow label="CALIBRATION STATUS" value={result.trust?.calibration_status || "N/A"} />
+                <DataRow label="MODEL CONFIDENCE" value={result.trust?.model_confidence || "N/A"} />
+                <DataRow label="OOD STATUS" value={result.trust?.ood_status || "N/A"} />
+              </div>
+            </div>
+          </Section>
+
+          <Section 
+            title="ATTRIBUTION EVIDENCE" 
+            icon={Layers}
+            description="Model-sensitive regions and artifacts"
+          >
+            {result.evidence_items?.map((ev, idx) => (
+              <div key={idx} className="mb-4 border-b border-white/10 pb-4 last:border-0 last:pb-0">
+                 <h4 className="font-mono text-sm font-bold tracking-widest text-white mb-2">{ev.type.replace('_', ' ').toUpperCase()} ({ev.modality.toUpperCase()})</h4>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                   <div>
+                     <DataRow label="VALUE" value={`${ev.value.toFixed(4)} ${ev.unit}`} />
+                     <DataRow label="METHOD" value={ev.method} />
+                   </div>
+                   <div>
+                     <DataRow label="RELIABILITY" value={ev.reliability} />
+                     <DataRow label="CALIBRATION" value={ev.calibration_status} />
+                   </div>
+                 </div>
+                 <div className="mt-2 text-xs font-mono text-gray-400">
+                    <strong>Interpretation:</strong> {ev.interpretation}<br/>
+                    <strong>Limitations:</strong> {ev.limitations}
+                 </div>
+              </div>
+            ))}
+          </Section>
+
+          <Section 
+            title="PROVENANCE" 
+            icon={GitCommit}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+              <div>
+                <DataRow label="BROAD FAMILY" value={result.provenance_v20?.broad_manipulation_family || "N/A"} highlight />
+                <DataRow label="HEURISTIC" value={result.provenance_v20?.heuristic_provenance || "N/A"} />
+              </div>
+              <div>
+                <DataRow label="METADATA" value={result.provenance_v20?.metadata_provenance || "N/A"} />
+                <DataRow label="CRYPTOGRAPHIC" value={result.provenance_v20?.cryptographic_provenance || "N/A"} />
+                <DataRow label="SOURCE DEVICE" value={result.provenance_v20?.source_device_clues || "N/A"} />
+              </div>
+            </div>
+          </Section>
 
         </div>
       )}

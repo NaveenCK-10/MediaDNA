@@ -1,0 +1,20 @@
+{
+  "metrics": {
+    "ROC_AUC": 0.9093914246196405,
+    "PR_AUC": 0.9977510752108568,
+    "Balanced_Accuracy": 0.5,
+    "MCC": 0.0,
+    "Precision": 0.9774673276250563,
+    "Recall": 1.0,
+    "F1": 0.9886052871467639,
+    "Specificity": 0.0,
+    "Confusion_Matrix": {
+      "tn": 0,
+      "fp": 50,
+      "fn": 0,
+      "tp": 2169
+    }
+  },
+  "errors": 0,
+  "n_samples": 2219
+}

@@ -1,9 +1,6 @@
 """
-OpenAVFF Inference Service for MediaDNA (V22.4).
-RECOVERY VERSION: Uses VideoCAVMAEFT (AVFF) as primary detector.
-The AVFF multimodal fusion model is substantially stronger than individual
-specialists (DEV ROC-AUC ~0.90 vs ~0.50-0.73).
-Visual/Audio specialist scores are retained as diagnostic evidence.
+OpenAVFF Inference Service for MediaDNA (V22.3).
+Provides the full MediaDNA Forensic Profile using Repaired Specialists and Late Fusion.
 """
 import os
 import sys
@@ -24,9 +21,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-# Primary detector: AVFF multimodal model
-from src.models.video_cav_mae import VideoCAVMAEFT
-# Diagnostic specialists (retained for evidence)
+# Import the new specialists
 from src.models.visual_specialist import VisualSpecialist
 from src.models.audio_specialist import AudioSpecialist
 
@@ -48,87 +43,43 @@ NUM_FRAMES = 16
 
 FFPROBE_PATH = r"C:\Users\navee\Downloads\ffmpeg-9.0.1-essentials_build\ffmpeg-9.0.1-essentials_build\bin\ffprobe.exe"
 
-# V22.4 Recovery checkpoints
-AVFF_CHECKPOINT = os.path.join(PROJECT_ROOT, "checkpoints", "v14_fullscale", "models", "best_audio_model.pth")
-V22_4_CALIBRATOR = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4_PLATT_CALIBRATOR.pkl")
-V22_4_THRESHOLD = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4_THRESHOLD_POLICY.json")
-
-# Fallback to V22.3 if V22.4 not available
-V22_3_VIS_CKPT = os.path.join(PROJECT_ROOT, "V22_3B_VISUAL_CHECKPOINT.pth")
-V22_3_AUD_CKPT = os.path.join(PROJECT_ROOT, "V22_3C_AUDIO_CHECKPOINT.pth")
-V22_3_CALIBRATOR = os.path.join(PROJECT_ROOT, "V22_3_PLATT_CALIBRATOR.pkl")
-
-
 class OpenAVFFService:
     def __init__(self, checkpoint_path=None):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        
+        self.vis_ckpt = os.path.join(PROJECT_ROOT, "V22_3B_VISUAL_CHECKPOINT.pth")
+        self.aud_ckpt = os.path.join(PROJECT_ROOT, "V22_3C_AUDIO_CHECKPOINT.pth")
+        self.calibrator_ckpt = os.path.join(PROJECT_ROOT, "V22_3_PLATT_CALIBRATOR.pkl")
+        
         self._load_models()
         self._load_modules()
         
     def _load_models(self):
-        # === PRIMARY DETECTOR: AVFF ===
-        logger.info("Loading V22.4 AVFF Primary Detector...")
-        self.avff_model = VideoCAVMAEFT()
-        self.avff_model = nn.DataParallel(self.avff_model)
-        ckpt = torch.load(AVFF_CHECKPOINT, map_location="cpu")
-        self.avff_model.load_state_dict(ckpt, strict=False)
-        self.avff_model.to(self.device)
-        self.avff_model.eval()
-        self.use_avff = True
-        logger.info("AVFF model loaded successfully")
+        logger.info(f"Loading V22.3 Visual Specialist...")
+        self.vis_model = VisualSpecialist()
+        self.vis_model.load_state_dict(torch.load(self.vis_ckpt, map_location="cpu"))
+        self.vis_model = nn.DataParallel(self.vis_model).to(self.device)
+        self.vis_model.eval()
         
-        # === DIAGNOSTIC SPECIALISTS (for evidence reporting) ===
-        try:
-            logger.info("Loading V22.3 Visual Specialist (diagnostic)...")
-            self.vis_model = VisualSpecialist()
-            self.vis_model.load_state_dict(torch.load(V22_3_VIS_CKPT, map_location="cpu"))
-            self.vis_model = nn.DataParallel(self.vis_model).to(self.device)
-            self.vis_model.eval()
-            
-            logger.info("Loading V22.3 Audio Specialist (diagnostic)...")
-            self.aud_model = AudioSpecialist()
-            self.aud_model.load_state_dict(torch.load(V22_3_AUD_CKPT, map_location="cpu"))
-            self.aud_model = nn.DataParallel(self.aud_model).to(self.device)
-            self.aud_model.eval()
-            self.has_specialists = True
-        except Exception as e:
-            logger.warning(f"Diagnostic specialists not loaded: {e}")
-            self.has_specialists = False
+        logger.info(f"Loading V22.3 Audio Specialist...")
+        self.aud_model = AudioSpecialist()
+        self.aud_model.load_state_dict(torch.load(self.aud_ckpt, map_location="cpu"))
+        self.aud_model = nn.DataParallel(self.aud_model).to(self.device)
+        self.aud_model.eval()
         
-        # === CALIBRATOR ===
-        if os.path.exists(V22_4_CALIBRATOR):
-            logger.info("Loading V22.4 Platt Calibrator...")
-            with open(V22_4_CALIBRATOR, "rb") as f:
-                self.calibrator = pickle.load(f)
-            self.calibrator_version = "V22.4"
-        elif os.path.exists(V22_3_CALIBRATOR):
-            logger.info("Loading V22.3 Platt Calibrator (fallback)...")
-            with open(V22_3_CALIBRATOR, "rb") as f:
-                self.calibrator = pickle.load(f)
-            self.calibrator_version = "V22.3"
-        else:
-            self.calibrator = None
-            self.calibrator_version = "NONE"
-            
-        # === THRESHOLD POLICY ===
-        if os.path.exists(V22_4_THRESHOLD):
-            with open(V22_4_THRESHOLD, "r") as f:
-                self.threshold_policy = json.load(f)
-        else:
-            self.threshold_policy = {
-                "authentic_upper": 0.3,
-                "synthetic_lower": 0.7
-            }
+        logger.info(f"Loading Platt Calibrator...")
+        with open(self.calibrator_ckpt, "rb") as f:
+            self.calibrator = pickle.load(f)
 
     def _load_modules(self):
-        logger.info("Loading Forensic Modules...")
+        logger.info(f"Loading Forensic Modules...")
         self.tem_mod = TemporalForensicsModule()
         self.prov_mod = ProvenanceModule()
         self.llm = ForensicReportGenerator()
         self.nim_api = NVIDIANimAPI()
 
     def _extract_audio_melspec(self, video_path: str):
-        """Extract audio mel spectrogram."""
+        """Extract audio mel spectrogram matching Audio Specialist exactly."""
         temp_wav = f"temp_inf_{os.getpid()}.wav"
         try:
             cmd = [FFMPEG_PATH, "-y", "-i", video_path, "-vn", "-acodec", "pcm_s16le",
@@ -177,11 +128,11 @@ class OpenAVFFService:
         return v_tensor, num_frames
 
     def _inspect_media(self, video_path: str):
-        import json as json_mod
+        import json
         cmd = [FFPROBE_PATH, "-v", "error", "-show_format", "-show_streams", "-of", "json", video_path]
         try:
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-            data = json_mod.loads(result.stdout)
+            data = json.loads(result.stdout)
             streams = data.get("streams", [])
             v_stream = next((s for s in streams if s["codec_type"] == "video"), None)
             a_streams = [s for s in streams if s["codec_type"] == "audio"]
@@ -210,11 +161,11 @@ class OpenAVFFService:
         if context is None: context = {}
         total_start = time.time()
         
-        # --- SECURITY/SANDBOXING ---
+        # --- SECURITY/SANDBOXING (VALIDATING / INSPECTING_MEDIA) ---
         if progress_cb: progress_cb("VALIDATING", "started", "Validating input constraints")
         abs_path = os.path.abspath(video_path)
         if not os.path.exists(abs_path): raise FileNotFoundError(f"Video file not found: {abs_path}")
-        if os.path.getsize(abs_path) > 500 * 1024 * 1024: raise ValueError("File size exceeds 500MB limit.")
+        if os.path.getsize(abs_path) > 500 * 1024 * 1024: raise ValueError(f"File size exceeds 500MB limit.")
         if os.path.splitext(abs_path)[1].lower() not in {".mp4", ".avi", ".mov", ".mkv"}: raise ValueError("Unsupported extension.")
         if progress_cb: progress_cb("VALIDATING", "completed", "File constraints validated")
         
@@ -230,81 +181,84 @@ class OpenAVFFService:
         v_input = v_input.to(self.device)
         if progress_cb: progress_cb("EXTRACTING_VIDEO", "completed", f"{num_frames_ext} frames available, sampled 16")
         
-        # --- AUDIO EXTRACTION ---
-        has_audio = media_info.get('audio_presence', False)
-        if has_audio:
-            if progress_cb: progress_cb("EXTRACTING_AUDIO", "started", "Extracting audio track via ffmpeg")
-            a_input = self._extract_audio_melspec(abs_path)
-            a_input = a_input.to(self.device)
-            if progress_cb: progress_cb("EXTRACTING_AUDIO", "completed", "Audio track extracted")
-        else:
-            if progress_cb: progress_cb("EXTRACTING_AUDIO", "started", "No audio stream detected")
-            a_input = torch.zeros(1, 1024, 128).to(self.device)
-            if progress_cb: progress_cb("EXTRACTING_AUDIO", "completed", "Audio processing skipped")
-        
-        # --- PRIMARY DETECTOR: AVFF MULTIMODAL ---
-        if progress_cb: progress_cb("VISUAL_ANALYSIS", "started", "Running AVFF multimodal analysis")
+        # --- VISUAL ANALYSIS ---
+        if progress_cb: progress_cb("VISUAL_ANALYSIS", "started", "Running Repaired Visual Specialist inference")
         with torch.no_grad():
             with torch.amp.autocast('cuda'):
-                avff_out = self.avff_model(a_input, v_input)
-                fusion_score = float(torch.sigmoid(avff_out).cpu().float().numpy()[0][0])
-        if progress_cb: progress_cb("VISUAL_ANALYSIS", "completed", f"AVFF fusion score: {fusion_score:.4f}")
+                v_out = self.vis_model(v_input)
+                vis_score = float(torch.sigmoid(v_out)[:, 0].cpu().numpy()[0])
+        if progress_cb: progress_cb("VISUAL_ANALYSIS", "completed", f"Visual inference complete (score: {vis_score:.4f})")
+
+        # --- AUDIO EXTRACTION ---
+        if not media_info['audio_presence']:
+            # No audio
+            if progress_cb: progress_cb("EXTRACTING_AUDIO", "started", "No audio stream detected")
+            if progress_cb: progress_cb("EXTRACTING_AUDIO", "completed", "Audio processing skipped")
+            aud_score = None
+            # Skip PREPROCESSING & ANALYSIS
+            if progress_cb: progress_cb("AUDIO_PREPROCESSING", "started", "Skipped")
+            if progress_cb: progress_cb("AUDIO_PREPROCESSING", "completed", "Skipped")
+            if progress_cb: progress_cb("AUDIO_ANALYSIS", "started", "Skipped")
+            if progress_cb: progress_cb("AUDIO_ANALYSIS", "completed", "Skipped")
+        else:
+            if progress_cb: progress_cb("EXTRACTING_AUDIO", "started", "Extracting audio track via ffmpeg")
+            a_input = self._extract_audio_melspec(abs_path)
+            if progress_cb: progress_cb("EXTRACTING_AUDIO", "completed", "Audio track extracted")
+            
+            if progress_cb: progress_cb("AUDIO_PREPROCESSING", "started", "Generating Mel-spectrogram")
+            a_input = a_input.to(self.device)
+            if progress_cb: progress_cb("AUDIO_PREPROCESSING", "completed", "Mel-spectrogram generated")
+
+            if progress_cb: progress_cb("AUDIO_ANALYSIS", "started", "Running Repaired Audio Specialist inference")
+            with torch.no_grad():
+                with torch.amp.autocast('cuda'):
+                    a_out = self.aud_model(a_input)
+                    aud_score = float(torch.sigmoid(a_out)[:, 0].cpu().numpy()[0])
+            if progress_cb: progress_cb("AUDIO_ANALYSIS", "completed", f"Audio inference complete (score: {aud_score:.4f})")
         
-        # --- DIAGNOSTIC SPECIALIST SCORES ---
-        vis_score = fusion_score  # Default to fusion
-        aud_score = fusion_score
-        
-        if self.has_specialists:
-            try:
-                if progress_cb: progress_cb("AUDIO_PREPROCESSING", "started", "Running diagnostic specialists")
-                with torch.no_grad():
-                    with torch.amp.autocast('cuda'):
-                        v_out = self.vis_model(v_input)
-                        vis_score = float(torch.sigmoid(v_out)[:, 0].cpu().numpy()[0])
-                        
-                        a_out = self.aud_model(a_input)
-                        aud_score = float(torch.sigmoid(a_out)[:, 0].cpu().numpy()[0])
-                if progress_cb: progress_cb("AUDIO_PREPROCESSING", "completed", f"Visual: {vis_score:.4f}, Audio: {aud_score:.4f}")
-            except Exception as e:
-                logger.warning(f"Specialist diagnostic failed: {e}")
-        
-        if progress_cb: progress_cb("AUDIO_ANALYSIS", "started", "Analysis complete")
-        if progress_cb: progress_cb("AUDIO_ANALYSIS", "completed", "Analysis complete")
-        
-        # --- LATE FUSION (using AVFF score as primary) ---
-        if progress_cb: progress_cb("LATE_FUSION", "started", "AVFF multimodal fusion")
+        # --- LATE FUSION ---
+        if progress_cb: progress_cb("LATE_FUSION", "started", "Fusing visual and audio modalities")
         tem_analysis = self.tem_mod.analyze(abs_path)
         tem_score = tem_analysis.get("temporal_anomaly_score", 0.0)
-        if progress_cb: progress_cb("LATE_FUSION", "completed", f"AVFF fusion: {fusion_score:.4f}")
         
-        # --- CALIBRATION ---
-        if progress_cb: progress_cb("CALIBRATION", "started", f"Applying {self.calibrator_version} Platt calibration")
-        if self.calibrator is not None:
-            logit_score = float(np.log(fusion_score / (1 - fusion_score + 1e-12) + 1e-12))
+        if aud_score is not None:
+            fusion_score = 0.5 * vis_score + 0.5 * aud_score
+            if progress_cb: progress_cb("LATE_FUSION", "completed", f"Fusion complete (score: {fusion_score:.4f})")
+            
+            # --- CALIBRATION ---
+            if progress_cb: progress_cb("CALIBRATION", "started", "Applying frozen Platt calibration")
+            logit_score = float(np.log(fusion_score / (1 - fusion_score + 1e-12)))
             try:
                 calib_probs = self.calibrator.predict_proba(np.array([[logit_score]]))
                 calib_score = float(calib_probs[0][1])
             except Exception:
                 calib_score = fusion_score
+            if progress_cb: progress_cb("CALIBRATION", "completed", f"Calibrated probability: {calib_score:.4f}")
+            
+            # --- DECISION ---
+            if progress_cb: progress_cb("DECISION", "started", "Applying V22 decision policy")
+            if calib_score >= 0.7:
+                decision = "SYNTHETIC"
+                finding = "Likely manipulated"
+            elif calib_score < 0.3:
+                decision = "AUTHENTIC"
+                finding = "Likely authentic"
+            else:
+                decision = "UNCERTAIN"
+                finding = "Inconclusive evidence"
+            if progress_cb: progress_cb("DECISION", "completed", f"Decision: {decision}")
         else:
-            calib_score = fusion_score
-        if progress_cb: progress_cb("CALIBRATION", "completed", f"Calibrated probability: {calib_score:.4f}")
-        
-        # --- DECISION ---
-        if progress_cb: progress_cb("DECISION", "started", "Applying V22.4 decision policy")
-        syn_thresh = self.threshold_policy.get("synthetic_lower", 0.7)
-        auth_thresh = self.threshold_policy.get("authentic_upper", 0.3)
-        
-        if calib_score >= syn_thresh:
-            decision = "SYNTHETIC"
-            finding = "Likely manipulated"
-        elif calib_score < auth_thresh:
-            decision = "AUTHENTIC"
-            finding = "Likely authentic"
-        else:
+            fusion_score = vis_score
+            if progress_cb: progress_cb("LATE_FUSION", "completed", "Fusion skipped (missing audio), visual-only path")
+            
+            if progress_cb: progress_cb("CALIBRATION", "started", "Skipped (missing audio)")
+            calib_score = 0.5
+            if progress_cb: progress_cb("CALIBRATION", "completed", "Skipped")
+            
+            if progress_cb: progress_cb("DECISION", "started", "Applying V22 decision policy")
             decision = "UNCERTAIN"
-            finding = "Inconclusive evidence"
-        if progress_cb: progress_cb("DECISION", "completed", f"Decision: {decision}")
+            finding = "Audio analysis was unavailable for this media."
+            if progress_cb: progress_cb("DECISION", "completed", f"Decision: {decision}")
 
         # --- FORENSIC EVIDENCE ---
         if progress_cb: progress_cb("FORENSIC_EVIDENCE", "started", "Aggregating forensic metadata and provenance")
@@ -336,24 +290,18 @@ class OpenAVFFService:
         
         evidence_items = [
             EvidenceItem(
-                id="ev_avff_1", type="multimodal_fusion", modality="audiovisual", timestamp=0.0, value=fusion_score, unit="probability",
-                method="AVFF_Multimodal_Fusion", model="VideoCAVMAEFT", model_version="V22.4", source="inference",
-                reliability="High", calibration_status="PLATT_CALIBRATED", 
-                interpretation="Audio-visual cross-modal manipulation detection.", limitations="Trained on FakeAVCeleb dataset"
-            ),
-            EvidenceItem(
                 id="ev_vis_1", type="visual_artifact", modality="visual", timestamp=0.0, value=vis_score, unit="probability",
-                method="Visual_Specialist_Diagnostic", model="OpenAVFF", model_version="V22.3", source="inference",
-                reliability="Low", calibration_status="NOT_VALIDATED", interpretation="Visual-only diagnostic score.", limitations="V22.3 specialist has low discrimination"
+                method="Repaired_Visual_Specialist_B", model="OpenAVFF", model_version="V22.3", source="inference",
+                reliability="High", calibration_status="NOT_VALIDATED", interpretation="Visual manipulation likelihood.", limitations=""
             )
         ]
         
-        if has_audio:
+        if aud_score is not None:
             evidence_items.append(
                 EvidenceItem(
                     id="ev_aud_1", type="audio_artifact", modality="audio", timestamp=0.0, value=aud_score, unit="probability",
-                    method="Audio_Specialist_Diagnostic", model="OpenAVFF", model_version="V22.3", source="inference",
-                    reliability="Low", calibration_status="NOT_VALIDATED", interpretation="Audio-only diagnostic score.", limitations="V22.3 specialist has low discrimination"
+                    method="Repaired_Audio_Specialist_C", model="OpenAVFF", model_version="V22.3", source="inference",
+                    reliability="High", calibration_status="NOT_VALIDATED", interpretation="Audio manipulation likelihood.", limitations=""
                 )
             )
         
@@ -365,7 +313,7 @@ class OpenAVFFService:
         trust = TrustSchema(
             raw_model_score=fusion_score, calibrated_probability=calib_score,
             model_confidence=str(round(abs(0.5 - calib_score) * 2.0, 2)),
-            evidence_agreement=str(round(1.0 - abs(vis_score - aud_score), 2)),
+            evidence_agreement=str(round(1.0 - abs(vis_score - (aud_score if aud_score is not None else vis_score)), 2)),
             evidence_agreement_status="IMPLEMENTED",
             ood_signal=None, abstention_state=decision,
             abstention_status="PLATT_CALIBRATED", calibration_status="VALIDATED", ood_status="NOT_IMPLEMENTED"
@@ -375,35 +323,36 @@ class OpenAVFFService:
             case_id=context.get("case_id", "UNKNOWN"), asset_id=context.get("asset_id", "UNKNOWN"),
             run_id=context.get("run_id", "UNKNOWN"), asset_hash=context.get("asset_hash", "UNAVAILABLE"),
             file_size_bytes=context.get("file_size_bytes", -1), ingestion_timestamp=context.get("ingestion_timestamp", time.time()),
-            processing_status="COMPLETED", model_name="OpenAVFF", model_version="V22.4",
+            processing_status="COMPLETED", model_name="OpenAVFF", model_version="V22.3",
             checkpoint_hash=None, checkpoint_hash_status="UNAVAILABLE",
-            decision_protocol_version="V22.4", threshold=syn_thresh, preprocessing_version="V2", explainability_version="V2",
+            decision_protocol_version="V22.3", threshold=0.7, preprocessing_version="V2", explainability_version="V2",
             runtime_metadata={"analysis_duration_sec": time.time() - total_start},
             trust=trust, quality=quality, evidence_items=evidence_items,
-            model_finding=finding, human_determination="Pending review", provenance_v20=prov_v20, profile_version="V22.4",
-            classification=Classification(label="fake" if decision=="SYNTHETIC" else "real" if decision=="AUTHENTIC" else "unknown", raw_logit=fusion_score, fake_probability=calib_score, decision_threshold=syn_thresh),
+            model_finding=finding, human_determination="Pending review", provenance_v20=prov_v20, profile_version="V22.3",
+            classification=Classification(label="fake" if decision=="SYNTHETIC" else "real" if decision=="AUTHENTIC" else "unknown", raw_logit=fusion_score, fake_probability=calib_score, decision_threshold=0.7),
             authenticity=Authenticity(calibrated_probability=calib_score, uncertainty=decision),
-            visual=VisualEvidence(signature="AVFF Visual Encoder + Diagnostic Specialist", anomaly_score=vis_score, evidence=""),
-            audio=AudioEvidence(signature="AVFF Audio Encoder + Diagnostic Specialist", anomaly_score=aud_score, evidence=""),
+            visual=VisualEvidence(signature="Repaired Visual Encoder", anomaly_score=vis_score, evidence=""),
+            audio=AudioEvidence(signature="Repaired Audio Encoder", anomaly_score=aud_score if aud_score is not None else 0.0, evidence=""),
             temporal=TemporalEvidence(signature="MobileNetV2 Frame L2 Shift", anomaly_score=tem_score, evidence_intervals=[]),
             multimodal=MultimodalFusion(fusion_output=fusion_score),
             manipulation=Manipulation(category=prov_data["category"], scores={"confidence": 0.0}),
             cloud_forensics=cloud_forensics,
             metadata={"video_duration_sec": float(media_info['video_duration']), "analysis_duration_sec": time.time() - total_start},
-            limitations=["Uses AVFF Cross-Modal Fusion (V22.4 Recovery)", "Trained on FakeAVCeleb dataset"],
-            llm_report="", rag_explanation="", explainability={"status": "not_implemented_for_avff"}
+            limitations=["Uses Late Fusion"],
+            llm_report="", rag_explanation="", explainability={"status": "not_implemented_for_specialists"}
         )
         
         profile_dict = profile.model_dump()
+        # Removed LLM report generation for deterministic templates
         profile_dict["llm_report"] = ""
         return profile_dict
 
     @property
     def is_loaded(self) -> bool:
-        return hasattr(self, 'avff_model')
+        return hasattr(self, 'vis_model') and hasattr(self, 'aud_model')
 
     @property
     def total_params(self) -> int:
         if self.is_loaded:
-            return sum(p.numel() for p in self.avff_model.parameters())
+            return sum(p.numel() for p in self.vis_model.parameters()) + sum(p.numel() for p in self.aud_model.parameters())
         return 0

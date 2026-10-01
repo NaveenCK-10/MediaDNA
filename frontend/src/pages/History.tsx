@@ -110,9 +110,12 @@ export default function HistoryPage() {
             className="relative ml-2 sm:ml-8 pb-12 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-gradient-to-b before:from-[#00e5ff]/50 before:to-transparent"
           >
             {history.map((item, idx) => {
-              const isFake = item.prediction === 'fake';
+              if (!item || !item.classification) return null; // Safe fallback
+              
+              const isFake = item.classification?.label === 'fake';
               const caseNum = String(history.length - idx).padStart(4, '0');
               const color = isFake ? '#ef4444' : '#10b981';
+              const prob = item.classification?.fake_probability ?? 0;
 
               return (
                 <motion.div 
@@ -139,12 +142,12 @@ export default function HistoryPage() {
                       <div className="flex items-center gap-3">
                         <div className="font-mono text-[0.6rem] font-bold tracking-[0.2em] bg-white/5 px-2 py-1 rounded text-white">CASE {caseNum}</div>
                         <div className="w-1 h-1 rounded-full bg-gray-700"></div>
-                        <div className="font-mono text-[0.6rem] tracking-[0.1em] text-gray-500">{formatDate(item.timestamp)}</div>
+                        <div className="font-mono text-[0.6rem] tracking-[0.1em] text-gray-500">{formatDate(item.timestamp || Date.now() / 1000)}</div>
                       </div>
                       <div className="flex items-center gap-3 text-white">
                         <FileVideo className="w-4 h-4 text-gray-500 group-hover:text-[#00e5ff] transition-colors" />
                         <span className="text-base font-bold truncate group-hover:text-[#00e5ff] transition-colors tracking-tight">
-                          {item.video_filename || item.filename}
+                          {item.case_id || item.filename || 'Unknown Target'}
                         </span>
                       </div>
                     </div>
@@ -152,7 +155,7 @@ export default function HistoryPage() {
                     <div className="flex items-center gap-8 shrink-0 bg-black/40 px-6 py-3 rounded-lg border border-white/5">
                       <div>
                         <div className="font-mono text-[0.55rem] font-bold tracking-[0.2em] text-gray-500 mb-1">MODEL SIGNAL</div>
-                        <span className="font-mono text-sm font-bold text-white">{(item.openavff_fake_prob * 100).toFixed(1)}%</span>
+                        <span className="font-mono text-sm font-bold text-white">{(prob * 100).toFixed(1)}%</span>
                       </div>
                       
                       <div className="w-px h-8 bg-white/10"></div>
@@ -162,7 +165,7 @@ export default function HistoryPage() {
                         <div className="flex items-center gap-2">
                           {isFake ? <ShieldAlert className="w-4 h-4" style={{ color }} /> : <ShieldCheck className="w-4 h-4" style={{ color }} />}
                           <span className="font-mono text-xs font-bold tracking-widest" style={{ color }}>
-                            {item.prediction.toUpperCase()}
+                            {(item.classification?.label || 'unknown').toUpperCase()}
                           </span>
                         </div>
                       </div>

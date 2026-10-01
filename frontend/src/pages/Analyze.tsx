@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import UploadZone from '../components/UploadZone';
 import ProcessingView from '../components/ProcessingView';
 import ResultCard from '../components/ResultCard';
-import type { AnalysisResponse } from '../types';
+import type { AnalysisResponse, JobSubmissionResponse, JobEvent } from '../types';
 
 type AnalyzeState = 'upload' | 'preview' | 'processing' | 'result';
 
@@ -19,6 +19,11 @@ export default function Analyze() {
   const [videoResolution, setVideoResolution] = useState<string>('—');
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResponse | null>(null);
+  
+  // Job Tracking State
+  const [activeJobId, setActiveJobId] = useState<string | null>(null);
+  const [jobProgress, setJobProgress] = useState<JobEvent | null>(null);
+  
   const videoRef = useRef<HTMLVideoElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -34,12 +39,49 @@ export default function Analyze() {
     }
   }, [location]);
 
-  // Clean up object URL
+  // Clean up object URL and EventSource
   useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
     };
   }, [previewUrl]);
+
+  // Listen to SSE Events when activeJobId is set
+  useEffect(() => {
+    if (!activeJobId) return;
+
+    const es = new EventSource(`/api/jobs/${activeJobId}/events`);
+    
+    es.onmessage = (e) => {
+      try {
+        const data: JobEvent = JSON.parse(e.data);
+        setJobProgress(data);
+        
+        if (data.status === 'COMPLETED' && data.result) {
+          setResult(data.result);
+          setState('result');
+          es.close();
+          setActiveJobId(null);
+        } else if (data.status === 'FAILED') {
+          setError(data.message || 'Analysis failed during background job.');
+          setState('preview');
+          es.close();
+          setActiveJobId(null);
+        }
+      } catch (err) {
+        console.error("Failed to parse event:", err);
+      }
+    };
+
+    es.onerror = (e) => {
+      console.error("SSE Error:", e);
+      // Wait to see if it reconnects before failing completely
+    };
+
+    return () => {
+      es.close();
+    };
+  }, [activeJobId]);
 
   const handleFileSelect = (selectedFile: File) => {
     if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -84,16 +126,16 @@ export default function Analyze() {
     if (!file) return;
     setState('processing');
     setError(null);
+    setJobProgress(null);
 
     const formData = new FormData();
     formData.append('video', file);
 
     try {
-      const response = await axios.post<AnalysisResponse>('/api/analyze', formData, {
+      const response = await axios.post<JobSubmissionResponse>('/api/analyze', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      setResult(response.data);
-      setState('result');
+      setActiveJobId(response.data.job_id);
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Failed to analyze video. Ensure the backend is running.');
       setState('preview');
@@ -104,11 +146,11 @@ export default function Analyze() {
     setState('processing');
     setError(null);
     setResult(null);
+    setJobProgress(null);
 
     try {
-      const response = await axios.post<AnalysisResponse>(`/api/analyze-demo?type=${type}`);
-      setResult(response.data);
-      setState('result');
+      const response = await axios.post<JobSubmissionResponse>(`/api/analyze-demo?type=${type}`);
+      setActiveJobId(response.data.job_id);
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Failed to run demo analysis.');
       setState('upload');
@@ -140,7 +182,7 @@ export default function Analyze() {
                 Begin Forensic Analysis
               </h1>
               <p className="mt-4 text-sm text-gray-400 max-w-xl leading-relaxed">
-                Insert media into the forensic engine for deep audio-visual authenticity verification. The OpenAVFF core will evaluate synchronization, visual integrity, and metadata artifacts.
+                Insert media into the forensic engine for deep audio-visual forensic analysis. The OpenAVFF core will evaluate synchronization, visual integrity, and metadata artifacts.
               </p>
             </div>
 
@@ -247,7 +289,7 @@ export default function Analyze() {
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <ProcessingView filename={file?.name || 'DEMO_VIDEO.mp4'} />
+            <ProcessingView filename={file?.name || 'DEMO_VIDEO.mp4'} jobProgress={jobProgress} />
           </motion.div>
         )}
 
@@ -267,7 +309,7 @@ export default function Analyze() {
               >
                 <div className="font-mono text-[0.65rem] font-bold tracking-[0.2em] text-[#00e5ff] mb-2">FORENSIC ASSESSMENT COMPLETE</div>
                 <h2 className="text-xl md:text-2xl font-bold text-white font-mono tracking-tight">
-                  <span className="text-gray-500">TARGET:</span> {result.video_filename}
+                  <span className="text-gray-500">TARGET:</span> {result.case_id}
                 </h2>
               </motion.div>
               <motion.button 

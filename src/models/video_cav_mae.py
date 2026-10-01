@@ -384,6 +384,8 @@ class VideoCAVMAEFT(nn.Module):
         # Concat along feature dimension
         video_fusion = torch.concat((video_fusion, video_emb), dim=-1)
         audio_fusion = torch.concat((audio_fusion, audio_emb), dim=-1)
+        
+        # Original broken pooling (required for v14 checkpoint compatibility)
         video_fusion = video_fusion.mean(dim=-1)
         audio_fusion = audio_fusion.mean(dim=-1)
         

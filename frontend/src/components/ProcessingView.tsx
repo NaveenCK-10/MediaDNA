@@ -1,35 +1,37 @@
-import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+import type { JobEvent } from '../types';
 
 interface ProcessingViewProps {
   filename: string;
+  jobProgress: JobEvent | null;
 }
 
 const FORENSIC_STAGES = [
-  { id: '01', title: 'MEDIA INGESTION', desc: 'Inspecting uploaded media container', activeNodes: ['METADATA'] },
-  { id: '02', title: 'VIDEO STREAM', desc: 'Extracting visual frames', activeNodes: ['VISUAL'] },
-  { id: '03', title: 'AUDIO STREAM', desc: 'Extracting audio features', activeNodes: ['AUDIO'] },
-  { id: '04', title: 'VISUAL ENCODER', desc: 'Processing facial/visual representations', activeNodes: ['VISUAL', 'TEMPORAL'] },
-  { id: '05', title: 'AUDIO ENCODER', desc: 'Processing acoustic representations', activeNodes: ['AUDIO', 'TEMPORAL'] },
-  { id: '06', title: 'CROSS-MODAL FUSION', desc: 'Running audio ↔ visual feature interaction', activeNodes: ['AUDIO', 'VISUAL', 'TEMPORAL', 'METADATA'] },
-  { id: '07', title: 'OPENAVFF INFERENCE', desc: 'Running the trained classifier', activeNodes: ['AUDIO', 'VISUAL', 'TEMPORAL', 'METADATA'] },
-  { id: '08', title: 'FORENSIC DECISION', desc: 'Preparing the final evidence result', activeNodes: [] },
+  { id: 'QUEUED', title: 'QUEUED', desc: 'Job is queued', activeNodes: [] },
+  { id: 'VALIDATING', title: 'VALIDATING', desc: 'Validating file format', activeNodes: [] },
+  { id: 'INSPECTING_MEDIA', title: 'INSPECTING MEDIA', desc: 'Inspecting media streams', activeNodes: ['METADATA'] },
+  { id: 'EXTRACTING_VIDEO', title: 'VIDEO EXTRACTION', desc: 'Extracting video frames', activeNodes: ['VISUAL'] },
+  { id: 'VISUAL_ANALYSIS', title: 'VISUAL ANALYSIS', desc: 'Running Repaired Visual Specialist', activeNodes: ['VISUAL', 'TEMPORAL'] },
+  { id: 'EXTRACTING_AUDIO', title: 'AUDIO EXTRACTION', desc: 'Extracting audio track', activeNodes: ['AUDIO'] },
+  { id: 'AUDIO_PREPROCESSING', title: 'AUDIO PREPROCESSING', desc: 'Generating Mel-spectrogram', activeNodes: ['AUDIO'] },
+  { id: 'AUDIO_ANALYSIS', title: 'AUDIO ANALYSIS', desc: 'Running Repaired Audio Specialist', activeNodes: ['AUDIO', 'TEMPORAL'] },
+  { id: 'LATE_FUSION', title: 'CROSS-MODAL FUSION', desc: 'Fusing modalities', activeNodes: ['AUDIO', 'VISUAL', 'TEMPORAL'] },
+  { id: 'CALIBRATION', title: 'CALIBRATION', desc: 'Calibrating probability', activeNodes: ['AUDIO', 'VISUAL'] },
+  { id: 'DECISION', title: 'FORENSIC DECISION', desc: 'Applying decision policy', activeNodes: ['METADATA'] },
+  { id: 'FORENSIC_EVIDENCE', title: 'EVIDENCE AGGREGATION', desc: 'Aggregating evidence', activeNodes: ['METADATA'] },
+  { id: 'REPORT_GENERATION', title: 'REPORT GENERATION', desc: 'Generating PDF report', activeNodes: [] }
 ];
 
-export default function ProcessingView({ filename }: ProcessingViewProps) {
-  const [currentStage, setCurrentStage] = useState(0);
-
-  useEffect(() => {
-    // Advance sequence every 800ms
-    if (currentStage >= FORENSIC_STAGES.length - 1) return;
-    const timer = setTimeout(() => {
-      setCurrentStage(prev => prev + 1);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, [currentStage]);
-
-  const activeStage = FORENSIC_STAGES[currentStage];
-  const isFinalizing = currentStage === FORENSIC_STAGES.length - 1;
+export default function ProcessingView({ filename, jobProgress }: ProcessingViewProps) {
+  const currentStageId = jobProgress?.stage || 'QUEUED';
+  
+  // Find index of current stage in FORENSIC_STAGES
+  let currentStageIdx = FORENSIC_STAGES.findIndex(s => s.id === currentStageId);
+  if (currentStageIdx === -1) currentStageIdx = 0;
+  const activeStage = FORENSIC_STAGES[currentStageIdx];
+  const isFinalizing = jobProgress?.status === 'complete';
+  const progressPercent = jobProgress?.progress || 0;
 
   return (
     <div className="flex flex-col md:flex-row gap-8 items-center justify-center py-10 w-full max-w-6xl mx-auto min-h-[60vh] opacity-0 animate-reveal">
@@ -38,9 +40,9 @@ export default function ProcessingView({ filename }: ProcessingViewProps) {
       <div className="w-full md:w-1/3 flex flex-col gap-2">
         <h3 className="font-mono text-[0.65rem] font-bold tracking-[0.3em] text-gray-500 mb-4">FORENSIC PIPELINE</h3>
         <div className="flex flex-col gap-2">
-          {FORENSIC_STAGES.map((stage, idx) => {
-            const isActive = idx === currentStage;
-            const isPast = idx < currentStage;
+          {FORENSIC_STAGES.map((stage) => {
+            const isActive = stage.id === currentStageId;
+            const isPast = (jobProgress?.completed_stages || []).includes(stage.id) || (currentStageIdx > FORENSIC_STAGES.findIndex(s => s.id === stage.id));
             let colorClass = 'text-gray-600 border-gray-800';
             if (isActive) colorClass = 'text-[#00e5ff] border-[#00e5ff] bg-[#00e5ff]/10';
             if (isPast) colorClass = 'text-emerald-500 border-emerald-500/30 bg-emerald-500/5';
@@ -56,7 +58,7 @@ export default function ProcessingView({ filename }: ProcessingViewProps) {
                       animate={{ opacity: 1, height: 'auto' }}
                       className="font-mono text-[0.55rem] text-gray-400 mt-1"
                     >
-                      {stage.desc}...
+                      {jobProgress?.message || stage.desc}...
                     </motion.div>
                   )}
                 </div>
@@ -80,9 +82,9 @@ export default function ProcessingView({ filename }: ProcessingViewProps) {
               className="font-mono text-[0.7rem] font-bold tracking-[0.2em] text-[#00e5ff]"
             >
               {isFinalizing ? (
-                <span className="text-emerald-500 animate-pulse">FINALIZING INFERENCE...</span>
+                <span className="text-emerald-500 animate-pulse">FINALIZING INFERENCE... (100%)</span>
               ) : (
-                <span>EXECUTING: {activeStage.title}</span>
+                <span>EXECUTING: {activeStage.title} ({progressPercent}%)</span>
               )}
             </motion.div>
           </AnimatePresence>
@@ -130,7 +132,7 @@ export default function ProcessingView({ filename }: ProcessingViewProps) {
           </div>
 
           {/* Center Connection Lines during Fusion */}
-          {activeStage.id === '06' && (
+          {(activeStage.id === 'LATE_FUSION' || activeStage.id === 'CALIBRATION') && (
             <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30" preserveAspectRatio="none">
               <line x1="10%" y1="10%" x2="50%" y2="50%" stroke="#00e5ff" strokeWidth="1" strokeDasharray="4" className="animate-[dash_1s_linear_infinite]" />
               <line x1="90%" y1="10%" x2="50%" y2="50%" stroke="#00e5ff" strokeWidth="1" strokeDasharray="4" className="animate-[dash_1s_linear_infinite]" />

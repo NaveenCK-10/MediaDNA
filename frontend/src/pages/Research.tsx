@@ -32,7 +32,7 @@ export default function Research() {
             <div className="text-sm font-bold text-[#00e5ff] tracking-widest uppercase mb-6">Baseline Accuracy</div>
             
             <p className="text-sm text-gray-400 leading-relaxed max-w-[85%]">
-              The underlying multimodal transformer achieves state-of-the-art representation fusion, effectively correlating acoustic phenomena with visual lip-sync and facial artifacts.
+              The underlying multimodal transformer implements isolated representation fusion, effectively combining acoustic features with visual artifacts.
             </p>
           </div>
         </motion.div>
@@ -53,7 +53,7 @@ export default function Research() {
             <div className="text-sm font-bold text-[#b388ff] tracking-widest uppercase mb-6">Experimental Fusion Accuracy</div>
             
             <p className="text-sm text-gray-400 leading-relaxed max-w-[85%]">
-              Our experimental deterministic fusion layer incorporates Laplacian variance and metadata analysis. While increasing robustness against superficial tampering, the rigid heuristics slightly degrade overall performance on high-quality deepfakes.
+              Our experimental late fusion layer incorporates independent specialists and metadata analysis. While enforcing strict modality aggregation rules, rigid heuristics highlight areas for future adaptive calibration.
             </p>
           </div>
         </motion.div>

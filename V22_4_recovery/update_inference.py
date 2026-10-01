@@ -1,4 +1,14 @@
 """
+V22.4 Phase 5: Update inference.py to use the AVFF baseline as primary detector.
+This script modifies the backend inference to use VideoCAVMAEFT instead of separate specialists.
+It preserves visual/audio score reporting as diagnostic evidence.
+"""
+import os, sys, json
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+
+INFERENCE_TEMPLATE = '''"""
 OpenAVFF Inference Service for MediaDNA (V22.4).
 RECOVERY VERSION: Uses VideoCAVMAEFT (AVFF) as primary detector.
 The AVFF multimodal fusion model is substantially stronger than individual
@@ -42,11 +52,11 @@ from backend.schemas.mediadna import (
 
 logger = logging.getLogger("mediadna.inference")
 
-FFMPEG_PATH = r"C:\Users\navee\Downloads\ffmpeg-9.0.1-essentials_build\ffmpeg-9.0.1-essentials_build\bin\ffmpeg.exe"
+FFMPEG_PATH = r"C:\\Users\\navee\\Downloads\\ffmpeg-9.0.1-essentials_build\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe"
 IM_RES = 224
 NUM_FRAMES = 16
 
-FFPROBE_PATH = r"C:\Users\navee\Downloads\ffmpeg-9.0.1-essentials_build\ffmpeg-9.0.1-essentials_build\bin\ffprobe.exe"
+FFPROBE_PATH = r"C:\\Users\\navee\\Downloads\\ffmpeg-9.0.1-essentials_build\\ffmpeg-9.0.1-essentials_build\\bin\\ffprobe.exe"
 
 # V22.4 Recovery checkpoints
 AVFF_CHECKPOINT = os.path.join(PROJECT_ROOT, "checkpoints", "v14_fullscale", "models", "best_audio_model.pth")
@@ -407,3 +417,27 @@ class OpenAVFFService:
         if self.is_loaded:
             return sum(p.numel() for p in self.avff_model.parameters())
         return 0
+'''
+
+def main():
+    """Generate the V22.4 inference.py"""
+    target = os.path.join(PROJECT_ROOT, "backend", "inference.py")
+    backup = os.path.join(PROJECT_ROOT, "V22_4_recovery", "inference_v22_3_backup.py")
+    
+    # Backup V22.3 inference
+    if os.path.exists(target) and not os.path.exists(backup):
+        with open(target, 'r') as f:
+            content = f.read()
+        with open(backup, 'w') as f:
+            f.write(content)
+        print(f"V22.3 inference backed up to {backup}")
+    
+    # Write V22.4 inference
+    with open(target, 'w') as f:
+        f.write(INFERENCE_TEMPLATE)
+    
+    print(f"V22.4 inference written to {target}")
+
+
+if __name__ == "__main__":
+    main()

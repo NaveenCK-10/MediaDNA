@@ -1,7 +1,7 @@
 /**
  * API client for the MediaDNA backend.
  */
-import type { AnalysisResponse, HealthResponse, ModelInfoResponse } from '../types';
+import type { HealthResponse, ModelInfoResponse, JobSubmissionResponse } from '../types';
 
 const API_BASE = '/api';
 
@@ -17,7 +17,7 @@ export async function getModelInfo(): Promise<ModelInfoResponse> {
   return res.json();
 }
 
-export async function analyzeVideo(file: File): Promise<AnalysisResponse> {
+export async function analyzeVideo(file: File): Promise<JobSubmissionResponse> {
   const formData = new FormData();
   formData.append('video', file);
 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MediaDNA Forensic Report</title>
+</head>
+<body>
+    {% if report.decision.state == 'FAILED' %}
+    <!-- FAILURE REPORT -->
+    <div class="header">
+        <div class="logo">MediaDNA</div>
+        <div class="header-text">MEDIA ANALYSIS FAILED</div>
+    </div>
+    
+    <div class="meta-banner">
+        <div class="meta-item"><strong>Case ID:</strong> {{ report.case.case_id }}</div>
+        <div class="meta-item"><strong>Date:</strong> {{ date }}</div>
+        <div class="meta-item"><strong>Filename:</strong> {{ report.case.filename }}</div>
+    </div>
+    
+    <div class="hero-panel state-failed">
+        <div class="hero-title">PROCESSING STATUS</div>
+        <div class="hero-decision">FAILED</div>
+    </div>
+    
+    <div class="section-title">FAILURE DETAILS</div>
+    <div class="warning-box">
+        <strong>Error Message:</strong><br>
+        {{ report.decision.reason }}
+    </div>
+    
+    <div class="section-title">INTEGRITY & IDENTIFICATION</div>
+    <div class="text-block">
+        <strong>SHA-256:</strong> <span class="hash-text">{{ report.asset.sha256 }}</span>
+    </div>
+    
+    {% else %}
+    <!-- PAGE 1: EXECUTIVE FORENSIC SUMMARY -->
+    <div class="page-container">
+        <div class="header">
+            <div class="logo">MediaDNA</div>
+            <div class="header-text">MEDIA AUTHENTICITY FORENSIC REPORT</div>
+        </div>
+
+        <div class="meta-banner">
+            <div class="meta-item"><strong>Case ID:</strong> {{ report.case.case_id }}</div>
+            <div class="meta-item"><strong>Analysis ID:</strong> {{ report.case.analysis_id }}</div>
+            <div class="meta-item"><strong>Filename:</strong> {{ report.case.filename }}</div>
+            <div class="meta-item"><strong>Date/Time:</strong> {{ report.case.timestamp }}</div>
+        </div>
+
+        <div class="hero-panel state-{{ report.decision.state | lower }}">
+            <div class="hero-title">FINAL ASSESSMENT</div>
+            <div class="hero-decision">{{ report.decision.state }}</div>
+            <div class="hero-prob">Calibrated Probability: {{ "%.4f"|format(report.scores.calibrated_probability) }}</div>
+        </div>
+
+        <div class="section-title">EXECUTIVE INTERPRETATION</div>
+        <div class="text-block narrative">
+            {{ report.narrative.executive }}
+        </div>
+
+        <div class="section-title">EVIDENCE SNAPSHOT</div>
+        <div class="evidence-grid">
+            <div class="evidence-card">
+                <div class="evidence-title">Visual Score</div>
+                <div class="evidence-score">{{ "%.4f"|format(report.scores.visual) if report.scores.visual is not none else "N/A" }}</div>
+            </div>
+            <div class="evidence-card">
+                <div class="evidence-title">Audio Score</div>
+                <div class="evidence-score">{{ "%.4f"|format(report.scores.audio) if report.scores.audio is not none else "N/A" }}</div>
+            </div>
+            <div class="evidence-card">
+                <div class="evidence-title">Fusion Score</div>
+                <div class="evidence-score">{{ "%.4f"|format(report.scores.fusion) if report.scores.fusion is not none else "N/A" }}</div>
+            </div>
+            <div class="evidence-card highlight-card">
+                <div class="evidence-title">Calibrated Probability</div>
+                <div class="evidence-score">{{ "%.4f"|format(report.scores.calibrated_probability) if report.scores.calibrated_probability is not none else "N/A" }}</div>
+            </div>
+        </div>
+
+        <div class="section-title">MEDIA SUMMARY</div>
+        <table class="compact-table">
+            <tr>
+                <th>SHA-256</th><td class="hash-text" colspan="3">{{ report.asset.sha256 }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th><td>{{ report.asset.duration_seconds }}s</td>
+                <th>Resolution</th><td>{{ report.asset.width }}x{{ report.asset.height }}</td>
+            </tr>
+            <tr>
+                <th>FPS</th><td>{{ report.asset.fps }}</td>
+                <th>Audio Available</th><td>{{ 'Yes' if report.asset.audio_available else 'No' }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+    
+    <!-- PAGE 2: TECHNICAL ANALYSIS -->
+    <div class="page-container">
+        <div class="header">
+            <div class="logo">MediaDNA</div>
+            <div class="header-text">TECHNICAL ANALYSIS</div>
+        </div>
+
+        <div class="section-title">FORENSIC NARRATIVE</div>
+        
+        <div class="narrative-section">
+            <div class="narrative-heading">Evidence Summary</div>
+            <div class="text-block narrative">{{ report.narrative.evidence }}</div>
+            
+            <div class="narrative-heading">Modality Interpretation</div>
+            <div class="text-block narrative">{{ report.narrative.modality }}</div>
+            
+            <div class="narrative-heading">Assessment Context</div>
+            <div class="text-block narrative">{{ report.narrative.context }}</div>
+        </div>
+        
+        <div class="section-title">MODEL & REPRODUCIBILITY</div>
+        <table class="compact-table">
+            <tr>
+                <th>Visual Checkpoint</th><td>{{ report.models.visual }}</td>
+            </tr>
+            <tr>
+                <th>Audio Checkpoint</th><td>{{ report.models.audio }}</td>
+            </tr>
+            <tr>
+                <th>Fusion Policy</th><td>{{ report.models.fusion }}</td>
+            </tr>
+            <tr>
+                <th>Calibration Artifact</th><td>{{ report.models.calibration }}</td>
+            </tr>
+        </table>
+
+        <div class="section-title">LIMITATIONS</div>
+        <div class="narrative-section">
+            <div class="text-block narrative">{{ report.narrative.limitations }}</div>
+            <ul>
+                {% for limitation in report.limitations %}
+                <li>{{ limitation }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="notice-box">
+            <strong>IMPORTANT INTERPRETATION NOTICE:</strong><br>
+            The MediaDNA output is a model-assisted authenticity assessment and should not be interpreted as definitive proof of authenticity, manipulation, provenance, or source attribution.
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
