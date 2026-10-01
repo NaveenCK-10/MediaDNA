@@ -1,6 +1,6 @@
 <div align="center">
 
-```text
+<pre align="center">
 ███████╗ ██████╗ ██████╗ ██╗ █████╗
 ██╔════╝██╔═══██╗██╔══██╗██║██╔══██╗
 █████╗  ██║   ██║██████╔╝██║███████║
@@ -14,7 +14,7 @@ MEDIA AUTHENTICITY // FORENSIC ANALYSIS
 [ MULTIMODAL ANALYSIS ]
 [ AUDIO/VISUAL FUSION ]
 [ UNCERTAINTY AWARE ]
-```
+</pre>
 
 # 🧬 MediaDNA
 
