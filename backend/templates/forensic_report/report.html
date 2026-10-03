@@ -14,8 +14,9 @@
     
     <div class="meta-banner">
         <div class="meta-item"><strong>Case ID:</strong> {{ report.case.case_id }}</div>
+        <div class="meta-item"><strong>Run / Analysis ID:</strong> {{ report.case.analysis_id }}</div>
         <div class="meta-item"><strong>Date:</strong> {{ date }}</div>
-        <div class="meta-item"><strong>Filename:</strong> {{ report.case.filename }}</div>
+        <div class="meta-item"><strong>File:</strong> {{ report.case.filename }}</div>
     </div>
     
     <div class="hero-panel state-failed">
@@ -24,7 +25,7 @@
     </div>
     
     <div class="section-title">FAILURE DETAILS</div>
-    <div class="warning-box">
+    <div class="text-block">
         <strong>Error Message:</strong><br>
         {{ report.decision.reason }}
     </div>
@@ -39,116 +40,174 @@
     <div class="page-container">
         <div class="header">
             <div class="logo">MediaDNA</div>
-            <div class="header-text">MEDIA AUTHENTICITY FORENSIC REPORT</div>
+            <div class="header-text">MULTIMODAL MEDIA AUTHENTICITY ANALYSIS</div>
         </div>
 
         <div class="meta-banner">
             <div class="meta-item"><strong>Case ID:</strong> {{ report.case.case_id }}</div>
-            <div class="meta-item"><strong>Analysis ID:</strong> {{ report.case.analysis_id }}</div>
-            <div class="meta-item"><strong>Filename:</strong> {{ report.case.filename }}</div>
-            <div class="meta-item"><strong>Date/Time:</strong> {{ report.case.timestamp }}</div>
+            <div class="meta-item"><strong>Run / Analysis ID:</strong> {{ report.case.analysis_id }}</div>
+            <div class="meta-item"><strong>Date:</strong> {{ report.case.timestamp }}</div>
+            <div class="meta-item"><strong>File:</strong> {{ report.case.filename }}</div>
         </div>
 
         <div class="hero-panel state-{{ report.decision.state | lower }}">
             <div class="hero-title">FINAL ASSESSMENT</div>
             <div class="hero-decision">{{ report.decision.state }}</div>
-            <div class="hero-prob">Calibrated Probability: {{ "%.4f"|format(report.scores.calibrated_probability) }}</div>
+            <div class="hero-prob">RAW SIGMOID DECISION SCORE: {{ "%.4f"|format(report.scores.calibrated_score) if report.scores.calibrated_score is not none else "N/A" }}</div>
+            <div class="hero-desc">{{ report.narrative.executive }}</div>
         </div>
 
-        <div class="section-title">EXECUTIVE INTERPRETATION</div>
-        <div class="text-block narrative">
-            {{ report.narrative.executive }}
+        <div class="section-title">WHAT THIS MEANS</div>
+        <div class="text-block">
+            {{ report.narrative.context }}
         </div>
 
-        <div class="section-title">EVIDENCE SNAPSHOT</div>
+        <div class="section-title">WHY THIS RESULT</div>
         <div class="evidence-grid">
             <div class="evidence-card">
-                <div class="evidence-title">Visual Score</div>
-                <div class="evidence-score">{{ "%.4f"|format(report.scores.visual) if report.scores.visual is not none else "N/A" }}</div>
+                <div class="evidence-title">VISUAL SIGNAL</div>
+                <div class="evidence-score">Score: {{ "%.4f"|format(report.scores.visual) if report.scores.visual is not none else "N/A" }}</div>
+                <div class="evidence-desc">Visual analysis contributed evidence toward the final assessment.</div>
             </div>
             <div class="evidence-card">
-                <div class="evidence-title">Audio Score</div>
-                <div class="evidence-score">{{ "%.4f"|format(report.scores.audio) if report.scores.audio is not none else "N/A" }}</div>
+                <div class="evidence-title">AUDIO SIGNAL</div>
+                <div class="evidence-score">Score: {{ "%.4f"|format(report.scores.audio) if report.scores.audio is not none else "N/A" }}</div>
+                <div class="evidence-desc">Audio analysis contributed evidence toward the final assessment.</div>
             </div>
             <div class="evidence-card">
-                <div class="evidence-title">Fusion Score</div>
-                <div class="evidence-score">{{ "%.4f"|format(report.scores.fusion) if report.scores.fusion is not none else "N/A" }}</div>
-            </div>
-            <div class="evidence-card highlight-card">
-                <div class="evidence-title">Calibrated Probability</div>
-                <div class="evidence-score">{{ "%.4f"|format(report.scores.calibrated_probability) if report.scores.calibrated_probability is not none else "N/A" }}</div>
+                <div class="evidence-title">FUSION</div>
+                <div class="evidence-score">Score: {{ "%.4f"|format(report.scores.fusion) if report.scores.fusion is not none else "N/A" }}</div>
+                <div class="evidence-desc">The final result combines both independently extracted signals.</div>
             </div>
         </div>
 
-        <div class="section-title">MEDIA SUMMARY</div>
+        <div class="section-title">MEDIA INFORMATION</div>
         <table class="compact-table">
             <tr>
-                <th>SHA-256</th><td class="hash-text" colspan="3">{{ report.asset.sha256 }}</td>
-            </tr>
-            <tr>
+                <th>Format</th><td>mov,mp4,m4a,3gp,3g2,mj2</td>
                 <th>Duration</th><td>{{ report.asset.duration_seconds }}s</td>
                 <th>Resolution</th><td>{{ report.asset.width }}x{{ report.asset.height }}</td>
             </tr>
             <tr>
                 <th>FPS</th><td>{{ report.asset.fps }}</td>
-                <th>Audio Available</th><td>{{ 'Yes' if report.asset.audio_available else 'No' }}</td>
+                <th>Audio</th><td>{{ 'True' if report.asset.audio_available else 'False' }}</td>
+                <th>File Size</th><td>{{ "%.2f"|format(report.asset.file_size / 1048576) }} MB</td>
             </tr>
         </table>
+        
+        <div class="section-title">INTEGRITY & IDENTIFICATION</div>
+        <div class="text-block">
+            <strong>SHA-256:</strong> <span class="hash-text">{{ report.asset.sha256 }}</span><br>
+            <span style="font-size: 9pt; color: #64748b;">SHA-256 identifies the analyzed file bytes; it does not prove whether the media is real or fake.</span>
+        </div>
     </div>
 
     <!-- PAGE BREAK -->
     <div class="page-break"></div>
     
-    <!-- PAGE 2: TECHNICAL ANALYSIS -->
+    <!-- PAGE 2: DISCLAIMER -->
+    <div class="page-container" style="padding-top: 50px;">
+        <div class="notice-box">
+            <strong>IMPORTANT:</strong> MediaDNA provides a statistical authenticity assessment. It is not a guarantee of authenticity, manipulation, or source attribution.
+        </div>
+    </div>
+    
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+    
+    <!-- PAGE 3: TECHNICAL DETAILS -->
     <div class="page-container">
         <div class="header">
             <div class="logo">MediaDNA</div>
-            <div class="header-text">TECHNICAL ANALYSIS</div>
-        </div>
-
-        <div class="section-title">FORENSIC NARRATIVE</div>
-        
-        <div class="narrative-section">
-            <div class="narrative-heading">Evidence Summary</div>
-            <div class="text-block narrative">{{ report.narrative.evidence }}</div>
-            
-            <div class="narrative-heading">Modality Interpretation</div>
-            <div class="text-block narrative">{{ report.narrative.modality }}</div>
-            
-            <div class="narrative-heading">Assessment Context</div>
-            <div class="text-block narrative">{{ report.narrative.context }}</div>
+            <div class="header-text">TECHNICAL FORENSIC DETAILS</div>
         </div>
         
-        <div class="section-title">MODEL & REPRODUCIBILITY</div>
+        <div class="section-title">TECHNICAL SUMMARY</div>
+        <ul class="methodology-list text-block">
+            <li><strong>VISUAL SPECIALIST:</strong> Analyzes visual patterns from sampled video frames.</li>
+            <li><strong>AUDIO SPECIALIST:</strong> Analyzes acoustic patterns from the extracted audio signal.</li>
+            <li><strong>LATE FUSION:</strong> Combines the independently produced modality scores.</li>
+            <li><strong>CALIBRATION STATUS:</strong> NOT_CALIBRATED. Using raw sigmoid output.</li>
+            <li><strong>DECISION:</strong> Applies the frozen application policy to produce AUTHENTIC, SYNTHETIC, or UNCERTAIN.</li>
+        </ul>
+        
+        <div class="section-title">MODEL OUTPUT BREAKDOWN</div>
         <table class="compact-table">
             <tr>
-                <th>Visual Checkpoint</th><td>{{ report.models.visual }}</td>
+                <th>Signal</th><th>Score</th>
             </tr>
             <tr>
-                <th>Audio Checkpoint</th><td>{{ report.models.audio }}</td>
+                <td>Visual</td><td>{{ "%.4f"|format(report.scores.visual) if report.scores.visual is not none else "N/A" }}</td>
             </tr>
             <tr>
-                <th>Fusion Policy</th><td>{{ report.models.fusion }}</td>
+                <td>Audio</td><td>{{ "%.4f"|format(report.scores.audio) if report.scores.audio is not none else "N/A" }}</td>
             </tr>
             <tr>
-                <th>Calibration Artifact</th><td>{{ report.models.calibration }}</td>
+                <td>Fusion</td><td>{{ "%.4f"|format(report.scores.fusion) if report.scores.fusion is not none else "N/A" }}</td>
+            </tr>
+            <tr>
+                <td>Raw Sigmoid Decision Score</td><td>{{ "%.4f"|format(report.scores.calibrated_score) if report.scores.calibrated_score is not none else "N/A" }}</td>
             </tr>
         </table>
-
-        <div class="section-title">LIMITATIONS</div>
-        <div class="narrative-section">
-            <div class="text-block narrative">{{ report.narrative.limitations }}</div>
-            <ul>
-                {% for limitation in report.limitations %}
-                <li>{{ limitation }}</li>
-                {% endfor %}
-            </ul>
+        
+        <div class="section-title">DECISION POLICY</div>
+        <div class="policy-box">
+            AUTHENTIC: P &lt; 0.20<br>
+            UNCERTAIN: 0.20 &le; P &le; 0.45<br>
+            SYNTHETIC: P &gt; 0.45
         </div>
         
-        <div class="notice-box">
-            <strong>IMPORTANT INTERPRETATION NOTICE:</strong><br>
-            The MediaDNA output is a model-assisted authenticity assessment and should not be interpreted as definitive proof of authenticity, manipulation, provenance, or source attribution.
+        <div class="section-title">FORENSIC EVIDENCE</div>
+        <div class="text-block">
+            <strong>Model-sensitive Region</strong><br>
+            {% if report.explainability.region_sensitivity and report.explainability.region_sensitivity|length > 0 %}
+                The detector output was influenced by specific spatial regions. The following regions showed the highest local sensitivity to occlusion perturbations:
+                <ul class="methodology-list" style="margin-top: 10px;">
+                {% for region in report.explainability.region_sensitivity[:3] %}
+                    <li><strong>{{ region.region }}</strong>: Contributed a delta of {{ "%.4f"|format(region.delta) }} to the raw model score.</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                This analysis relies on full-frame processing. Spatial model-sensitive attribution (Grad-CAM) is not currently implemented in this version of the pipeline. Consequently, ground-truth localization is unavailable.
+            {% endif %}
         </div>
+        
+        {% if report.explainability.narrative and report.explainability.narrative.text %}
+        <div class="text-block" style="margin-top: 15px;">
+            <strong>Forensic Assessment Narrative</strong><br>
+            {{ report.explainability.narrative.text }}
+        </div>
+        {% endif %}
+        
+        <div class="section-title">TECHNICAL METHODOLOGY</div>
+        <ul class="methodology-list text-block">
+            <li><strong>Model Architecture:</strong> {{ report.models.visual.split()[0] }} ({{ report.models.calibration.split()[0] }})</li>
+            <li><strong>Visual Pathway:</strong> {{ report.models.visual }}</li>
+            <li><strong>Audio Pathway:</strong> {{ report.models.audio }}</li>
+            <li><strong>Decision Protocol:</strong> {{ report.models.calibration.split()[0] }}</li>
+        </ul>
+        
+        <div class="section-title">REPRODUCIBILITY</div>
+    </div>
+    
+    <!-- PAGE BREAK -->
+    <div class="page-break"></div>
+    
+    <!-- PAGE 4: LIMITATIONS -->
+    <div class="page-container">
+        <div class="text-block">
+            <strong>Analysis Timestamp:</strong> {{ report.case.timestamp }}<br>
+            <strong>Model Version:</strong> {{ report.models.calibration.split()[0] }}<br>
+            <strong>SHA-256:</strong> <span class="hash-text">{{ report.asset.sha256 }}</span>
+        </div>
+        
+        <div class="section-title">LIMITATIONS</div>
+        <ul class="text-block">
+            <li>Model outputs are statistical estimates.</li>
+            <li>Performance depends heavily on the evaluated data distribution.</li>
+            <li>Unfamiliar media may produce uncertain or incorrect results.</li>
+            <li>Exact generator attribution is not established.</li>
+        </ul>
     </div>
     {% endif %}
 </body>

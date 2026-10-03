@@ -33,7 +33,7 @@ MEDIA AUTHENTICITY // FORENSIC ANALYSIS
 
 > **[ ENTER THE MEDIADNA FORENSIC LAB ](https://naveenck-10.github.io/MediaDNA/)**
 
-> A multimodal forensic analysis framework for investigating the authenticity of audio-visual media using cross-modal deepfake detection, calibrated decision-making, uncertainty handling, and evidence-oriented reporting.
+> A multimodal forensic analysis framework for investigating the authenticity of audio-visual media using cross-modal deepfake detection, uncertainty handling, and evidence-oriented reporting.
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg?logo=python&logoColor=white)](#)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg?logo=pytorch&logoColor=white)](#)
@@ -45,230 +45,360 @@ MEDIA AUTHENTICITY // FORENSIC ANALYSIS
 
 <br>
 
-## 1. MediaDNA Overview
+**Project Status**: Active engineering and research prototype.
 
-MediaDNA is an end-to-end forensic analysis prototype designed to assess media authenticity. It wraps a cross-modal deepfake detection architecture with a three-state decision policy (Authentic, Uncertain, Synthetic), enabling calibrated decision-making and automated evidence reporting.
+**Engineering Status**: End-to-end framework integrated with real-time SSE processing, dynamic UI, and automated PDF forensic reporting via Playwright.
 
-## 2. Research Foundation
+**Model Status**: Currently evaluating the verified `VideoCAVMAEFT` baseline. V22.4 retraining experiments to address specific visual-specialist vulnerabilities are currently active—results pending.
 
-MediaDNA builds its analytical core upon the **AVFF** family of architectures.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📖 Overview
+
+MediaDNA is an end-to-end multimodal forensic workflow. It analyzes media authenticity by processing:
+**Media upload → validation → media metadata inspection → visual frame extraction → audio extraction / mel-spectrogram preprocessing → AVFF multimodal inference → diagnostic visual/audio specialist evidence → forensic/temporal/provenance analysis → three-state decision → evidence synthesis → report generation.**
+
+MediaDNA is an applied evaluation and evidence platform built around the AVFF-family detector. It embeds the raw multimodal model in an engineering workflow to support systematic authenticity investigations.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🔬 Research Foundation
+
+MediaDNA builds its multimodal detection core on the **AVFF** family of architectures.
 
 *Reference: Oorloff et al., "AVFF: Audio-Visual Feature Fusion for Video Deepfake Detection," CVPR 2024. [Read the Official Paper](https://openaccess.thecvf.com/content/CVPR2024/papers/Oorloff_AVFF_Audio-Visual_Feature_Fusion_for_Video_Deepfake_Detection_CVPR_2024_paper.pdf)*
 
-> **Important**: MediaDNA does not claim to have invented the core AVFF architecture. Instead, MediaDNA extends an AVFF-based multimodal detector into an end-to-end, evidence-oriented forensic workflow—wrapping raw logits in calibration, uncertainty policies, and reporting structures necessary for decision-support.
+> **Important**: MediaDNA does not claim to have invented the core AVFF architecture. Instead, MediaDNA extends an AVFF-based multimodal detector into an end-to-end, evidence-oriented forensic workflow—wrapping raw logits in uncertainty policies and reporting structures necessary for decision-support.
 
-## 3. Important Scientific Status
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-**Project Status**: SCIENTIFICALLY FROZEN.
-MediaDNA is frozen for final paper and demonstration preparation. All model development has stopped. The repository reflects the final V22.4F multimodal research experiment.
+## 🧠 Technical Architecture
 
-## 4. Requirements
+### System Architecture
+```mermaid
+flowchart TD
+    User["User / Browser"] -->|Upload| Frontend["React + TypeScript Frontend"]
+    Frontend -->|POST /api/analyze| Backend["FastAPI Backend"]
+    
+    Backend --> Val["Input validation / upload"]
+    Backend --> FF["FFprobe media inspection"]
+    Backend --> VisEx["Video frame extraction"]
+    Backend --> AudEx["Audio extraction / 16 kHz / 128-bin mel representation"]
+    
+    Val --> Model
+    FF --> Model
+    VisEx --> Model
+    AudEx --> Model
+    
+    Model["V22.4F AVFF / VideoCAVMAEFT"]
+    
+    Model --> Score["Primary multimodal score"]
+    Model --> VisDiag["V22.3B visual diagnostic specialist"]
+    Model --> AudDiag["V22.3C audio diagnostic specialist"]
+    Model --> Temp["Temporal forensics"]
+    Model --> Prov["Provenance / metadata analysis"]
+    
+    Score --> Decision
+    VisDiag --> Evidence["Evidence Aggregation"]
+    AudDiag --> Evidence
+    Temp --> Evidence
+    Prov --> Evidence
+    
+    Decision["Three-State Decision: AUTHENTIC / UNCERTAIN / SYNTHETIC"]
+    
+    Decision --> Evidence
+    Evidence --> Report["Forensic Report / PDF"]
+```
 
-- **Python**: 3.9+
-- **Node.js**: 18+ (for frontend)
-- **Hardware**: CUDA-enabled NVIDIA GPU with at least 8GB VRAM is highly recommended. CPU inference is technically possible but impractically slow for the VideoCAVMAEFT multimodal backbone.
-- **FFmpeg**: `ffmpeg` and `ffprobe` must be installed and accessible on your system PATH.
+> **Note**: Diagnostic specialists (V22.3B, V22.3C) provide supporting evidence when available and are not the primary fusion model.
 
-## 5. Clone
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+## 📋 Key Capabilities
+
+- Multimodal audio-visual deepfake analysis
+- Video upload and validation (Max 500MB)
+- Media stream/container inspection
+- FFmpeg / FFprobe preprocessing
+- Visual frame sampling
+- Audio extraction and mel-spectrogram preprocessing
+- Primary AVFF multimodal inference
+- Visual specialist diagnostics
+- Audio specialist diagnostics
+- Temporal forensic signals
+- Provenance/metadata signals
+- Uncertainty-aware three-state decision policy
+- Live SSE analysis progress
+- Case/run/asset identifiers
+- SHA-256 asset hashing
+- Analysis history
+- Forensic PDF report generation
+- API endpoints
+- Frontend dashboard / analysis workflow
+- Model information and health checks
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📦 Model & Checkpoints
+
+| Component | Role | Status | Checkpoint File |
+|---|---|---|---|
+| **V22.4F** | Primary multimodal AVFF detector | Frozen | `V22_4_recovery/V22_4F_MULTIMODAL_StageB_Ep2.pth` |
+| **V22.3B** | Visual specialist diagnostics | Diagnostic | `V22_3B_VISUAL_CHECKPOINT.pth` |
+| **V22.3C** | Audio specialist diagnostics | Diagnostic | `V22_3C_AUDIO_CHECKPOINT.pth` |
+
+**Verified SHA-256 Hashes:**
+- **Primary:** `6363fa8da584e6f253348f4bc535a4ff033d9718238fb5ec5f53045638d3bdca`
+- **Visual:** `b2b592cb4bb2b7bc0581a893e95bd9d9a5c76d69ed9df99e951ef381c36a3c92`
+- **Audio:** `cc559590a63b2321ce997b35ead860d9b666e461ab75f9b4e54b0b23cff8b473`
+
+> **Important**: The SHA-256 digest verifies the downloaded asset bytes of the model checkpoint. It does not prove the authenticity or physical provenance of the underlying media being analyzed.
+
+### Official Model Download Instructions
+
+The model bundle is hosted securely on Hugging Face. The large checkpoints are intentionally excluded from the Git repository.
+
+```bash
+# Log in to Hugging Face
+hf auth login
+
+# Download the primary checkpoint
+hf download Naveenck10/MediaDNA-V22.4F V22_4F_MULTIMODAL_StageB_Ep2.pth --local-dir V22_4_recovery
+
+# Download the diagnostic checkpoints
+hf download Naveenck10/MediaDNA-V22.4F V22_3B_VISUAL_CHECKPOINT.pth --local-dir V22_4_recovery
+hf download Naveenck10/MediaDNA-V22.4F V22_3C_AUDIO_CHECKPOINT.pth --local-dir V22_4_recovery
+```
+
+Always verify the SHA-256 hash after download. Cloning the GitHub repository alone does not download the required model weights.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🔬 Research / Evaluation Status
+
+MediaDNA is scientifically frozen for final paper/demo preparation. The primary research experiment is **V22.4F**. Model development is not being presented as an ongoing benchmark race. Historical experiments are retained for reproducibility and context, not for cherry-picking.
+
+### LOCKED V22.4F TEST EVALUATION
+
+- **Dataset:** FakeAVCeleb
+- **Locked Test Size:** 2,219 samples
+- **Class Composition:** 50 real, 2,169 synthetic
+- **Frozen Decision Quantity:** RAW SIGMOID DECISION SCORE
+- **Frozen Operating Policy:**
+  - `< 0.20`: AUTHENTIC
+  - `0.20–0.45`: UNCERTAIN
+  - `> 0.45`: SYNTHETIC
+
+**Metrics:**
+- **ROC-AUC:** 0.7500
+- **PR-AUC:** 0.9899
+- **Balanced Accuracy (confident):** 0.7686
+- **MCC (confident):** 0.1679
+- **Precision (confident):** 0.9956
+- **Recall (confident):** 0.6621
+- **Specificity (confident):** 0.8750
+- **F1 (confident):** 0.7953
+
+**Confusion Matrix:**
+- **TN:** 42
+- **FP:** 6
+- **FN:** 697
+- **TP:** 1366
+
+**Decision States:**
+- **AUTHENTIC:** 739
+- **UNCERTAIN:** 108
+- **SYNTHETIC:** 1,372
+- **Abstention / UNCERTAIN fraction:** 4.9%
+
+**Per-Manipulation Category Recall:**
+- RealVideo + RealAudio: 84.0%
+- RealVideo + FakeAudio: 98.0%
+- FakeVideo + FakeAudio: 95.7%
+- FakeVideo + RealAudio: 23.16%
+
+*Interpretation:* The results show strong heterogeneity by manipulation combination. FakeVideo + RealAudio is the weakest category in this locked experiment. This is observational evidence of modality-dependent performance. These are results from the frozen MediaDNA V22.4F experimental protocol and should not be confused with the original AVFF paper's benchmark results.
+
+### Historical Results
+
+**V14 Historical Baseline:**
+- **ROC-AUC:** 0.9094
+- **Specificity:** 0.0000
+
+The historical V14 operating point exhibited complete true-negative collapse under its uncalibrated thresholding behavior. Older V21 experimental metrics are not valid headline results where their evaluation procedure was not scientifically valid, and historical experiments are archived for traceability only. 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## ⚖️ Three-State Decision Model
+
+| Raw Sigmoid Score | Decision | Interpretation |
+|---|---|---|
+| `< 0.20` | **AUTHENTIC** | Below the synthetic decision region |
+| `0.20–0.45` | **UNCERTAIN** | Abstain rather than force binary classification |
+| `> 0.45` | **SYNTHETIC** | Above the synthetic decision region |
+
+> **Crucial Disclaimer:** The V22.4F score is a raw sigmoid model output, not a calibrated probability. The UNCERTAIN state is an operating-policy abstention region, not a statistical confidence guarantee.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🔎 Forensic Evidence / Explainability
+
+MediaDNA extracts supporting forensic evidence alongside the primary decision score:
+- Model decision score (V22.4F)
+- Visual specialist score
+- Audio specialist score
+- Metadata / media properties
+- Temporal signals
+- Provenance-related signals
+- Model-sensitive regions
+- Processing trace
+- Asset hash
+- Run / case identifiers
+- Generated PDF report
+
+> **Scientific Disclaimer:** Model-sensitive regions indicate model response/sensitivity and should not be interpreted as ground-truth manipulated-pixel localization.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🚀 Setup & Installation
+
+**Requirements:**
+- Python 3.9+
+- Node.js 18+
+- NVIDIA CUDA GPU strongly recommended (8 GB+ VRAM)
+- FFmpeg and FFprobe on PATH
+
+### 1. Repository & Virtual Environment
 ```bash
 git clone https://github.com/NaveenCK-10/MediaDNA.git
 cd MediaDNA
-```
 
-## 6. Backend Setup
-
-It is highly recommended to use a virtual environment.
-
-**Windows (PowerShell):**
-```powershell
 python -m venv .venv
+# Windows:
 .venv\Scripts\Activate.ps1
+# Linux/macOS:
+source .venv/bin/activate
+
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-**Linux / macOS:**
+### 2. Environment Variables (.env)
+Create your `.env` file from the provided example:
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-pip install torch torchvision torchaudio
+cp .env.example .env
 ```
+Environment variables are used for optional cloud/LLM integrations (e.g. `NVIDIA_API_KEY`). Ensure your credentials are appropriately configured if utilizing extended capabilities. 
 
-## 7. Checkpoint Setup
-
-The V22.4F `.pth` checkpoint is intentionally **NOT committed** to Git due to repository size constraints (748MB). `git clone` alone does not provide the runnable model.
-
-1. Obtain the checkpoint `V22_4F_MULTIMODAL_StageB_Ep2.pth` from the project release or contact the repository owner.
-2. Place the file exactly at:
-   `MediaDNA/V22_4_recovery/V22_4F_MULTIMODAL_StageB_Ep2.pth`
-3. Verify the SHA-256 hash:
-   `6363fa8da584e6f253348f4bc535a4ff033d9718238fb5ec5f53045638d3bdca`
-
-**Windows PowerShell Verification:**
-```powershell
-Get-FileHash V22_4_recovery\V22_4F_MULTIMODAL_StageB_Ep2.pth -Algorithm SHA256
-```
-
-**Linux / macOS Verification:**
-```bash
-sha256sum V22_4_recovery/V22_4F_MULTIMODAL_StageB_Ep2.pth
-```
-
-## 8. FFmpeg Setup
-
-FFmpeg is not bundled with this repository. You must install it separately.
-
-Ensure `ffmpeg` and `ffprobe` are available on your system `PATH`.
-
-Verify installation:
-```bash
-ffmpeg -version
-ffprobe -version
-```
-
-## 9. Environment Variables
-
-MediaDNA can operate basic analysis without any environment variables.
-
-**OPTIONAL variables (for LLM reporting):**
-- `NVIDIA_API_KEY`: Required only if you want to use the NVIDIA NIM cloud LLM for dynamic narrative generation. If absent, the backend safely defaults to a deterministic template. Do NOT commit your API key.
-
-## 10. Backend Launch
-
-Open **Terminal 1** and start the FastAPI application:
-
+### 3. Backend Start
 ```bash
 uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
-*The backend will boot on `http://127.0.0.1:8000` and load the checkpoint into VRAM.*
+*Wait for the PyTorch checkpoint to load entirely into VRAM.*
 
-## 11. Frontend Setup
-
-Open **Terminal 2**, navigate to the frontend directory, and install npm dependencies:
-
+### 4. Frontend Start
 ```bash
 cd frontend
 npm install
 npm run build
-```
-
-## 12. Frontend Launch
-
-In **Terminal 2**, start the Vite dev server:
-
-```bash
 npm run dev
 ```
-*The frontend expects the backend to be running on `http://127.0.0.1:8000`. The Vite server will be available at `http://localhost:5173`.*
 
-## 13. API Smoke Test
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-With the backend running, you can verify the health and model-info endpoints:
+## 🌐 Demo / Local Usage
 
-```bash
-curl http://127.0.0.1:8000/api/health
-curl http://127.0.0.1:8000/api/model-info
-```
+1. Launch both the backend (FastAPI) and frontend (Vite).
+2. Open the local dashboard (default: `http://localhost:5173`).
+3. Upload an `MP4`, `MOV`, `AVI`, or `MKV` (up to 500 MB).
+4. Observe the live Server-Sent Events (SSE) processing trace.
+5. Inspect the multimodal result and download the generated PDF report.
 
-These should return JSON confirming `status: ok` and listing the active `V22.4F` model configuration.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 14. Running an Analysis
+## 🔌 API Documentation
 
-1. Ensure both the Backend (Terminal 1) and Frontend (Terminal 2) are running.
-2. Open `http://localhost:5173` in your browser.
-3. Upload a media file (MP4, AVI, WAV).
-4. The system will dispatch the analysis, and you can view the live Server-Sent Events (SSE) progress in the UI.
+MediaDNA exposes a RESTful interface over FastAPI:
 
-## 15. Demo / Sample Workflow
+- `GET /api/health` — Returns system and GPU status.
+- `GET /api/model-info` — Returns checkpoint metadata.
+- `POST /api/analyze` — Primary inference endpoint. Accepts `multipart/form-data` media.
+- `POST /api/analyze-demo` — Executes inference against safe, local locked demonstration samples.
+- `GET /api/jobs/{job_id}/events` — SSE endpoint for real-time extraction telemetry.
+- `POST /api/report/{case_id}` — Triggers Playwright PDF report generation.
+- `GET /api/report/{case_id}?download=true` — Retrieves the generated report.
+- `GET /api/history` — Returns JSON archive of historical analyses.
+- `DELETE /api/history` — Clears the history log.
 
-The repository contains basic integration tests and demonstration endpoints, but does **NOT** bundle the full multi-GB FakeAVCeleb dataset.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-If using the `/api/analyze-demo` endpoint, the system will look for specific files (e.g., `test_report_00109.mp4`) in `data_files/`. These must be provided locally for the demo shortcuts to function.
-
-## 16. Reproducing Frozen V22.4F Evaluation
-
-Cloning the repository does not automatically reproduce the locked test. The FakeAVCeleb dataset must be sourced independently.
-
-**Frozen model:**
-`V22_4_recovery/V22_4F_MULTIMODAL_StageB_Ep2.pth` (SHA-256: `6363f...`)
-
-**Dataset:**
-FakeAVCeleb configured into exact splits:
-- TRAIN 14,888
-- DEV 2,264
-- CAL 2,195
-- LOCKED TEST 2,219
-
-**Frozen decision quantity:**
-RAW SIGMOID DECISION SCORE
-
-**Frozen operating policy:**
-- `< 0.20` → AUTHENTIC
-- `0.20 – 0.45` → UNCERTAIN
-- `> 0.45` → SYNTHETIC
-
-**Frozen locked-test metrics:**
-- ROC-AUC: 0.7500
-- PR-AUC: 0.9899
-- Balanced Accuracy (confident): 0.7686
-- MCC (confident): 0.1679
-- Precision (confident): 0.9956
-- Recall (confident): 0.6621
-- Specificity (confident): 0.8750
-- F1 (confident): 0.7953
-
-*Note: FakeVideo + RealAudio recall is documented at 23.16%. The model suffers severe underperformance when visually manipulated media is paired with authentic audio.*
-
-## 17. Project Structure
+## 📁 Project Structure
 
 ```text
 MediaDNA/
 ├── backend/            # FastAPI, extraction modules, and Playwright reporting
+│   ├── main.py
+│   ├── inference.py
+│   └── modules/
 ├── frontend/           # React TSX, Framer Motion, SSE consumers
+├── src/                
+│   └── models/         # VideoCAVMAEFT and AVFF core logic
+├── V22_4_recovery/     # Active training and threshold validation scripts
 ├── scripts/            # Evaluation, repairs, and historical tests
 ├── docs/               # Formal architectural and security markdown audits
-├── V22_4_recovery/     # Locked metrics, JSON policies, and experiment artifacts
-├── requirements.txt    # Python dependency manifest
+├── requirements.txt
 └── README.md
 ```
 
-## 18. Scientific Results
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-The system implements a **Three-State Decision Model** (Authentic / Uncertain / Synthetic) to prevent forced binary errors. The decision score is a raw sigmoid model output and is *not* a calibrated probability.
+## 🧪 Reproducibility
 
-MediaDNA explicitly separates the V14 historical baseline from the final V22.4F frozen experiment.
+- **Primary Checkpoint:** `V22_4F_MULTIMODAL_StageB_Ep2.pth` 
+- **SHA-256:** `6363fa8da584e6f253348f4bc535a4ff033d9718238fb5ec5f53045638d3bdca`
 
-**V14 Historical Baseline (Archived Reference)**
-- ROC-AUC: 0.9094
-- Specificity: 0.0000 (Suffered from complete true-negative collapse due to class imbalance)
+**Dataset Requirement:** FakeAVCeleb
+- TRAIN: 14,888 samples
+- DEV: 2,264 samples
+- CAL: 2,195 samples
+- LOCKED TEST: 2,219 samples
 
-**V22.4F Final Frozen Model**
-- ROC-AUC: 0.7500
-- Specificity (confident): 0.8750 (Recovered via proper balancing and an Uncertain zone)
+> **Important:** FakeAVCeleb is NOT bundled with this repository. It must be sourced independently. Exact splits and experimental protocols matter; reproducing the exact numbers requires the same data organization and protocol. Cloning the repository is not sufficient. 
 
-## 19. Limitations
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-**MediaDNA is a research and engineering prototype for media-authenticity analysis.**
-Its outputs and PDF reports should not be treated as definitive proof of authenticity, manipulation, physical provenance, or legal evidence.
+## 🛡️ Security
 
-The system relies on statistical pattern recognition which is inherently susceptible to adversarial attacks, severe compression degradation, and out-of-distribution media generation techniques not present in the FakeAVCeleb training dataset.
+- The current source code does not intentionally hardcode active credentials. 
+- Environment variables (`.env`) are correctly utilized for optional integrations.
+- *Notice:* The historical Git history of this repository once contained an exposed NVIDIA credential. Therefore, credential revocation/rotation was executed. The historical Git history should not be considered fully clean.
+- This platform is a research prototype, not an enterprise-grade production security application. Uploaded media is size-constrained (500 MB max) by the backend logic.
 
-MediaDNA provides **MODEL-SENSITIVE REGION** mappings and decision scores. It does *not* claim to provide ground-truth manipulation localization, 100% accuracy, guaranteed authenticity, or exact generator attribution.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 20. Security
+## ⚠️ Limitations
 
-- Hardcoded credentials have been removed from the current source. The codebase uses safe `os.getenv` fallbacks.
-- Note: A historical NVIDIA credential exposure remains in the Git history and requires external credential revocation/rotation.
+- **Research Prototype:** MediaDNA is a research and engineering prototype for media-authenticity analysis.
+- **Statistical Recognition Risk:** The system relies on statistical pattern recognition which is inherently susceptible to adversarial attacks, severe compression degradation, and out-of-distribution media generation techniques not present in the FakeAVCeleb dataset.
+- **Score Semantics:** The raw sigmoid score is not a probability.
+- **Uncertainty Policy:** The three-state policy is an abstention region and does not equal calibrated uncertainty.
+- **Explainability Bound:** Model-sensitive maps are not ground-truth localization.
+- **Hash Boundaries:** Cryptographic hashes track asset integrity in the system, but do not establish overarching media authenticity.
+- **Forensic Utility:** Reports generated by MediaDNA are decision-support artifacts and **do not constitute definitive legal proof or exact generator attribution.**
 
-## 21. Troubleshooting
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-- **`ModuleNotFoundError: No module named 'torch'`**: Ensure you activated your `.venv` before running `pip install -r requirements.txt`.
-- **FFmpeg not found**: Ensure `ffmpeg` and `ffprobe` are installed and the `bin` directory is added to your Windows/Linux `PATH`.
-- **`FileNotFoundError: [Errno 2] No such file or directory: '.../V22_4_recovery/V22_4F_MULTIMODAL_StageB_Ep2.pth'`**: You did not download the required multi-GB checkpoint. Clone alone does not download the `.pth` files.
-- **Backend crashes with `RuntimeError: CUDA error: out of memory`**: Your GPU does not have enough VRAM (8GB+ recommended).
-- **`ModuleNotFoundError: No module named 'syntheticvideodetector_pb2'`**: A known missing gRPC dependency. However, `backend/modules/nvidia_nim_api.py` has a graceful fallback in the latest freeze, allowing the server to boot regardless.
-- **Frontend Vite server not connecting to backend**: Ensure `uvicorn` is running on `127.0.0.1:8000` in a separate terminal.
+## 📄 Citation
+
+If you build upon this project or use the AVFF-family architecture, please acknowledge the foundational research:
+
+```bibtex
+@inproceedings{oorloff2024avff,
+  title={AVFF: Audio-Visual Feature Fusion for Video Deepfake Detection},
+  author={Oorloff, Trevine and Yasantha, Craig and Mendieta, Matias and Chen, Chen},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={26778--26788},
+  year={2024}
+}
+```

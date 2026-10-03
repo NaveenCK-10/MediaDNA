@@ -133,7 +133,7 @@ async def health_check():
         status="ok" if service and service.is_loaded else "error",
         model_loaded=service is not None and service.is_loaded,
         device=str(service.device) if service else "unknown",
-        checkpoint=os.path.basename(CHECKPOINT),
+        checkpoint="V22_4F_MULTIMODAL_StageB_Ep2.pth",
         gpu_name=gpu_name,
         gpu_memory_mb=gpu_mem,
     )
@@ -155,9 +155,9 @@ async def model_info():
         audio_sample_rate=16000,
         target_length=1024,
         num_mel_bins=128,
-        dataset_mean=[0.485, 0.456, 0.406],
-        dataset_std=[0.229, 0.224, 0.225],
-        checkpoint=os.path.basename(CHECKPOINT),
+        dataset_mean=0.0,
+        dataset_std=1.0,
+        checkpoint="V22_4F_MULTIMODAL_StageB_Ep2.pth",
         device=str(service.device),
         total_parameters=0,
     )

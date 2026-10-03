@@ -52,8 +52,8 @@ FFPROBE_PATH = os.environ.get("FFPROBE_PATH", "ffprobe")
 AVFF_CHECKPOINT = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4F_MULTIMODAL_StageB_Ep2.pth")
 
 # Fallback to V22.3 if V22.4 not available
-V22_3_VIS_CKPT = os.path.join(PROJECT_ROOT, "V22_3B_VISUAL_CHECKPOINT.pth")
-V22_3_AUD_CKPT = os.path.join(PROJECT_ROOT, "V22_3C_AUDIO_CHECKPOINT.pth")
+V22_3_VIS_CKPT = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4B_VISUAL_CHECKPOINT.pth")
+V22_3_AUD_CKPT = os.path.join(PROJECT_ROOT, "V22_4_recovery", "V22_4C_AUDIO_CHECKPOINT.pth")
 
 
 class OpenAVFFService:
@@ -64,11 +64,30 @@ class OpenAVFFService:
         
     def _load_models(self):
         # === PRIMARY DETECTOR: AVFF ===
+        import hashlib
         logger.info("Loading V22.4 AVFF Primary Detector...")
         self.avff_model = VideoCAVMAEFT()
-        self.avff_model = nn.DataParallel(self.avff_model)
-        ckpt = torch.load(AVFF_CHECKPOINT, map_location="cpu")
-        self.avff_model.load_state_dict(ckpt, strict=False)
+        
+        with open(AVFF_CHECKPOINT, 'rb') as f:
+            ckpt_sha256 = hashlib.sha256(f.read()).hexdigest()
+        logger.info(f"AVFF Checkpoint SHA-256: {ckpt_sha256}")
+        
+        ckpt = torch.load(AVFF_CHECKPOINT, map_location="cpu", weights_only=True)
+        incompatible_keys = self.avff_model.load_state_dict(ckpt, strict=True)
+        
+        missing_keys = len(incompatible_keys.missing_keys)
+        unexpected_keys = len(incompatible_keys.unexpected_keys)
+        
+        logger.info(f"AVFF Missing Keys: {missing_keys}")
+        logger.info(f"AVFF Unexpected Keys: {unexpected_keys}")
+        
+        param_count = sum(p.numel() for p in self.avff_model.parameters())
+        logger.info(f"AVFF Total Parameter Count: {param_count}")
+        logger.info(f"AVFF Active Device: {self.device}")
+        
+        if missing_keys > 0 or unexpected_keys > 0:
+            raise RuntimeError(f"Checkpoint mismatch! Missing: {missing_keys}, Unexpected: {unexpected_keys}")
+            
         self.avff_model.to(self.device)
         self.avff_model.eval()
         self.use_avff = True
@@ -347,6 +366,14 @@ class OpenAVFFService:
             abstention_status="DECISION_THRESHOLD", calibration_status="NOT_CALIBRATED", ood_status="NOT_IMPLEMENTED"
         )
         
+        explainability_data = {"status": "not_implemented_for_avff"}
+        try:
+            from backend.modules.explainability import ExplainabilityEngine
+            engine = ExplainabilityEngine(self.avff_model, self.device)
+            explainability_data = engine.run_explainability(video_path, a_input[0], v_input[0], fusion_score)
+        except Exception as e:
+            logger.error(f"Failed to run explainability engine: {e}")
+
         profile = MediaDNAProfile(
             case_id=context.get("case_id", "UNKNOWN"), asset_id=context.get("asset_id", "UNKNOWN"),
             run_id=context.get("run_id", "UNKNOWN"), asset_hash=context.get("asset_hash", "UNAVAILABLE"),
@@ -367,7 +394,7 @@ class OpenAVFFService:
             cloud_forensics=cloud_forensics,
             metadata={"video_duration_sec": float(media_info['video_duration']), "analysis_duration_sec": time.time() - total_start},
             limitations=["Uses AVFF Cross-Modal Fusion (V22.4 Recovery)", "Trained on FakeAVCeleb dataset"],
-            llm_report="", rag_explanation="", explainability={"status": "not_implemented_for_avff"}
+            llm_report="", rag_explanation="", explainability=explainability_data
         )
         
         profile_dict = profile.model_dump()

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { AlertTriangle, ArrowRight, RotateCcw } from 'lucide-react';
+import { AlertTriangle, ArrowRight, RotateCcw, ScanEye } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import UploadZone from '../components/UploadZone';
 import ProcessingView from '../components/ProcessingView';
@@ -54,17 +54,35 @@ export default function Analyze() {
     
     es.onmessage = (e) => {
       try {
-        const data: JobEvent = JSON.parse(e.data);
-        setJobProgress(data);
+        const data = JSON.parse(e.data);
+        // Normalize backend fields to match frontend JobEvent interface
+        const normalized: JobEvent = {
+          job_id: data.analysis_id || data.job_id || activeJobId || '',
+          status: (data.status || '').toLowerCase() === 'completed' ? 'complete'
+               : (data.status || '').toLowerCase() === 'failed' ? 'error'
+               : (data.status || '').toLowerCase() === 'processing' ? 'processing'
+               : 'queued',
+          stage: data.stage || 'QUEUED',
+          message: data.message || data.stage_label || '',
+          progress: data.stage_index != null && data.stage_total
+            ? Math.round((data.stage_index / (data.stage_total - 2)) * 100)
+            : data.progress || 0,
+          elapsed_seconds: 0,
+          completed_stages: data.completed_stages || [],
+          result: data.result,
+          error_code: data.error_code,
+        };
+        setJobProgress(normalized);
         
-        if (data.status === 'complete' && data.result) {
-          setResult(data.result);
+        if (normalized.status === 'complete' && normalized.result) {
+          const finalResult = { ...normalized.result, id: normalized.job_id };
+          setResult(finalResult);
           setState('result');
           es.close();
           setActiveJobId(null);
-        } else if (data.status === 'error') {
-          setError(data.message || 'Analysis failed during background job.');
-          setState('preview');
+        } else if (normalized.status === 'error') {
+          setError(normalized.message || 'Analysis failed during background job.');
+          setState(file ? 'preview' : 'upload');
           es.close();
           setActiveJobId(null);
         }
@@ -214,10 +232,12 @@ export default function Analyze() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col gap-8"
           >
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-gray-800">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-white/10">
               <div>
-                <div className="font-mono text-[0.65rem] font-bold text-[#00e5ff] tracking-[0.2em] mb-2">MEDIA INSPECTION WORKSTATION</div>
-                <div className="font-mono text-sm text-white flex items-center gap-2">
+                <div className="font-mono text-[0.65rem] font-bold text-cyan-400 tracking-[0.2em] mb-2 flex items-center gap-2">
+                   <ScanEye className="w-4 h-4" /> MEDIA INSPECTION WORKSTATION
+                </div>
+                <div className="font-mono text-sm text-white flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded w-fit">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></div>
                   TARGET LOADED SUCCESSFULLY
                 </div>
@@ -226,18 +246,19 @@ export default function Analyze() {
                 <button onClick={handleChangeMedia} className="btn-secondary flex-1 sm:flex-none justify-center" data-hover="node">
                   <RotateCcw className="w-4 h-4" /> ABORT
                 </button>
-                <button onClick={handleAnalyze} className="btn-primary flex-1 sm:flex-none justify-center" data-hover="node">
-                  BEGIN INFERENCE <ArrowRight className="w-4 h-4" />
+                <button onClick={handleAnalyze} className="btn-primary flex-1 sm:flex-none justify-center group" data-hover="node">
+                  BEGIN INFERENCE <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
 
             {/* Video Viewport */}
-            <div className="relative w-full bg-[#06080d] border border-gray-800 rounded-lg overflow-hidden shadow-2xl reticle-container" data-hover="media">
-              <div className="reticle-corner reticle-tl" />
-              <div className="reticle-corner reticle-tr" />
-              <div className="reticle-corner reticle-bl" />
-              <div className="reticle-corner reticle-br" />
+            <div className="relative w-full glass-card border border-white/10 rounded-xl overflow-hidden shadow-2xl reticle-container group" data-hover="media">
+              
+              <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-4 z-20 flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                 <div className="font-mono text-[0.55rem] text-cyan-400 tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur">TARGET MEDIA</div>
+                 <div className="font-mono text-[0.55rem] text-white/50 tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur">LOCAL ANALYSIS SOURCE</div>
+              </div>
 
               <video
                 ref={videoRef}
@@ -245,13 +266,13 @@ export default function Analyze() {
                 controls
                 controlsList="nodownload nofullscreen"
                 onLoadedMetadata={handleVideoLoadedMetadata}
-                className="w-full max-h-[60vh] object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                className="w-full max-h-[60vh] object-contain transition-opacity duration-300 relative z-10"
                 style={{ display: 'block' }}
               />
               
               {/* Scanline overlay */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20 mix-blend-overlay">
-                <div className="w-full h-[10%] bg-gradient-to-b from-transparent via-[#00e5ff] to-transparent animate-[scanline_4s_linear_infinite]" />
+              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30 mix-blend-overlay z-20">
+                <div className="w-full h-[15%] bg-gradient-to-b from-transparent via-cyan-500 to-transparent animate-[scanline_3s_linear_infinite]" />
               </div>
             </div>
 

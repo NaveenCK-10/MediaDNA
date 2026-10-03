@@ -19,56 +19,71 @@ class ReportGenerator:
         
     def _normalize_data(self, profile_data: dict) -> dict:
         """Create a strict deterministic normalized report object."""
-        case_id = profile_data.get("id", "UNKNOWN_CASE")
+        case_id = profile_data.get("case_id", "UNKNOWN_CASE")
+        run_id = profile_data.get("run_id", profile_data.get("id", case_id))
         
-        # Determine state
-        state = profile_data.get("status", "FAILED")
-        if state == "COMPLETED":
+        # Determine state correctly
+        processing_status = profile_data.get("processing_status", "")
+        if processing_status == "COMPLETED":
             state = profile_data.get("trust", {}).get("abstention_state", "UNCERTAIN").upper()
+        else:
+            state = "FAILED"
             
+        quality = profile_data.get("quality", {})
+            
+        timestamp_val = profile_data.get("timestamp", profile_data.get("ingestion_timestamp"))
+        if isinstance(timestamp_val, (int, float)):
+            formatted_time = datetime.datetime.fromtimestamp(timestamp_val).strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            formatted_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        filename = profile_data.get("filename", profile_data.get("media_filename", "Unknown"))
+
         normalized = {
             "case": {
                 "case_id": case_id,
-                "analysis_id": profile_data.get("analysis_id", case_id),
-                "filename": profile_data.get("media_filename", "Unknown"),
-                "timestamp": profile_data.get("completed_at", datetime.datetime.now().isoformat())
+                "analysis_id": run_id,
+                "filename": filename,
+                "timestamp": formatted_time
             },
             "asset": {
-                "sha256": profile_data.get("media_sha256", "Unavailable"),
-                "duration_seconds": profile_data.get("media_info", {}).get("video_duration", 0),
-                "fps": profile_data.get("media_info", {}).get("fps", 0),
-                "width": profile_data.get("media_info", {}).get("width", 0),
-                "height": profile_data.get("media_info", {}).get("height", 0),
-                "audio_available": profile_data.get("media_info", {}).get("audio_presence", False)
+                "sha256": profile_data.get("asset_hash", "Unavailable"),
+                "file_size": profile_data.get("file_size_bytes", "Unknown"),
+                "duration_seconds": quality.get("duration", 0),
+                "fps": quality.get("frame_rate", 0),
+                "width": quality.get("width", 0),
+                "height": quality.get("height", 0),
+                "audio_available": quality.get("audio_presence", False)
             },
             "models": {
-                "visual": "V22.3 Visual Specialist",
-                "audio": "V22.3 Audio Specialist",
+                "visual": "V22.4 Visual Specialist",
+                "audio": "V22.4 Audio Specialist",
                 "fusion": "0.5 visual + 0.5 audio",
-                "calibration": "V22.3 Platt Calibrator"
+                "calibration": "V22.4 Platt Calibrator"
             },
             "scores": {
-                "visual": profile_data.get("visual", {}).get("raw_model_score", None),
-                "audio": profile_data.get("audio", {}).get("raw_model_score", None),
-                "fusion": profile_data.get("fusion", {}).get("raw_model_score", None),
-                "calibrated_probability": profile_data.get("trust", {}).get("calibrated_probability", None)
+                "visual": profile_data.get("visual", {}).get("anomaly_score", None),
+                "audio": profile_data.get("audio", {}).get("anomaly_score", None),
+                "fusion": profile_data.get("multimodal", {}).get("fusion_output", None),
+                "calibrated_score": profile_data.get("trust", {}).get("calibrated_score", profile_data.get("trust", {}).get("raw_model_score", None))
             },
             "decision": {
                 "state": state,
-                "reason": "Calibrated probability threshold applied."
+                "reason": "Decision score threshold applied."
             },
             "evidence": {
-                "modality_agreement": "N/A" if not profile_data.get("media_info", {}).get("audio_presence", False) else (
-                    "Agreed" if abs((profile_data.get("visual", {}).get("raw_model_score") or 0) - (profile_data.get("audio", {}).get("raw_model_score") or 0)) < 0.2 else "Disagreed"
+                "modality_agreement": "N/A" if not quality.get("audio_presence", False) else (
+                    "Agreed" if abs((profile_data.get("visual", {}).get("anomaly_score") or 0) - (profile_data.get("audio", {}).get("anomaly_score") or 0)) < 0.2 else "Disagreed"
                 ),
-                "audio_status": "Present" if profile_data.get("media_info", {}).get("audio_presence", False) else "Missing/Unavailable",
+                "audio_status": "Present" if quality.get("audio_presence", False) else "Missing/Unavailable",
                 "attribution_type": "model-sensitive attribution",
                 "provenance_status": "unsupported"
             },
             "limitations": [
                 "The MediaDNA output is a model-assisted authenticity assessment and should not be interpreted as definitive proof of authenticity, manipulation, provenance, or source attribution."
             ],
-            "narrative": {}
+            "narrative": {},
+            "explainability": profile_data.get("explainability", {})
         }
         
         return normalized

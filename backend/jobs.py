@@ -33,7 +33,7 @@ STAGE_LABELS = {
     "AUDIO_PREPROCESSING": "Audio Preprocessing",
     "AUDIO_ANALYSIS": "Audio Analysis",
     "LATE_FUSION": "Fusing modalities",
-    "CALIBRATION": "Calibrating probability",
+    "CALIBRATION": "Extracting decision score",
     "DECISION": "Applying decision policy",
     "FORENSIC_EVIDENCE": "Aggregating evidence",
     "REPORT_GENERATION": "Generating PDF report",

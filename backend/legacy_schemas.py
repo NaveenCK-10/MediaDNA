@@ -8,11 +8,11 @@ from typing import Optional, List
 class AnalysisResponse(BaseModel):
     """Response from the /api/analyze endpoint."""
     prediction: str  # "fake" or "real"
-    fake_probability: float
-    real_probability: float
+    fake_decision_score: float
+    real_decision_score: float
     # OpenAVFF specific
-    openavff_fake_prob: float
-    openavff_real_prob: float
+    openavff_fake_score: float
+    openavff_real_score: float
     raw_logits: List[float]
     
     # Visual specific

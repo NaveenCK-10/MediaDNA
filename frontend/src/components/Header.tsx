@@ -42,8 +42,8 @@ export default function Header() {
         
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2 group" data-hover="node">
-          <span className="text-sm font-bold tracking-[0.25em] text-[#eeeeee] flex items-center">
-            MEDIA<span className="text-cyan-accent font-light ml-1">DNA</span>
+          <span className="text-sm font-bold tracking-[0.25em] text-white flex items-center transition-all duration-300">
+            MEDIA<span className="text-cyan-accent font-light ml-1 drop-shadow-[0_0_8px_rgba(0,212,255,0.5)]">DNA</span>
           </span>
         </NavLink>
 
@@ -92,13 +92,22 @@ export default function Header() {
           <button 
             onClick={() => setShowStatus(!showStatus)}
             data-hover="node"
-            className="flex items-center gap-3 px-2 py-1 rounded transition-colors group hover:bg-white/5"
+            className="flex items-center gap-3 px-3 py-1.5 rounded-full transition-all duration-300 group hover:bg-white/5 border border-transparent hover:border-white/10"
           >
-            <div className={`w-1.5 h-1.5 rounded-full ${health ? 'signal-dot-online animate-[pulse_2s_infinite]' : 'bg-[var(--color-crimson)] shadow-[0_0_8px_var(--color-crimson)]'}`}></div>
-            <span className="tech-mono text-[0.6rem] text-[#888888] group-hover:text-white transition-colors flex items-center gap-2">
-              {health ? 'SYSTEM ONLINE' : 'SYSTEM OFFLINE'}
-              {health && health.device === 'cuda' && (
-                 <span className="hidden sm:inline">| GPU ACTIVE</span>
+            <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${health ? 'bg-[var(--color-emerald)] shadow-[0_0_10px_var(--color-emerald)] animate-pulse' : 'bg-[var(--color-crimson)] shadow-[0_0_8px_var(--color-crimson)]'}`}></div>
+            <span className="tech-mono text-[0.6rem] text-white/60 group-hover:text-white transition-colors flex items-center gap-2 tracking-widest">
+              {health ? 'SYSTEM READY' : 'SYSTEM OFFLINE'}
+              {health && (
+                <>
+                  <span className="text-white/30 hidden sm:inline">•</span>
+                  <span className="text-cyan-accent hidden sm:inline">V22.4F</span>
+                  {health.device === 'cuda' && (
+                    <>
+                      <span className="text-white/30 hidden sm:inline">•</span>
+                      <span className="text-[#a5b4fc] hidden sm:inline">GPU ACTIVE</span>
+                    </>
+                  )}
+                </>
               )}
             </span>
           </button>

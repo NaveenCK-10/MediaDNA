@@ -60,8 +60,8 @@ class ExplainabilityEngine:
             
             region_sensitivity.append({
                 "region": region_name,
-                "original_probability": base_fake_prob,
-                "perturbed_probability": p_prob,
+                "original_score": base_fake_prob,
+                "perturbed_score": p_prob,
                 "delta": delta,
                 "coordinates": {"y1": y1, "y2": y2, "x1": x1, "x2": x2}
             })

@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { Play, Hexagon, Fingerprint, ScanEye } from 'lucide-react';
+import { Play, Fingerprint, ScanEye } from 'lucide-react';
+import MediaDNAEngine from '../components/MediaDNAEngine';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import SignalCards from '../components/SignalCards';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -55,7 +57,12 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-12 px-6 lg:px-12 relative">
+    <div className="min-h-screen pt-24 pb-12 px-6 lg:px-12 relative overflow-hidden bg-[#030508]">
+      
+      {/* ─── Atmospheric Background ─── */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.03)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:48px_48px] opacity-30" />
+      <div className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] " />
       
       {/* ─── Hero Section ─── */}
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center mb-32">
@@ -66,28 +73,30 @@ export default function Dashboard() {
           className="space-y-8 z-10 relative"
         >
           <div>
-            <div className="font-mono text-[0.65rem] font-bold tracking-[0.3em] text-[#00e5ff] mb-4 flex items-center gap-2">
+            <div className="font-mono text-[0.65rem] font-bold tracking-[0.4em] text-[#00e5ff] mb-6 flex items-center gap-2">
               <Fingerprint className="w-4 h-4" />
-              MEDIA DNA / DIGITAL MEDIA FORENSICS
+              DIGITAL MEDIA FORENSICS
             </div>
-            <h1 className="editorial-headline tracking-tighter text-white uppercase" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', lineHeight: 0.9 }}>
-              EVERY PIECE OF MEDIA<br />
-              LEAVES A<br />
-              <span className="text-[#00e5ff]">FINGERPRINT.</span>
+            <h1 className="editorial-headline text-white tracking-tighter" style={{ fontSize: 'clamp(4rem, 8vw, 6.5rem)', lineHeight: 0.85 }}>
+              MEDIA<br />
+              <span className="text-[#00e5ff] border-b-[6px] border-[#00e5ff]/80 inline-block pb-2 pr-4 shadow-[0_4px_20px_rgba(0,229,255,0.15)]">
+                DNA
+              </span>
             </h1>
           </div>
-          <p className="text-sm lg:text-base text-gray-400 font-mono max-w-xl leading-relaxed">
-            A premium AI-powered digital media forensics instrument. 
-            Utilizing the OpenAVFF multimodal architecture to detect synthetic manipulation across synchronized audio-visual streams.
+          <p className="text-sm lg:text-[0.95rem] text-gray-400 font-mono max-w-lg leading-[1.8] tracking-wide">
+            Multimodal media authenticity analysis. Interrogate visual, audio, and temporal signals. Build evidence. Preserve provenance.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row gap-5 pt-6">
             <button 
               onClick={() => navigate('/analyze')}
               data-hover="node"
-              className="btn-primary py-4 px-8 text-xs w-full sm:w-auto flex justify-center items-center gap-3 font-bold"
+              className="btn-primary py-4 px-8 text-[0.7rem] w-full sm:w-auto flex justify-center items-center gap-3 font-bold tracking-[0.2em] relative overflow-hidden group border border-[#00e5ff]/40 hover:border-[#00e5ff] transition-all bg-[#00e5ff]/5 hover:bg-[#00e5ff]/10"
             >
-              <ScanEye className="w-4 h-4" /> ANALYZE MEDIA
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#00e5ff]/30 to-transparent group-hover:animate-[scanline_1.5s_ease-in-out_infinite]" />
+              <ScanEye className="w-4 h-4 z-10" /> 
+              <span className="z-10">ANALYZE MEDIA</span>
             </button>
             <button 
               onClick={() => {
@@ -95,37 +104,20 @@ export default function Dashboard() {
                 el?.scrollIntoView({ behavior: 'smooth' });
               }}
               data-hover="node"
-              className="btn-secondary py-4 px-8 text-xs w-full sm:w-auto flex justify-center items-center gap-3 font-bold"
+              className="btn-secondary py-4 px-8 text-[0.7rem] w-full sm:w-auto flex justify-center items-center gap-3 font-bold tracking-[0.2em] group hover:text-white transition-colors"
             >
-              <Play className="w-4 h-4" /> FORENSIC DEMO LAB
+              <span className="group-hover:translate-x-1 transition-transform flex items-center gap-3">
+                <Play className="w-4 h-4" /> EXPLORE SYSTEM
+              </span>
             </button>
           </div>
         </motion.div>
 
         {/* Abstract Core Visualization */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative h-[400px] lg:h-[600px] w-full flex items-center justify-center pointer-events-none"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.08)_0%,transparent_60%)]"></div>
-          
-          <div className="relative z-10 w-72 h-72 border border-[#00e5ff]/30 flex items-center justify-center rotate-45 group">
-            <div className="w-56 h-56 border border-white/10 flex items-center justify-center -rotate-45 bg-black/40 backdrop-blur-md shadow-[0_0_50px_rgba(0,229,255,0.1)]">
-              <div className="text-center">
-                <Hexagon className="w-16 h-16 text-[#00e5ff] mx-auto mb-3 anim-hex" strokeWidth={1} />
-                <div className="font-mono text-[0.75rem] font-bold text-white tracking-[0.2em]">VideoCAVMAEFT</div>
-                <div className="font-mono text-[0.55rem] text-gray-500 mt-1 tracking-[0.3em]">MULTIMODAL CORE</div>
-              </div>
-            </div>
-            
-            <div className="absolute inset-0 border border-transparent rounded-full anim-ring-1" style={{ borderTopColor: '#00e5ff' }}></div>
-            <div className="absolute inset-4 border border-transparent rounded-full anim-ring-2" style={{ borderBottomColor: '#b388ff' }}></div>
-            <div className="absolute inset-8 border border-transparent rounded-full anim-ring-3" style={{ borderRightColor: '#ffb300' }}></div>
-          </div>
-        </motion.div>
+        <MediaDNAEngine />
       </div>
+      
+      <SignalCards />
 
       {/* ─── Forensic Demo Lab (2x2 Matrix) ─── */}
       <div id="demo-lab" className="max-w-6xl mx-auto pt-12">
